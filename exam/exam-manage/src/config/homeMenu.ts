@@ -54,7 +54,19 @@ export const admin = [
         icon: WalletOutlined
     },
     {
+        title: "阅卷管理",
+        icon: MenuUnfoldOutlined,
+        children:[
+            {
+            title:'批卷班级',
+            path:'/home/examPaperClassList'
+        }
+    ]
+    
+    },
+    {
         title: "菜单管理",
-        icon: MenuUnfoldOutlined
+        icon: MenuUnfoldOutlined,
+        
     }
 ]

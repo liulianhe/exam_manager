@@ -40,9 +40,7 @@ class AddQuestions extends Component {
         editor.create()
     }
 
-    componentWillUnmount() {
-        (editor as E).destroy()
-    }
+
     //输入框值变化时
     onChange(e?: any) {
         this.setState({

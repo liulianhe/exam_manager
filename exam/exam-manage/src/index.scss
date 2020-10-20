@@ -25,9 +25,9 @@ body,
         height: 80px;
         line-height: 80px;
         font-size: 20px;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 3px solid ;
         display: flex;
-
+        border-color: #b3aeae;
         span {
             flex: 1;
 
@@ -84,15 +84,103 @@ body,
             }
         }
 
-        .main-right {
+        .main-right{
+            width: calc(100% - 300px);
+            background: #f0f2f5;
             height: 100%;
+            overflow-y: auto;
+        }
+    }
+
+}
+
+
+.markIndex{
+    width: 100%;
+    height: 100%;
+    h3{
+        width: 100%;
+        height: 50px;
+    }
+}
+.marking{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .inquire{
+        width: 95%;
+        height: 120px;
+        background: #fff;
+        margin: 60px auto 0 auto;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        button{
+            margin-left: 50px;
+        }
+    }
+    .mainList{
+        width: 95% !important;
+        height: 70% !important;
+        background: #fff;
+        margin: 0 auto  ;
+        border-radius: 10px;
+            height: auto;
             overflow-y: auto;
             width: calc(100% - 200px);
             background: #f0f2f5;
         }
     }
+    .markDefault{
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        overflow: hidden;
+    .markDefaultInfor{
+        width: 100%;
+        height: 100%;
+        justify-content: space-between;
+        display: flex;
+        .left{
+            width: 73%;
+            height: 100%;
+            background: #fff;
+            img{
+                width: 100%;
+            }
+            overflow-x: hidden;
+            overflow-y: auto;
+            .answerTitle{
+                width:100%;
+                display: flex;
+                justify-content: space-between;
+                .answerTitleItem{
+                    width: 50% !important;
+                }
+            }
+            .answer{
+                width: 100%;
+                display: flex;
+                padding:10px 50px;
+                justify-content: space-between;
+            }
+        }
+        .right{
+            width:25% ;
+            height: 200px;
+            background: #fff;
+           
+        }
+    }
+    }
 
-}
+
+
+
+
 
 //用户展示
 
@@ -392,3 +480,5 @@ body,
         margin: 0 60px;
     }
 }
+
+
