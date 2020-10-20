@@ -9,7 +9,7 @@
 import Home from '../containers/home'
 import Login from '../containers/user/Login'
 import Error_404 from '../containers/error/404'
-
+import TokenTimeOut from '@/containers/error/TokenTimeOut'
 import Welcome from '@/containers/home/Welcome'
 import AddQuestions from '@/containers/home/questions/AddQuestions'
 
@@ -65,5 +65,9 @@ export default [
     {
         path: '/404',
         component: Error_404
+    },
+    {
+        path: '/tokenTimeOut',
+        component: TokenTimeOut
     }
 ]
