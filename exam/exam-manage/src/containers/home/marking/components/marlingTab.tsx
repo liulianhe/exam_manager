@@ -1,8 +1,16 @@
+/*
+ * @Author: 李壮壮 
+ * @Date: 2020-10-20 14:27:01 
+ * @Last Modified by: 李壮壮
+ * @Last Modified time: 2020-10-20 22:21:52
+ */
 import React, { Component } from 'react'
-import {Table, Tag, Space} from 'antd';
+import {Table, Tag,Modal, Button, Space} from 'antd';
 import {_getStudentExam} from '@/api/user'
+
 interface IProps{
-  location: any
+  location:any,
+  history?:any 
 };
 interface IState{
     dataSource:{
@@ -61,7 +69,7 @@ export default class marlingTab extends Component<IProps,IState> {
                  key: 'action',
                  render: (text:any, record:any) => (
                   <Space size="middle">
-                    <a href="#">批卷</a>
+                    <a onClick={()=>this.toMark(record)}>批卷</a>
                   </Space>
                 )
                  }
@@ -74,13 +82,14 @@ export default class marlingTab extends Component<IProps,IState> {
     async getList(){
       const result = await _getStudentExam(this.props.location.state.id);
       if(result.data.code===1){
+        console.log(result)
         let arr: {key:string, class: string; name: string; state: string; startTime: string; endTime: string; talentRate: string; }[] =[];
         result.data.exam.forEach((item:any)=>{
           arr.push({
-            key:item.student_id,
+            key:item.exam_student_id,
             class:this.props.location.state.name,
             name:item.student_name,
-            state:'待阅卷',
+            state:item.status?'已阅卷':'未阅',
             startTime:item.start_time,
             endTime:item.end_time,
             talentRate:'-'
@@ -89,11 +98,18 @@ export default class marlingTab extends Component<IProps,IState> {
         })
         this.setState({
           dataSource:arr
-        },()=>{
-          console.log(arr)
         })
       }
-      console.log(result)
+      
+    }
+
+    toMark(record: any){
+      this.props.history.push({
+        pathname:'/home/examDetail',
+        state:{
+          id:record.key
+        }
+      })
     }
     render() {
         return (

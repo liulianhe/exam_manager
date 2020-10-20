@@ -15,9 +15,7 @@ class Modal extends Component<IProps> {
   cancel() {
     this.props.cancel && this.props.cancel()
   }
-  onOK() {
-    this.onOK()
-  }
+  onOK() {}
   render() {
     console.log(this.props)
     return (

@@ -1,3 +1,12 @@
+/*
+ * @Author: Lala Jack
+ * @Date: 2020-10-19 11:23:13
+ * @LastEditors: 刘连合
+ * @LastEditTime: 2020-10-20 09:02:08
+ * @motto: Still water run deep
+ * @Description: Modify here please
+ * @FilePath: \exam-manage\src\config\homeMenu.ts
+ */
 import {
     AppstoreOutlined,
     MenuUnfoldOutlined,
@@ -18,7 +27,17 @@ export const admin = [
     },
     {
         title: '用户管理',
-        icon: UserOutlined
+        icon: UserOutlined,
+        children: [
+            {
+                title: '添加用户',
+                path: '/home/addUser'
+            },
+            {
+                title: '用户展示',
+                path: '/home/showUser'
+            }
+        ]
     },
     {
         title: '考试管理',
@@ -26,18 +45,28 @@ export const admin = [
     },
     {
         title: '班级管理',
-        icon: WalletOutlined
+        icon: WalletOutlined,
+        children: [
+            {
+                title: '学生管理',
+                path: '/home/student'
+            }
+        ]
     },
     {
         title: "阅卷管理",
         icon: MenuUnfoldOutlined,
-        children:[{
-            title:'待批班级',
-            path:'/home/mark'
-        }]
+        children:[
+            {
+            title:'批卷班级',
+            path:'/home/examPaperClassList'
+        }
+    ]
+    
     },
     {
         title: "菜单管理",
-        icon: MenuUnfoldOutlined
+        icon: MenuUnfoldOutlined,
+        
     }
 ]

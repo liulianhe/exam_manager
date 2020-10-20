@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { _login } from '@/api/user'
-
+import { UserOutlined, UnlockOutlined } from '@ant-design/icons';
+import { inject, observer } from 'mobx-react'
+@inject('user')
+@observer
 class Login extends Component<any> {
     status = {
 
@@ -14,6 +17,7 @@ class Login extends Component<any> {
         if (res.data.code) {
             localStorage.setItem('token', res.data.token)
             this.props.history.push('/')
+            this.props.user.setUserInfo(res.data.userInfo)
         }
     }
     user_name: null | HTMLInputElement = null
@@ -21,12 +25,15 @@ class Login extends Component<any> {
     render() {
         return (
             <div className='login'>
-                <div>
+                <div className='form'>
+                    <h2>考试管理系统</h2>
                     <p>
-                        用户名： <input type="text" value='heinan' ref={(e) => { this.user_name = e }} name='user_name' onChange={() => { }} />
+                        <span><UserOutlined /></span>
+                        <input type="text" ref={(e) => { this.user_name = e }} name='user_name' />
                     </p>
                     <p>
-                        密码 <input type="password" value='1qaz!QAZ' ref={(e) => { this.user_pwd = e }} name='user_pwd' onChange={() => { }} />
+                        <span><UnlockOutlined /></span>
+                        <input type="password" ref={(e) => { this.user_pwd = e }} name='user_pwd' />
                     </p>
                     <button onClick={() => { this.onChange() }}>登录</button>
                 </div>

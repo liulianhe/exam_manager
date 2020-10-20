@@ -2,11 +2,11 @@
  * @Author: 李壮壮 
  * @Date: 2020-10-19 17:53:17 
  * @Last Modified by: 李壮壮
- * @Last Modified time: 2020-10-19 21:42:45
+ * @Last Modified time: 2020-10-20 21:45:09
  */
 //@ts-nocheck
 import React, { Component } from 'react'
-import {Table, Tag, Space} from 'antd';
+import {Table, Tag, Space,Pagination} from 'antd';
 import {_getMarkingClass} from '@/api/user'
 import Marking from '../Marking';
 interface IProps{
@@ -68,7 +68,7 @@ export default class tab extends Component<IProps,IState> {
                  key: 'action',
                  render: (text, record) => (
                   <Space size="middle" onClick={()=>{this.mark(text,record)}}>
-                    批卷
+                    <a >批卷</a>
                   </Space>
                 )
                  }
@@ -80,22 +80,23 @@ export default class tab extends Component<IProps,IState> {
     }
     mark(text,record){
       this.props.history.push({
-        pathname:'/home/marking',
-        state:{id:record.key,name:record.className}
+        pathname:'/home/examPaperClassmate',
+        state:{id:record.grade_id,name:record.className}
       })
-      console.log(text,record,this.props)
+     
     }
    async getList(){
-     const result = await _getMarkingClass();
-     console.log(result)
+      const result = await _getMarkingClass();
       if(result.data.code===1){
+        console.log(result)
         let arr: { key: any; className: any; course: string; state: string; className2: any; talentRate: any; }[] =[]
         result.data.data.forEach((item: any,index:number)=>{
           arr.push({
-            key: item.grade_id,
+            key: item.grade_id+item.grade_name,
+            grade_id:item.grade_id,
             className: item.grade_name,
             course:item.subject_text,
-            state:'待批卷',
+            state:'',
             className2:item.grade_name,
             talentRate:item.room_text,
            
@@ -110,7 +111,8 @@ export default class tab extends Component<IProps,IState> {
         
         return (
             <div>
-                 <Table dataSource={this.state.dataSource} columns={this.state.columns} />;
+                 <Table dataSource={this.state.dataSource} columns={this.state.columns}   />
+                 {/* <Pagination showQuickJumper defaultCurrent={2} total={500}  /> */}
             </div>
         )
     }

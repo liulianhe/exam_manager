@@ -1,5 +1,8 @@
 import axios from 'axios'
+
 const require = axios.create()
+
+
 require.interceptors.request.use(
     (config: any) => {
         config.headers.authorization = localStorage.getItem('token') || ''
