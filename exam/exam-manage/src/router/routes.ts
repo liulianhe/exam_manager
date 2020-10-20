@@ -54,7 +54,7 @@ export default [
             },
             // 批卷详情
             {
-                path: '/home/examDetail',
+                path: '/home/examinationPapers',
                 component: MarkDetail
             },
             {

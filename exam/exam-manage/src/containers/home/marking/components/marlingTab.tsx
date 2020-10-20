@@ -2,7 +2,7 @@
  * @Author: 李壮壮 
  * @Date: 2020-10-20 14:27:01 
  * @Last Modified by: 李壮壮
- * @Last Modified time: 2020-10-20 22:21:52
+ * @Last Modified time: 2020-10-20 23:04:37
  */
 import React, { Component } from 'react'
 import {Table, Tag,Modal, Button, Space} from 'antd';
@@ -105,7 +105,7 @@ export default class marlingTab extends Component<IProps,IState> {
 
     toMark(record: any){
       this.props.history.push({
-        pathname:'/home/examDetail',
+        pathname:'/home/examinationPapers',
         state:{
           id:record.key
         }
