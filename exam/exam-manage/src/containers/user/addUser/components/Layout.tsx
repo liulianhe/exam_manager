@@ -1,23 +1,70 @@
 import React, { Component } from 'react';
-import { Layout } from 'antd'
-interface IProps {
+import { Layout, Button } from 'antd'
 
+import AddApi from './AddApi'
+import AddId from './AddId'
+import AddUser from './AddUser'
+import EditUser from './EditUser'
+import AddView from './AddView'
+import IdSetApi from './IdSetApi'
+import IdSetView from './IdSetView'
+interface IProps {
+    [key: string]: any
 }
-class myLayout extends Component<IProps> {
+interface IState {
+    num: number
+}
+class myLayout extends Component<IProps, IState> {
+    state = {
+        num: 0
+    }
     render() {
-        const { Content } = Layout
+        const { Sider } = Layout
+        const { num } = this.state
+        const { ApiAuth, Identity, User, ViewAuth } = this.props
         return (
             <>
                 <Layout>
-                    <Layout>
-                        <Content>1</Content>
-                        <Content>2</Content>
-                        <Content>3</Content>
+                    <Layout className='layrow'>
+                        <Sider width='33.33%'>
+                            <Button
+                                className={this.state.num === 0 ? 'addUseractive' : ''}
+                                onClick={() => {
+                                    this.setState({
+                                        num: 0
+                                    })
+                                }}>添加用户</Button>
+                            <Button
+                                className={this.state.num === 1 ? 'addUseractive' : ''}
+                                onClick={() => {
+                                    this.setState({
+                                        num: 1
+                                    })
+                                }}>更新用户</Button>
+                            {
+                                num === 0
+                                    ? <AddUser Identity={Identity} />
+                                    : <EditUser Identity={Identity} User={User} />
+                            }
+
+                        </Sider>
+                        <Sider width='33.33%'>
+                            <AddId />
+                        </Sider>
+                        <Sider width='33.33%'>
+                            <AddApi />
+                        </Sider>
                     </Layout>
-                    <Layout>
-                        <Content>1</Content>
-                        <Content>2</Content>
-                        <Content>3</Content>
+                    <Layout className='layrow'>
+                        <Sider width='33.33%'>
+                            <AddView />
+                        </Sider>
+                        <Sider width='33.33%'>
+                            <IdSetApi ApiAuth={ApiAuth} Identity={Identity} />
+                        </Sider>
+                        <Sider width='33.33%'>
+                            <IdSetView ViewAuth={ViewAuth} Identity={Identity} />
+                        </Sider>
                     </Layout>
                 </Layout>
             </>

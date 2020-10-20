@@ -5,10 +5,13 @@ interface IProps {
     data: any,
     columns: any,
 }
+interface IState {
 
-class myTable extends Component<IProps> {
+}
+class myTable extends Component<IProps, IState> {
     constructor(props: IProps) {
         super(props)
+        this.state = {}
     }
     render() {
         return (

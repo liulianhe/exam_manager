@@ -15,6 +15,14 @@ require.interceptors.response.use(
     (response: any) => {
         return response
     }, (err) => {
+        switch (err.response.status) {
+            case 401:
+                window.location.href = '/tokenTimeOut'
+                break;
+
+            default:
+                break;
+        }
         return Promise.reject(err)
     }
 )
