@@ -29,11 +29,11 @@ class Login extends Component<any> {
                     <h2>考试管理系统</h2>
                     <p>
                         <span><UserOutlined /></span>
-                        <input type="text" value='heinan' ref={(e) => { this.user_name = e }} name='user_name' onChange={() => { }} />
+                        <input type="text" ref={(e) => { this.user_name = e }} name='user_name' />
                     </p>
                     <p>
                         <span><UnlockOutlined /></span>
-                        <input type="password" value='1qaz!QAZ' ref={(e) => { this.user_pwd = e }} name='user_pwd' onChange={() => { }} />
+                        <input type="password" ref={(e) => { this.user_pwd = e }} name='user_pwd' />
                     </p>
                     <button onClick={() => { this.onChange() }}>登录</button>
                 </div>

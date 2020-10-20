@@ -15,6 +15,10 @@ import Welcome from '@/containers/home/Welcome'
 import AddQuestions from '@/containers/home/questions/AddQuestions'
 import Student from '@/containers/home/classManager/Student';
 
+
+//添加用户
+import AddUser from '@/containers/user/addUser'
+import ShowUser from '@/containers/user/showUser'
 export default [
     {
         path: '/',
@@ -28,7 +32,8 @@ export default [
         children: [
             {
                 path: '/home/welcome',
-                component: Welcome
+                component: Welcome,
+                menu: false
             },
             {
                 path: '/home/addQuestions',
@@ -38,6 +43,14 @@ export default [
                 path: '/home/student',
                 component: Student,
             },
+            {
+                path: '/home/addUser',
+                component: AddUser
+            },
+            {
+                path: '/home/showUser',
+                component: ShowUser
+            }
         ]
     },
     {

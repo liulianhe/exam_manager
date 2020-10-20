@@ -1,8 +1,8 @@
 /*
  * @Author: Lala Jack
  * @Date: 2020-10-19 11:23:13
- * @LastEditors: Ji Lala
- * @LastEditTime: 2020-10-19 18:26:42
+ * @LastEditors: 刘连合
+ * @LastEditTime: 2020-10-20 09:02:08
  * @motto: Still water run deep
  * @Description: Modify here please
  * @FilePath: \exam-manage\src\config\homeMenu.ts
@@ -27,7 +27,17 @@ export const admin = [
     },
     {
         title: '用户管理',
-        icon: UserOutlined
+        icon: UserOutlined,
+        children: [
+            {
+                title: '添加用户',
+                path: '/home/addUser'
+            },
+            {
+                title: '用户展示',
+                path: '/home/showUser'
+            }
+        ]
     },
     {
         title: '考试管理',

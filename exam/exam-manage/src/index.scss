@@ -44,6 +44,25 @@ html,body,#root{
     }
 
 }
+//用户展示
+
+.showUser{
+ h2{
+     height: 70px;
+     line-height: 70px;
+     padding-left: 30px;
+ }
+ nav{
+     padding-left: 30px;
+ }
+ h3{
+     font-size: 24px;
+     font-weight: 800;
+     height: 60px;
+     line-height: 60px;
+     padding-left: 30px;
+ }
+}
 
 //查看试题
 .ShowQuestions{

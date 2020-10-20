@@ -4,6 +4,7 @@ import RouterView from '@/router';
 import { _getUserInfo, _getUserNew } from '@/api/user'
 import { inject, observer } from 'mobx-react'
 import { admin } from '@/config/homeMenu'
+import viewConfig from '@/config/view_authority'
 
 @inject('user')
 @observer
@@ -35,13 +36,9 @@ class Home extends Component<any> {
             return item
         })
         let routes = this.props.routes.filter((item: any) => {
-            if (item.path = '/home/welcome') return true
-            return arr.some((ite: any) => {
-                if (ite.children) {
-                    return ite.children.some((it: any) => {
-                        return it.path === item.path
-                    })
-                }
+            if (item.path === '/home/welcome') return true
+            return result.data.data.some((ite: any) => {
+                return viewConfig[ite.view_authority_text] === item.path;
             })
         })
         this.setState({
