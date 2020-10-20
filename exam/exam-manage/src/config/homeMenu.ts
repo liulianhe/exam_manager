@@ -1,11 +1,10 @@
 /*
- * @Author: Lala Jack
- * @Date: 2020-10-19 11:23:13
- * @LastEditors: Ji Lala
- * @LastEditTime: 2020-10-19 18:26:42
- * @motto: Still water run deep
- * @Description: Modify here please
- * @FilePath: \exam-manage\src\config\homeMenu.ts
+ * @Descripttion: 
+ * @version: 1.0
+ * @Author: 刘连合
+ * @Date: 2020-10-19 11:05:35
+ * @LastEditors: 刘连合
+ * @LastEditTime: 2020-10-19 21:13:50
  */
 import {
     AppstoreOutlined,
@@ -21,7 +20,14 @@ export const admin = [
         children: [
             {
                 title: '添加试题',
-                path: '/home/addQuestions'
+                path: '/home/questions/addQuestions'
+            },
+            {
+                title: '试题分类',
+                path: '/home/questionsType'
+            }, {
+                title: '查看试题',
+                path: '/home/watchQuestions'
             }
         ]
     },
@@ -35,13 +41,7 @@ export const admin = [
     },
     {
         title: '班级管理',
-        icon: WalletOutlined,
-        children: [
-            {
-                title: '学生管理',
-                path: '/home/student'
-            }
-        ]
+        icon: WalletOutlined
     },
     {
         title: "菜单管理",

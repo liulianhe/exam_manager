@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 import './index.scss'
 import App from './App'
 import 'antd/dist/antd.css'
+// import 'antd/dist/antd.compact.css'
 
 ReactDOM.render(
   <BrowserRouter>

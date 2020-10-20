@@ -1,11 +1,10 @@
 /*
- * @Author: Lala Jack
- * @Date: 2020-10-19 11:23:13
- * @LastEditors: Ji Lala
- * @LastEditTime: 2020-10-19 18:32:04
- * @motto: Still water run deep
- * @Description: Modify here please
- * @FilePath: \exam-manage\src\router\routes.ts
+ * @Descripttion: 
+ * @version: 1.0
+ * @Author: 刘连合
+ * @Date: 2020-10-19 11:05:35
+ * @LastEditors: 刘连合
+ * @LastEditTime: 2020-10-19 21:15:44
  */
 import Home from '../containers/home'
 import Login from '../containers/user/Login'
@@ -13,8 +12,8 @@ import Error_404 from '../containers/error/404'
 
 import Welcome from '@/containers/home/Welcome'
 import AddQuestions from '@/containers/home/questions/AddQuestions'
-import Student from '@/containers/home/classManager/Student';
-
+import questionsType from '@/containers/home/questions/questionsType'
+import watchQuestions from '@/containers/home/questions/watchQuestions'
 export default [
     {
         path: '/',
@@ -24,20 +23,23 @@ export default [
         path: '/home',
         component: Home,
         authToken: true,
-        redirect: '/home/welcome',
         children: [
             {
                 path: '/home/welcome',
                 component: Welcome
             },
             {
-                path: '/home/addQuestions',
+                path: '/home/questions/addQuestions',
                 component: AddQuestions
+            },{
+                path: '/home/questionsType',
+                component:questionsType
+            },{
+                path: '/home/watchQuestions',
+                component: watchQuestions
             },
-            {
-                path: '/home/student',
-                component: Student,
-            },
+
+
         ]
     },
     {
