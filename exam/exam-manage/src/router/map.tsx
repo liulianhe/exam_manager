@@ -5,7 +5,7 @@ const RouterView = (props: any) => {
     let com = props.routes.filter((e: any) => e.component);
     let reds = props.routes.filter((e: any) => e.redirect);
     return <Switch>  {com.map((e: any) => {
-        return <Route key={e.path} path={e.path} render={(R:any) => {
+        return <Route key={e.path} path={e.path} render={(R) => {
             let Item: ComponentType = e.component as ComponentType;
             let child: any = e.children ? { routes: e.children } : {};
             return e.authToken ? localStorage.getItem('token') ? <Item {...R} {...child} />

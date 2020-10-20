@@ -4,9 +4,9 @@ import RouterView from './router';
 class App extends Component {
   render() {
     return (
-      <>
+      <div>
         <RouterView />
-      </>
+      </div>
     )
   }
 }

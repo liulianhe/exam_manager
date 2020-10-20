@@ -1,11 +1,10 @@
 /*
- * @Author: Lala Jack
- * @Date: 2020-10-19 11:23:13
- * @LastEditors: Ji Lala
- * @LastEditTime: 2020-10-19 18:32:04
- * @motto: Still water run deep
- * @Description: Modify here please
- * @FilePath: \exam-manage\src\router\routes.ts
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-10-19 11:27:02
+ * @LastEditors: 郭雯
+ * @LastEditTime: 2020-10-19 14:35:59
  */
 import Home from '../containers/home'
 import Login from '../containers/user/Login'
@@ -13,12 +12,7 @@ import Error_404 from '../containers/error/404'
 
 import Welcome from '@/containers/home/Welcome'
 import AddQuestions from '@/containers/home/questions/AddQuestions'
-import Student from '@/containers/home/classManager/Student';
-
-
-//添加用户
-import AddUser from '@/containers/user/addUser'
-import ShowUser from '@/containers/user/showUser'
+import AddExam from '@/containers/home/gw_exam/AddExam'
 export default [
     {
         path: '/',
@@ -28,28 +22,18 @@ export default [
         path: '/home',
         component: Home,
         authToken: true,
-        redirect: '/home/welcome',
         children: [
             {
                 path: '/home/welcome',
-                component: Welcome,
-                menu: false
+                component: Welcome
             },
             {
                 path: '/home/addQuestions',
                 component: AddQuestions
             },
             {
-                path: '/home/student',
-                component: Student,
-            },
-            {
-                path: '/home/addUser',
-                component: AddUser
-            },
-            {
-                path: '/home/showUser',
-                component: ShowUser
+                path: '/home/addExam',
+                component: AddExam
             }
         ]
     },

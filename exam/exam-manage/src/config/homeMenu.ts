@@ -1,11 +1,10 @@
 /*
- * @Author: Lala Jack
- * @Date: 2020-10-19 11:23:13
- * @LastEditors: 刘连合
- * @LastEditTime: 2020-10-20 09:02:08
- * @motto: Still water run deep
- * @Description: Modify here please
- * @FilePath: \exam-manage\src\config\homeMenu.ts
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-10-19 11:27:02
+ * @LastEditors: 郭雯
+ * @LastEditTime: 2020-10-19 14:31:13
  */
 import {
     AppstoreOutlined,
@@ -27,31 +26,21 @@ export const admin = [
     },
     {
         title: '用户管理',
-        icon: UserOutlined,
-        children: [
-            {
-                title: '添加用户',
-                path: '/home/addUser'
-            },
-            {
-                title: '用户展示',
-                path: '/home/showUser'
-            }
-        ]
+        icon: UserOutlined
     },
     {
         title: '考试管理',
-        icon: ReadOutlined
+        icon: ReadOutlined,
+        children: [
+            {
+                title: '添加考试',
+                path: '/home/addExam'
+            }
+        ]
     },
     {
         title: '班级管理',
-        icon: WalletOutlined,
-        children: [
-            {
-                title: '学生管理',
-                path: '/home/student'
-            }
-        ]
+        icon: WalletOutlined
     },
     {
         title: "菜单管理",

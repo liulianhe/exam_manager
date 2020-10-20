@@ -1,13 +1,10 @@
 import React from 'react'
 import { Menu } from 'antd';
+import { admin } from '@/config/homeMenu'
 import { NavLink } from 'react-router-dom'
 const { SubMenu } = Menu;
 
-
-interface IProps {
-    menu: any[]
-}
-class MyMenu extends React.Component<IProps> {
+class MyMenu extends React.Component {
     state = {
         collapsed: false,
     };
@@ -19,7 +16,6 @@ class MyMenu extends React.Component<IProps> {
     };
 
     render() {
-        const { menu } = this.props
         return (
             <div style={{ width: '100%', height: '100%' }}>
                 <Menu
@@ -30,10 +26,10 @@ class MyMenu extends React.Component<IProps> {
                     inlineCollapsed={this.state.collapsed}
                 >
                     {
-                        menu.map((item: any, index: number) => {
-                            return item.children && item.children.length > 0 && <SubMenu key={index + 'sub'} icon={<item.icon />} title={item.title}>
+                        admin.map((item: any, index: number) => {
+                            return <SubMenu key={index + 'sub'} icon={<item.icon />} title={item.title}>
                                 {
-                                    item.children.map((e: any, i: number) => {
+                                    item.children && item.children.map((e: any, i: number) => {
                                         return <Menu.Item key={i + e}>
                                             <NavLink to={e.path}>
                                                 {e.title}
