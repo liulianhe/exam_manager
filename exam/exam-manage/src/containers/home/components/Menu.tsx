@@ -29,8 +29,8 @@ class MyMenu extends React.Component {
                         admin.map((item: any, index: number) => {
                             return <SubMenu key={index + 'sub'} icon={<item.icon />} title={item.title}>
                                 {
-                                    item.children && item.children.map((e: any, i: number) => {
-                                        return <Menu.Item key={i + e}>
+                                    item.children.map((e: any, i: number) => {
+                                        return <Menu.Item key={i + '' + index}>
                                             <NavLink to={e.path}>
                                                 {e.title}
                                             </NavLink>
