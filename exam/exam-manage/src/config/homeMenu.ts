@@ -2,7 +2,7 @@
  * @Author: Lala Jack
  * @Date: 2020-10-19 19:51:54
  * @LastEditors: Ji Lala
- * @LastEditTime: 2020-10-19 20:51:42
+ * @LastEditTime: 2020-10-20 09:07:55
  * @motto: Still water run deep
  * @Description: Modify here please
  * @FilePath: \exam-manage\src\config\homeMenu.ts
@@ -49,11 +49,3 @@ export const admin = [
     }
 ]
 
-// const viewConfig: any = {
-//     "登录": '/login',
-//     "主页面": '/home',
-//     "添加试题": "/home/addQuestions",
-
-
-// }
-// export default viewConfig;
