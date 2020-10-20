@@ -4,7 +4,7 @@
  * @Author: 刘连合
  * @Date: 2020-10-19 11:05:35
  * @LastEditors: 刘连合
- * @LastEditTime: 2020-10-19 21:13:50
+ * @LastEditTime: 2020-10-20 15:21:44
  */
 import {
     AppstoreOutlined,
@@ -20,7 +20,7 @@ export const admin = [
         children: [
             {
                 title: '添加试题',
-                path: '/home/questions/addQuestions'
+                path: '/home/addQuestions'
             },
             {
                 title: '试题分类',

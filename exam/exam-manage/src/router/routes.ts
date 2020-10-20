@@ -4,7 +4,7 @@
  * @Author: 刘连合
  * @Date: 2020-10-19 11:05:35
  * @LastEditors: 刘连合
- * @LastEditTime: 2020-10-19 21:15:44
+ * @LastEditTime: 2020-10-20 15:52:05
  */
 import Home from '../containers/home'
 import Login from '../containers/user/Login'
@@ -14,6 +14,7 @@ import Welcome from '@/containers/home/Welcome'
 import AddQuestions from '@/containers/home/questions/AddQuestions'
 import questionsType from '@/containers/home/questions/questionsType'
 import watchQuestions from '@/containers/home/questions/watchQuestions'
+import questionsDetail from '@/containers/home/questions/questionsDetail'
 export default [
     {
         path: '/',
@@ -29,7 +30,7 @@ export default [
                 component: Welcome
             },
             {
-                path: '/home/questions/addQuestions',
+                path: '/home/addQuestions',
                 component: AddQuestions
             },{
                 path: '/home/questionsType',
@@ -37,9 +38,10 @@ export default [
             },{
                 path: '/home/watchQuestions',
                 component: watchQuestions
-            },
-
-
+            },{
+              path:'/home/questionsDetail/:id',
+              component:questionsDetail
+            }
         ]
     },
     {
