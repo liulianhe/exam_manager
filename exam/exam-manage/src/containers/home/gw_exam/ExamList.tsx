@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { _examExam } from '@/api/exam'
-import { _subject, _examType, _questionsCondition,_examExamId } from '@/api/exam'
-import { dateFormat ,textDate} from '@/config/homeExam'
-import { Button, Select, Table, Tag, Space } from 'antd';
+import { _subject, _examType, _questionsCondition, _examExamId } from '@/api/exam'
+import { dateFormat, textDate } from '@/config/homeExam'
+import { Button, Select, Table, Space } from 'antd';
 const { Option } = Select;
 interface Item {
   exam_id: string,
@@ -13,20 +13,20 @@ interface Item {
   questions_type_text: string,
   [key: string]: any,
 }
-interface Iprops{
-  [key:string]:any
+interface Iprops {
+  [key: string]: any
 }
-interface Record{
-  title:string
-  start_time:string
-  end_time:string
-  number:number
-  grade_name:string[]
-  exam_exam_id:string
+interface Record {
+  title: string
+  start_time: string
+  end_time: string
+  number: number
+  grade_name: string[]
+  exam_exam_id: string
 }
-interface ObJ{
-  questions_type_id:string
-  exam_id:string
+interface ObJ {
+  questions_type_id: string
+  exam_id: string
 }
 export default class ExamList extends Component<Iprops> {
   state = {
@@ -42,8 +42,8 @@ export default class ExamList extends Component<Iprops> {
         key: 'title',
         render: (text: string, record: Record) => (
           <p >
-            <span style={{margin:5 }}>{record.title}</span> <br/>
-            <span style={{margin:5 }}>考试时间：{textDate(record.start_time,record.end_time)} {record.number}道题作弊0分</span>
+            <span style={{ margin: 5 }}>{record.title}</span> <br />
+            <span style={{ margin: 5 }}>考试时间：{textDate(record.start_time, record.end_time)} {record.number}道题作弊0分</span>
           </p>
         )
       },
@@ -53,8 +53,8 @@ export default class ExamList extends Component<Iprops> {
         key: 'grade_name',
         render: (text: string, record: Record) => (
           <p>
-            <span style={{margin:5 }}>考试班级</span><br/>
-            <span style={{margin:5 }}>{record.grade_name.join(' ')}</span>
+            <span style={{ margin: 5 }}>考试班级</span><br />
+            <span style={{ margin: 5 }}>{record.grade_name.join(' ')}</span>
           </p>
 
         )
@@ -84,7 +84,7 @@ export default class ExamList extends Component<Iprops> {
         key: "subject_id",
         render: (text: string, record: Record) => (
           <Space size="middle">
-            <a onClick={()=>this.detail(record.exam_exam_id)}>详情</a>
+            <a onClick={() => this.detail(record.exam_exam_id)}>详情</a>
           </Space>
         ),
 
@@ -107,7 +107,19 @@ export default class ExamList extends Component<Iprops> {
   }
   //查询
   search() {
-    this.questionsCondition()
+    // this.questionsCondition()
+
+    console.log(this.state.questions_type_id)
+    console.log(this.state.exam_id)
+    console.log(this.state.examList)
+    let a = this.state.examList.filter((item: Item) => {
+      console.log(item.subject_id == this.state.questions_type_id && item._exam_id == this.state.exam_id)
+      if (item.subject_id === this.state.questions_type_id && item._exam_id === this.state.exam_id) {
+        
+        return item
+      }
+    })
+    console.log(a)
   }
   //试卷列表
   async examExam() {
@@ -119,12 +131,12 @@ export default class ExamList extends Component<Iprops> {
     }
   }
   //跳转详情页面
-  async examExamId(exam_id:string) {
+  async examExamId(exam_id: string) {
     const res = await _examExamId(exam_id)
     if (res.data.code) {
       this.props.history.push({
-        pathname:'/home/ExamDetail',
-        state:res.data.data.questions
+        pathname: '/home/ExamDetail',
+        state: res.data.data.questions
       })
     }
   }
@@ -145,7 +157,6 @@ export default class ExamList extends Component<Iprops> {
       this.setState({
         subject: res.data.data
       })
-
     }
 
   }
@@ -168,7 +179,7 @@ export default class ExamList extends Component<Iprops> {
     }
   }
   //跳转详情
-  detail(exam_id:string){
+  detail(exam_id: string) {
     this.examExamId(exam_id)
   }
   render() {

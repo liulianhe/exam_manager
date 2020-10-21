@@ -68,7 +68,11 @@ export default class ExamEdit extends Component<IProps, State> {
         modal1Visible: false,
         modal2Visible: false,
     };
-
+    componentDidMount(){
+        this.setState({
+            addCont:this.props.location.state.questions
+        })
+    }
     showDrawer = () => {
         this.setState({
             visible: true,
