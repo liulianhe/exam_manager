@@ -2,10 +2,11 @@
  * @Descripttion: 
  * @version: 
  * @Author: sueRimn
- * @Date: 2020-10-19 11:27:02
+ * @Date: 2020-10-21 22:24:51
  * @LastEditors: 郭雯
- * @LastEditTime: 2020-10-20 10:27:43
+ * @LastEditTime: 2020-10-21 22:28:35
  */
+
 import request from '../utils/require'; 
 
 export function _login(action: any) {

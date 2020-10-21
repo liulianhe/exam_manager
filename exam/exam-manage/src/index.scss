@@ -16,7 +16,17 @@ body,
 }
 
 
-.home {
+
+.loading{
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    .spin{
+        margin-top: 400px;
+    }
+}
+.home{
     height: 100%;
     width: 100%;
 
@@ -427,12 +437,48 @@ body,
            margin: 10px 0;
            h3{
                font-size: 20px;
+    background: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603278433783&di=6698b10fc2e86042081608dbadaa6777&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fsoftbbs%2F1110%2F17%2Fc0%2F9295311_1318813842445_1024x1024soft.jpg');
+    background-size: 100% 100%;
+    .form{
+       width: 400px;
+       height: 300px;
+       position: fixed;
+       top: 50%;
+       color: #fff;
+       right: 100px;
+       right: 10%;
+       transform: translateY(-50%);
+       border-radius: 15px;
+       background: rgba(35, 168, 225, 0.3);
+       overflow: hidden;
+       h2{
+           text-align: center;
+           height: 50px;
+           background: rgba(28, 196, 233, 0.7);
+           line-height: 50px;
+           color: #fff;
+           font-weight: 800;
+       }
+       p{
+           margin-top: 30px;
+           height: 40px;
+           span{
+              display: inline-block;
+              width: 40px;
+              height: 40px;
+              margin-left: 10px;
+              text-align: center;
+              line-height: 40px;
+              .anticon {
+                  font-size: 24px;
+                  line-height: 40px;
+              }
            }
            p{
                color: gray;
            }
        }
-    }
+
     .list_cont{
         border: 1px solid #ccc;
         // display: flex;
@@ -451,12 +497,28 @@ body,
             margin: 20px 0;
         }
         
+       button{
+        margin-top: 20px;
+        width: 400px;
+        height: 50px;
+        font-size: 20px;
+        text-align: center;
+        color: #fff;
+        background: rgba(39, 218, 245, 0.5);
+        border-radius: 20px;
+        cursor: pointer;
+        outline: none;
+    }
+    button:hover{
+        background:  rgba(30, 196, 241, 0.7);
     }
     .add{
         margin: 20px 40px;
-    }
+    }}
 }
-
+           }
+        }
+    }}
 .allExam{
     margin: 10px 0 40px ;
     p{

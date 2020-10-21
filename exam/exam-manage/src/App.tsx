@@ -1,14 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component, Suspense } from 'react'
 import RouterView from './router';
-
+import Loading from '@/components/Loading'
 class App extends Component {
   render() {
     return (
-      <div>
+      <Suspense fallback={<Loading />}>
         <RouterView />
-      </div>
+      </Suspense>
     )
   }
 }
-
 export default App

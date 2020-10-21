@@ -4,14 +4,9 @@
  * @Author: 刘连合
  * @Date: 2020-10-19 11:05:35
  * @LastEditors: 郭雯
- * @LastEditTime: 2020-10-21 21:49:08
+ * @LastEditTime: 2020-10-21 22:33:34
  */
-import Home from '../containers/home'
-import Login from '../containers/user/Login'
-import Error_404 from '../containers/error/404'
-import TokenTimeOut from '@/containers/error/TokenTimeOut'
-import Welcome from '@/containers/home/Welcome'
-import AddQuestions from '@/containers/home/questions/AddQuestions'
+
 //exam
 import AddExam from '@/containers/home/gw_exam/AddExam'
 import ExamList from '@/containers/home/gw_exam/ExamList'
@@ -25,11 +20,32 @@ import MarkDetail from '@/containers/home/marking/MarkDetail'
 
 
 //添加用户
-import AddUser from '@/containers/user/addUser'
-import ShowUser from '@/containers/user/showUser'
+
 import questionsType from '@/containers/home/questions/questionsType'
 import watchQuestions from '@/containers/home/questions/watchQuestions'
 import questionsDetail from '@/containers/home/questions/questionsDetail'
+import LazyLoad from '@/components/LazyLoad'
+//一级路由
+const Home = LazyLoad('home')
+const Login = LazyLoad('user/Login')
+//错误页面
+const Error_404 = LazyLoad('error/404')
+const Error_401 = LazyLoad('error/401')
+const Error_500 = LazyLoad('error/500')
+//二级路由使用按需加载，省略@/containers/
+const Welcome = LazyLoad('home/Welcome')
+const AddUser = LazyLoad('user/addUser')
+const ShowUser = LazyLoad('user/showUser')
+const AddQuestions = LazyLoad('home/questions/AddQuestions')
+
+/**
+ * 路由配置表
+ * @param  path   路由路径
+ * @param  redirect 重定向
+ * @param  component 视图组件
+ * @param  authToken 是否启用token拦截视图
+ * @param  children 子路由
+ */
 export default [
     {
         path: '/',
@@ -42,7 +58,7 @@ export default [
         children: [
             {
                 path: '/home/welcome',
-                component: Welcome
+                component: Welcome,
             },
             {
                 path: '/home/addQuestions',
@@ -84,6 +100,11 @@ export default [
 
             },
             {
+                
+                path: '/home/addUser',
+                component: AddUser
+            },
+            {
                 path: '/home/showUser',
                 component: ShowUser
             },
@@ -108,7 +129,11 @@ export default [
         component: Error_404
     },
     {
-        path: '/tokenTimeOut',
-        component: TokenTimeOut
+        path: '/401',
+        component: Error_401
+    },
+    {
+        path: '/500',
+        component: Error_500
     }
 ]
