@@ -14,13 +14,10 @@ body,
 #root {
     width: 100%;
 }
-<<<<<<< HEAD
-.home{
-=======
+
 
 .home {
     height: 100%;
->>>>>>> a8bfe0e42d08ceadc3199b2d6a4e5abe6f3c9960
     width: 100%;
 
     .header {
@@ -69,7 +66,6 @@ body,
 
     .main {
         width: 100%;
-<<<<<<< HEAD
         height: auto;
         height: 100%;
         display: flex;
@@ -79,10 +75,9 @@ body,
             border-right: 1px solid #ccc;
             height: 1000px;
             .ant-menu-inline{
-=======
         height: calc(100% - 80px);
         display: flex;
-
+            }
         .main-left {
             width: 200px;
             flex-shrink: 0;
@@ -90,7 +85,6 @@ body,
             height: 100%;
 
             .ant-menu-inline {
->>>>>>> a8bfe0e42d08ceadc3199b2d6a4e5abe6f3c9960
                 height: 100%;
             }
 
@@ -98,7 +92,6 @@ body,
                 font-size: 18px;
             }
         }
-<<<<<<< HEAD
         .main-right{
             width: calc(100% - 300px);
             background: #f0f2f5;
@@ -113,7 +106,7 @@ body,
         font-size: 20px;
     }
 }
-
+}
 
 //考试
 .gw_addexam{
@@ -152,7 +145,6 @@ body,
         Button{
             margin-top: 20px;
         }
-=======
 
         .main-right {
             height: 100%;
@@ -241,10 +233,6 @@ body,
         }
     }
 }
-
-
-
-
 
 
 }
@@ -418,11 +406,9 @@ body,
         padding: 40px;
         background: #fff;
         border-radius: 10px;
->>>>>>> a8bfe0e42d08ceadc3199b2d6a4e5abe6f3c9960
     }
     
 }
-<<<<<<< HEAD
 .gwexamEdit{
     h2{
         padding-top: 30px;
@@ -607,9 +593,10 @@ body,
                 b{
                     margin: 10px 0;
                 }
-=======
-
-
+            }
+        }
+    }
+}
 .login {
     width: 100%;
     height: 100%;
@@ -727,7 +714,6 @@ body,
             .addUseractive {
                 border-color: blue;
                 color: blue;
->>>>>>> a8bfe0e42d08ceadc3199b2d6a4e5abe6f3c9960
             }
         }
     }
