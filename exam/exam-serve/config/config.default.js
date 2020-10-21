@@ -3,8 +3,8 @@
  * @version: 1.0
  * @Author: 刘连合
  * @Date: 2020-10-19 11:05:38
- * @LastEditors: 刘连合
- * @LastEditTime: 2020-10-20 09:08:32
+ * @LastEditors: 郭雯
+ * @LastEditTime: 2020-10-20 10:30:25
  */
 const path = require('path');
 exports.keys = 'tao';
@@ -27,7 +27,7 @@ exports.mysql = {
         port: 3306,
         user: 'root',
         password: '12344321',
-        database: 'examss'
+        database: 'market'
     }
 }
 exports.static = {

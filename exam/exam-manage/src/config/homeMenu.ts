@@ -4,7 +4,7 @@
  * @Author: sueRimn
  * @Date: 2020-10-19 11:27:02
  * @LastEditors: 郭雯
- * @LastEditTime: 2020-10-19 14:31:13
+ * @LastEditTime: 2020-10-20 19:47:54
  */
 import {
     AppstoreOutlined,
@@ -35,6 +35,10 @@ export const admin = [
             {
                 title: '添加考试',
                 path: '/home/addExam'
+            },
+            {
+                title: '试卷列表',
+                path: '/home/examList'
             }
         ]
     },

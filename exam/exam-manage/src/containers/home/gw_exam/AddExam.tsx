@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { inject, observer } from 'mobx-react';
 import { _examType, _subject, } from '@/api/exam'
-// import { FormComponentProps } from '@/node_modules/antd/lib/form/Form' 
 import { Input, Select, DatePicker, InputNumber, Space, Button } from 'antd';
+
 const { Option } = Select;
+const { RangePicker } = DatePicker;
+
 interface Item {
     exam_id: string,
     exam_name: string,
@@ -12,8 +15,11 @@ interface Item {
 interface IProps { //定义所需的相应接口
     onSave: any,
     onEdit: any,
-    handlevisible: any
+    handlevisible: any,
+    [key: string]: any,
 }
+@inject('exam')
+@observer
 class AddExam extends Component<IProps> {
     state = {
         examType: [], //考试类型
@@ -26,6 +32,7 @@ class AddExam extends Component<IProps> {
         number: "",//试题数量
         isF: false,//
     }
+    el!: HTMLInputElement | null;
     componentDidMount() {
         this.examType()//考试类型
         this.subject()//选择课程
@@ -46,21 +53,41 @@ class AddExam extends Component<IProps> {
             })
         }
     }
+    //创建
     async questions() {
+        let obj: any = {
+            title: this.el && this.el.value,
+            subject_id: this.state.subject_id,
+            exam_id: this.state.exam_id,
+            start_time: this.state.start_time,
+            end_time: this.state.end_time,
+            number: this.state.number,
+            // allTime:this.tab(this.state.start_time,this.state.end_time)
+        }
+        for (var i in obj) {
+            if (!obj[i]) {
+                return alert('请输入全部信息')
+            }
+        }
+
+        this.props.history.push('/home/examEdit')
+        this.props.exam.seteaxmAddInfo(obj)
     }
-
-
     //考卷名称：
     onChange(e: any) {
-        console.log('changed', e);
+        // console.log('changed', e);
     }
     //选择考试类型：
     handleChange(value: any) {
-        console.log(value)
+        this.setState({
+            exam_id: value
+        })
     }
     //选择课程：
     handleChange1(value1: any) {
-        console.log(value1)
+        this.setState({
+            subject_id: value1
+        })
     }
 
     //选择题量：
@@ -68,28 +95,25 @@ class AddExam extends Component<IProps> {
         this.setState({
             number: value
         })
-        console.log('changed', value);
     }
     //考试时间：
     dataonChange(value: any, dateString: any) {
-        console.log('Selected Time: ', value);
-        console.log('Formatted Selected Time: ', dateString);
     }
     dataonChange1(value: any, dateString: any) {
-        console.log('Selected Time: ', value);
-        console.log('Formatted Selected Time: ', dateString);
     }
     //考试时间：
     onOk(value: any) {
-        console.log(1111)
-        console.log(value)
+        this.setState({
+            start_time: new Date(value._d).getTime()
 
+        })
     }
     onOk1(value: any) {
-        console.log(value)
-
+        this.setState({
+            end_time:  new Date(value._d).getTime()
+        })
     }
-
+    // 2020-10-22 17:22 格式
     dateFormat(date: any) {
         const year = date.getFullYear()
         const month = date.getMonth() + 1
@@ -103,24 +127,38 @@ class AddExam extends Component<IProps> {
     fix(num: number, length: number) { // 两位补0
         return ('' + num).length < length ? ((new Array(length + 1)).join('0') + num).slice(-length) : '' + num
     }
+    //所有时间
+    tab(day1:string, day2:string) {
+        //   在苹果上，时间格式最好是 是 2020/02/02 它是斜杠开头的
+        let day11 = day1.replace(/-/g, "/");
+        let day22 = day2.replace(/-/g, "/");
+
+        var day_day1 = new Date(day11);
+        var day_day2 = new Date(day22);
+
+        let disparity = day_day2.getTime() - day_day1.getTime();
+        // 转为分钟数的时候，可能会出现精度丢失;你需要注意下
+        let min = Math.round(disparity / 1000 / 60);
+        return min
+    }
     render() {
         return (
             <div className='gw_addexam'>
 
                 <h2>
-                    添加考试{this.state.end_time}
+                    添加考试
                 </h2>
                 <div className='exam_cont'>
                     <div>
                         <p><span>*</span> 考卷名称：</p>
-                        <input placeholder="" onChange={(e) => this.onChange(e)} style={{ width: 400 }} />
+                        <input placeholder="" onChange={(e) => this.onChange(e)} style={{ width: 400 }} ref={el => this.el = el} />
                     </div>
                     <div>
                         <p><span>*</span> 选择考试类型：</p>
                         <Select defaultValue="" style={{ width: 120 }} onChange={(e) => this.handleChange(e)}>
                             {
                                 this.state.examType.map((item: Item) => {
-                                    return <Option value={item.exam_name} key={item.exam_id}>{item.exam_name}</Option>
+                                    return <Option value={item.exam_id} key={item.exam_id}>{item.exam_name}</Option>
                                 })
                             }
                         </Select>
@@ -130,7 +168,7 @@ class AddExam extends Component<IProps> {
                         <Select defaultValue="" style={{ width: 120 }} onChange={(e) => this.handleChange1(e)}>
                             {
                                 this.state.subject.map((item: Item) => {
-                                    return <Option value={item.subject_text} key={item.subject_id}>{item.subject_text}</Option>
+                                    return <Option value={item.subject_id} key={item.subject_id}>{item.subject_text}</Option>
                                 })
                             }
                         </Select>
@@ -142,10 +180,11 @@ class AddExam extends Component<IProps> {
                     </div>
                     <div>
                         <p><span>*</span> 考试时间：</p>
-                        <DatePicker showTime onChange={() => this.dataonChange} onOk={() => this.onOk} />
-                        <DatePicker showTime onChange={() => this.dataonChange1} onOk={() => this.onOk1} />
+                        <DatePicker showTime onChange={() => this.dataonChange} onOk={(e) => this.onOk(e)} style={{ width: 250, height: 30 }} /> -&nbsp;&nbsp;
+                        <DatePicker showTime onChange={() => this.dataonChange1} onOk={(e) => this.onOk1(e)} style={{ width: 250, height: 30 }} />
+
                     </div>
-                    <Button type="primary" style={{ width: 100 }} onClick={() => this.questions()}>提交</Button>
+                    <Button type="primary" style={{ width: 100 }} onClick={() => this.questions()}>创建试卷</Button>
                 </div>
             </div>
         );
