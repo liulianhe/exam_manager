@@ -1,4 +1,4 @@
-import request from '../utils/require';
+import request from '../utils/request';
 export function _login(action: any) {
     return request.post('/user/login', action)
 }

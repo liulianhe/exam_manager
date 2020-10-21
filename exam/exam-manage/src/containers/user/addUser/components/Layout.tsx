@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import { Layout, Button } from 'antd'
 
-import AddApi from './AddApi'
 import AddId from './AddId'
+import AddApi from './AddApi'
 import AddUser from './AddUser'
-import EditUser from './EditUser'
 import AddView from './AddView'
+import EditUser from './EditUser'
 import IdSetApi from './IdSetApi'
 import IdSetView from './IdSetView'
 interface IProps {
-    [key: string]: any
+    ApiAuth: any[],
+    IdentityApi: any[],
+    IdentityView: any[],
+    User: any[],
+    Identity: any[],
+    ViewAuth: any[]
 }
 interface IState {
     num: number

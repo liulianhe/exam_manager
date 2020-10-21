@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, message } from 'antd'
+
 import { _addApi } from '@/api/user'
+import { Form, Input, Button, message } from 'antd'
 interface IProps {
 }
 interface IState {
@@ -18,7 +19,7 @@ class AddApi extends Component<IProps, IState> {
     render() {
         return (
             <div>
-                <Button style={{ color: 'blue', borderColor: 'blue' }}>添加接口权限</Button>
+                <Button style={{ color: 'blue', borderColor: 'blue' }}>添加api接口权限</Button>
                 <Form
 
                     ref={(e) => { this.form = e }}

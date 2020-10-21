@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, message } from 'antd'
 import { _addIdentity } from '@/api/user'
+import { Form, Input, Button, message } from 'antd'
 interface IProps {
 
 }

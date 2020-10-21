@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Form, Button, message, Select } from 'antd'
 import { _setIdentityApi } from '@/api/user'
+import { Form, Button, message, Select } from 'antd'
 interface IProps {
     Identity: any
     ApiAuth: any

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Form, Button, message, Select } from 'antd'
 import { _setIdentityView } from '@/api/user'
+import { Form, Button, message, Select } from 'antd'
 interface IProps {
     Identity: any
     ViewAuth: any
@@ -22,7 +22,7 @@ class IdSetView extends Component<IProps, IState> {
         const { onFinish } = this
         return (
             <div>
-                <Button style={{ color: 'blue', borderColor: 'blue' }}>给身份设置api接口权限</Button>
+                <Button style={{ color: 'blue', borderColor: 'blue' }}>给身份设置视图接口权限</Button>
                 <Form
 
                     ref={(e) => { this.form = e }}
@@ -53,7 +53,7 @@ class IdSetView extends Component<IProps, IState> {
                     >
                         <Select
                             //@ts-ignore
-                            placeholder='请选择api权限'
+                            placeholder='请选择视图权限'
                         >
                             {
                                 this.props.ViewAuth.map((item: any) => {

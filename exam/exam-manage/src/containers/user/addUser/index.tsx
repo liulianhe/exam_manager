@@ -3,7 +3,6 @@ import MyLayout from './components/Layout'
 import { _getApiAuth, _getIdentityApi, _getIdentityView, _getUser, _getIdentity, _getViewAuth } from '@/api/user'
 
 interface IProps {
-    [key: string]: any
 }
 interface IState {
     ApiAuth: any[],
