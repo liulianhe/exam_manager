@@ -2,7 +2,7 @@
  * @Author: lizhuangzhuang 
  * @Date: 2020-10-21 10:32:41 
  * @Last Modified by: lizhuangzhuang
- * @Last Modified time: 2020-10-21 18:01:34
+ * @Last Modified time: 2020-10-21 18:05:44
  */
 
 import React, { Component } from 'react'
@@ -108,7 +108,6 @@ export default class MarkDetail extends Component<IProps,IStater> {
                         }
                     <div className="paperInfor"></div>
                     </div>
-
                     {/* 学生信息和批卷分数 */}
                     <div className="right">
                        {<h2 style={{marginTop:'20px',marginLeft:'20px'}}>{this.state.infor.student_name||''} </h2>}
