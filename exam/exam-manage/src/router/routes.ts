@@ -1,26 +1,33 @@
 /*
- * @Author: Lala Jack
- * @Date: 2020-10-19 11:23:13
- * @LastEditors: Ji Lala
- * @LastEditTime: 2020-10-19 18:32:04
- * @motto: Still water run deep
- * @Description: Modify here please
- * @FilePath: \exam-manage\src\router\routes.ts
+ * @Descripttion: 
+ * @version: 1.0
+ * @Author: 刘连合
+ * @Date: 2020-10-19 11:05:35
+ * @LastEditors: 刘连合
+ * @LastEditTime: 2020-10-20 22:08:33
  */
 import Home from '../containers/home'
 import Login from '../containers/user/Login'
 import Error_404 from '../containers/error/404'
-
+import TokenTimeOut from '@/containers/error/TokenTimeOut'
 import Welcome from '@/containers/home/Welcome'
 import AddQuestions from '@/containers/home/questions/AddQuestions'
+<<<<<<< HEAD
 import Student from '@/containers/home/classManager/Student';
 //阅卷管理
 import MarkingClass from '@/containers/home/marking/index'
 import Marking from '@/containers/home/marking/Marking'
 import MarkDetail from '@/containers/home/marking/MarkDetail'
+=======
+
+
+>>>>>>> master
 //添加用户
 import AddUser from '@/containers/user/addUser'
 import ShowUser from '@/containers/user/showUser'
+import questionsType from '@/containers/home/questions/questionsType'
+import watchQuestions from '@/containers/home/questions/watchQuestions'
+import questionsDetail from '@/containers/home/questions/questionsDetail'
 export default [
     {
         path: '/',
@@ -30,7 +37,6 @@ export default [
         path: '/home',
         component: Home,
         authToken: true,
-        redirect: '/home/welcome',
         children: [
             {
                 path: '/home/welcome',
@@ -58,16 +64,21 @@ export default [
                 component: MarkDetail
             },
             {
-                path: '/home/student',
-                component: Student,
-            },
-            {
                 path: '/home/addUser',
                 component: AddUser
             },
             {
                 path: '/home/showUser',
                 component: ShowUser
+            },{
+                path: '/home/questionsType',
+                component:questionsType
+            },{
+                path: '/home/watchQuestions',
+                component: watchQuestions
+            },{
+              path:'/home/questionsDetail/:id',
+              component:questionsDetail
             }
         ]
     },
@@ -78,5 +89,9 @@ export default [
     {
         path: '/404',
         component: Error_404
+    },
+    {
+        path: '/tokenTimeOut',
+        component: TokenTimeOut
     }
 ]

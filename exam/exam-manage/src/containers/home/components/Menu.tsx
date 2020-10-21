@@ -34,7 +34,7 @@ class MyMenu extends React.Component<IProps> {
                             return item.children && item.children.length > 0 && <SubMenu key={index + 'sub'} icon={<item.icon />} title={item.title}>
                                 {
                                     item.children.map((e: any, i: number) => {
-                                        return <Menu.Item key={i + e}>
+                                        return <Menu.Item key={i + '' + index}>
                                             <NavLink to={e.path}>
                                                 {e.title}
                                             </NavLink>

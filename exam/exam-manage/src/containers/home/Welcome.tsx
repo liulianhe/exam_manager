@@ -7,7 +7,7 @@ class Welcome extends Component {
                 style={{
                     fontSize: 60,
                     textAlign: 'center',
-                    lineHeight: '800px',
+                    lineHeight: '900px',
                     color: 'skyblue'
                 }}
             >

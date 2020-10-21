@@ -5,13 +5,39 @@ import { _getUserInfo, _getUserNew } from '@/api/user'
 import { inject, observer } from 'mobx-react'
 import { admin } from '@/config/homeMenu'
 import viewConfig from '@/config/view_authority'
+import { Avatar, Menu, Dropdown } from 'antd'
+import { DownOutlined } from '@ant-design/icons';
+
+
+interface IProps {
+    history: any
+    user: any
+    routes: any[]
+}
+interface IState {
+    routes: any[]
+    menu: any[]
+    downMenu: any
+}
 
 @inject('user')
 @observer
-class Home extends Component<any> {
+class Home extends Component<IProps, IState> {
     state = {
         routes: [],
-        menu: []
+        menu: [],
+        downMenu: (
+            <Menu>
+                <Menu.Item>个人中心</Menu.Item>
+                <Menu.Item>我的班级</Menu.Item>
+                <hr />
+                <Menu.Item>设置</Menu.Item>
+                <Menu.Item ><span onClick={() => {
+                    localStorage.removeItem('token');
+                    this.props.history.push('/login')
+                }}>退出登录</span></Menu.Item>
+            </Menu>
+        )
     }
     componentDidMount() {
         this.getUserInfo()
@@ -52,7 +78,23 @@ class Home extends Component<any> {
        
         return (
             <div className='home'>
-                <div className="header">header</div>
+                <div className="header">
+                    <span>
+                        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551624718911&di=4a7004f8d71bd8da84d4eadf1b59e689&imgtype=0&src=http%3A%2F%2Fimg105.job1001.com%2Fupload%2Falbum%2F2014-10-15%2F1413365052_95IE3msH.jpg" alt="" />
+                    </span>
+                    <span>
+                        <Dropdown overlay={this.state.downMenu}
+                            placement='bottomRight'
+                        >
+                            <span className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                                <Avatar src='https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2244525695,428286117&fm=26&gp=0.jpg' />
+                                {this.props.user.userInfo && this.props.user.userInfo.user_name}
+                                <DownOutlined />
+                            </span>
+                        </Dropdown>
+
+                    </span>
+                </div>
                 <div className="main">
                     <div className="main-left">
                         {
