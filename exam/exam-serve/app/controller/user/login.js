@@ -20,7 +20,6 @@ class LoginController extends Controller {
         let { user_name, user_pwd } = this.ctx.request.body;
         user_pwd = this.ctx.helper.sha256(user_pwd);
         let userResult = await this.app.mysql.select('user', { where: { user_name } });
-        console.log(userResult);
         if (userResult.length === 0) {
             this.ctx.body = { msg: '用户不存在', code: 0 }
             return;
