@@ -2,7 +2,7 @@
  * @Author: lizhuangzhuang 
  * @Date: 2020-10-21 10:32:41 
  * @Last Modified by: lizhuangzhuang
- * @Last Modified time: 2020-10-21 16:20:08
+ * @Last Modified time: 2020-10-21 18:01:34
  */
 
 import React, { Component } from 'react'
@@ -73,6 +73,7 @@ export default class MarkDetail extends Component<IProps,IStater> {
             
            async onOk(){
                  const result =await _examKark({score:_this.state.scores,id:_this.props.location.state.id});
+                 console.log(result)
                  _this.props.history.push({
                      pathname:'/home/examPaperClassmate',
                      state:{id:_this.state.infor.grade_id}
