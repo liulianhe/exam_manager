@@ -79,8 +79,12 @@ class GradeController extends Controller{
      * {grade_id}
      *  */ 
     async destroy(){
+        console.log('删除班级----------------------')
+        console.log(this.ctx.request.query,'--------------------------')
         this.ctx.validate({grade_id:'string'});
-        let body = this.ctx.request.body;
+        console.log('--------------------------')
+        let body = this.ctx.request.query;
+        
         let result = await this.ctx.service.manger.manger.delGradeRoomStudent('grade','grade_id',body.grade_id);
         if(result.affectedRows === 1){
             this.ctx.body = {msg:'删除班级成功',code:1}
