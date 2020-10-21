@@ -2,7 +2,7 @@
  * @Author: Lala Jack
  * @Date: 2020-10-19 19:51:54
  * @LastEditors: Ji Lala
- * @LastEditTime: 2020-10-20 09:07:55
+ * @LastEditTime: 2020-10-21 17:05:23
  * @motto: Still water run deep
  * @Description: Modify here please
  * @FilePath: \exam-manage\src\config\homeMenu.ts
@@ -38,9 +38,14 @@ export const admin = [
         icon: WalletOutlined,
         children: [
             {
+                title: '教室管理',
+                path: '/home/classroom'
+            },
+            {
                 title: '学生管理',
                 path: '/home/student'
-            }
+            },
+            
         ]
     },
     {

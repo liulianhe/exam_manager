@@ -14,7 +14,6 @@ class Home extends Component<any> {
                         <RouterView routes={this.props.routes} />
                     </div>
                 </div>
-                <div className="footer">footer</div>
             </div>
         );
     }
