@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
-import { _examType, _subject, } from '@/api/exam'
-import { Input, Select, DatePicker, InputNumber, Space, Button } from 'antd';
-
+import { _examType, _subject, _examExamP, } from '@/api/exam'
+import { Select, DatePicker, InputNumber, Button, notification } from 'antd';
 const { Option } = Select;
-const { RangePicker } = DatePicker;
 
 interface Item {
     exam_id: string,
@@ -13,10 +11,15 @@ interface Item {
     subject_text: string
 }
 interface IProps { //定义所需的相应接口
-    onSave: any,
-    onEdit: any,
-    handlevisible: any,
     [key: string]: any,
+}
+interface ObJ {
+    title: string
+    subject_id: string
+    exam_id: string
+    start_time: string
+    end_time: string
+    number: string
 }
 @inject('exam')
 @observer
@@ -30,6 +33,7 @@ class AddExam extends Component<IProps> {
         start_time: '',//开始时间
         end_time: "",//结束时间
         number: "",//试题数量
+        hrefData: {},//跳转后的href
         isF: false,//
     }
     el!: HTMLInputElement | null;
@@ -53,38 +57,58 @@ class AddExam extends Component<IProps> {
             })
         }
     }
+    async examExamP(obj: {}) {
+        const res = await _examExamP(obj)
+        if (res.data.code) {
+            this.setState({
+                hrefData: res.data.data
+            })
+        }
+    }
+    openNotification = () => {
+        notification.info({
+            message: ` 请输入信息`,
+            description:
+                '',
+        });
+    };
     //创建
     async questions() {
-        let obj: any = {
+        let obj:any= {
             title: this.el && this.el.value,
             subject_id: this.state.subject_id,
             exam_id: this.state.exam_id,
             start_time: this.state.start_time,
             end_time: this.state.end_time,
             number: this.state.number,
-            // allTime:this.tab(this.state.start_time,this.state.end_time)
         }
         for (var i in obj) {
             if (!obj[i]) {
-                return alert('请输入全部信息')
+                return this.openNotification()
             }
         }
 
-        this.props.history.push('/home/examEdit')
+        const res = await _examExamP(obj)
+        if (res.data.code) {
+            this.props.history.push({
+                pathname: '/home/examEdit',
+                state: res.data.data
+            })
+        }
+
         this.props.exam.seteaxmAddInfo(obj)
     }
     //考卷名称：
     onChange(e: any) {
-        // console.log('changed', e);
     }
     //选择考试类型：
-    handleChange(value: any) {
+    handleChange(value: string) {
         this.setState({
             exam_id: value
         })
     }
     //选择课程：
-    handleChange1(value1: any) {
+    handleChange1(value1: string) {
         this.setState({
             subject_id: value1
         })
@@ -97,9 +121,9 @@ class AddExam extends Component<IProps> {
         })
     }
     //考试时间：
-    dataonChange(value: any, dateString: any) {
+    dataonChange(value: string, dateString: string) {
     }
-    dataonChange1(value: any, dateString: any) {
+    dataonChange1(value: string, dateString: string) {
     }
     //考试时间：
     onOk(value: any) {
@@ -110,7 +134,7 @@ class AddExam extends Component<IProps> {
     }
     onOk1(value: any) {
         this.setState({
-            end_time:  new Date(value._d).getTime()
+            end_time: new Date(value._d).getTime()
         })
     }
     // 2020-10-22 17:22 格式
@@ -127,20 +151,7 @@ class AddExam extends Component<IProps> {
     fix(num: number, length: number) { // 两位补0
         return ('' + num).length < length ? ((new Array(length + 1)).join('0') + num).slice(-length) : '' + num
     }
-    //所有时间
-    tab(day1:string, day2:string) {
-        //   在苹果上，时间格式最好是 是 2020/02/02 它是斜杠开头的
-        let day11 = day1.replace(/-/g, "/");
-        let day22 = day2.replace(/-/g, "/");
 
-        var day_day1 = new Date(day11);
-        var day_day2 = new Date(day22);
-
-        let disparity = day_day2.getTime() - day_day1.getTime();
-        // 转为分钟数的时候，可能会出现精度丢失;你需要注意下
-        let min = Math.round(disparity / 1000 / 60);
-        return min
-    }
     render() {
         return (
             <div className='gw_addexam'>
@@ -176,7 +187,7 @@ class AddExam extends Component<IProps> {
                     </div>
                     <div>
                         <p><span>*</span> 选择题量：</p>
-                        <InputNumber style={{ width: 120, height: 30 }} min={3} max={10} defaultValue={3} onChange={(e) => this.onChange1(e)} />
+                        <InputNumber style={{ width: 120, height: 30 }} min={3} max={10} onChange={(e) => this.onChange1(e)} />
                     </div>
                     <div>
                         <p><span>*</span> 考试时间：</p>
@@ -184,7 +195,10 @@ class AddExam extends Component<IProps> {
                         <DatePicker showTime onChange={() => this.dataonChange1} onOk={(e) => this.onOk1(e)} style={{ width: 250, height: 30 }} />
 
                     </div>
-                    <Button type="primary" style={{ width: 100 }} onClick={() => this.questions()}>创建试卷</Button>
+                    <Button type="primary" style={{ width: 100 }} onClick={() => this.questions()}>
+
+                        创建试卷</Button>
+
                 </div>
             </div>
         );

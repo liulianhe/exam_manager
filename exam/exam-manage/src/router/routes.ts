@@ -4,7 +4,7 @@
  * @Author: sueRimn
  * @Date: 2020-10-19 11:27:02
  * @LastEditors: 郭雯
- * @LastEditTime: 2020-10-20 13:26:09
+ * @LastEditTime: 2020-10-21 15:55:09
  */
 import Home from '../containers/home'
 import Login from '../containers/user/Login'
@@ -16,6 +16,7 @@ import AddQuestions from '@/containers/home/questions/AddQuestions'
 import AddExam from '@/containers/home/gw_exam/AddExam'
 import ExamList from '@/containers/home/gw_exam/ExamList'
 import ExamEdit from '@/containers/home/gw_exam/ExamEdit'
+import ExamDetail from '@/containers/home/gw_exam/ExamDetail'
 export default [
     {
         path: '/',
@@ -45,6 +46,11 @@ export default [
             {
                 path: '/home/examEdit',
                 component: ExamEdit
+            },
+            {
+                path:'/home/examDetail',
+                component: ExamDetail
+
             }
         ]
     },

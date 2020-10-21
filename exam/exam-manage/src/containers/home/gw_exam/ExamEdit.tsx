@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { Button, Drawer, Select } from 'antd';
+import { Button, Drawer, Select, Modal, notification } from 'antd';
 import { inject, observer } from 'mobx-react';
-import { _subject, _examType, _getQuestionsType, _questionsNew, _questionsCondition, _questionsUpdate } from '@/api/exam'
+import { _subject, _examType, _getQuestionsType, _questionsNew, _questionsCondition, _examExamPut } from '@/api/exam'
+import { dateFormat } from '@/config/homeExam'
+
 const { Option } = Select;
 interface IProps { //定义所需的相应接口
-    onSave: any,
-    onEdit: any,
-    handlevisible: any,
+
     [key: string]: any,
 }
 interface Item {
@@ -18,9 +18,38 @@ interface Item {
     questions_type_text: string,
     [key: string]: any,
 }
+interface AddCont {
+    title: string
+    questions_stem: string
+    questions_answer: string
+    exam_id: string
+}
+interface OBJ {
+    questions_type_id: string
+    subject_id: string
+    exam_id: string
+}
+interface State {
+    visible: boolean
+    childrenDrawer: boolean
+    subject: string[]
+    examType: string[]
+    questionsType: string[]
+    questionsNew: string[]
+    questionsCondition: string[]
+    active: number
+    addCont: any[]
+    detailCont: { [key: string]: any }
+    subject_id: string
+    exam_id: string
+    questions_type_id: string
+    questions_id: string
+    modal1Visible: boolean
+    modal2Visible: boolean
+}
 @inject('exam')
 @observer
-export default class ExamEdit extends Component<IProps> {
+export default class ExamEdit extends Component<IProps, State> {
     state = {
         visible: false,
         childrenDrawer: false,
@@ -32,11 +61,12 @@ export default class ExamEdit extends Component<IProps> {
         active: 999,//高亮
         addCont: [],//添加的内容
         detailCont: {},//跳转页面
-
         subject_id: '',
         exam_id: '',
         questions_type_id: '',
         questions_id: "",
+        modal1Visible: false,
+        modal2Visible: false,
     };
 
     showDrawer = () => {
@@ -67,6 +97,21 @@ export default class ExamEdit extends Component<IProps> {
             childrenDrawer: false,
         });
     };
+
+    setModal1Visible(modal1Visible: boolean) {
+        let a = this.state.addCont.filter((item: Item) => (this.state.detailCont as AddCont).exam_id === item.id)
+        if (a.length <= 0) {
+            let aa = [...this.state.addCont, this.state.detailCont]
+            this.setState({
+                addCont: aa,
+                modal1Visible: modal1Visible
+            })
+        }
+    }
+
+    setModal2Visible(modal2Visible: boolean) {
+        this.setState({ modal1Visible: modal2Visible });
+    }
     //所有课程接口
     async subject() {
         const res = await _subject()
@@ -96,55 +141,25 @@ export default class ExamEdit extends Component<IProps> {
 
         }
     }
-    //创建试卷
-    async questionsUpdate() {
-        console.log(this.props.exam.eaxmAddInfo)
-        const obj = {
-            // exam_id:this.props.exam.eaxmAddInfo.exam_id,
-            // questions_answer:;
-            // questions_stem:;
-            // questions_type_id:;
-            // subject_id:;
-            // title:;
-        }
 
-        // title: this.el && this.el.value,
-        //     subject_id: this.state.subject_id,
-        //     exam_id: this.state.exam_id,
-        //     start_time: this.state.start_time,
-        //     end_time: this.state.end_time,
-        //     number: this.state.number,
-
-        // const res = await _questionsUpdate()
-        // if (res.data.code) {
-        //     this.setState({
-        //         questionsNew: res.data.data
-        //     })
-
-        // }
-
-    }
     async questionsCondition() {
-        let obj: any = {
-            // qusestions_type_id: this.state.qusestions_type_id,
-            // exam_id: this.state.exam_id,
-            // subject_id: this.state.subject_id,
+        let obj = {
+
         }
         if (this.state.questions_type_id) {
-            obj.questions_type_id = this.state.questions_type_id
+            (obj as OBJ).questions_type_id = this.state.questions_type_id
         }
         if (this.state.exam_id) {
-            obj.exam_id = this.state.exam_id
+            (obj as OBJ).exam_id = this.state.exam_id
         }
         if (this.state.subject_id) {
-            obj.subject_id = this.state.subject_id
+            (obj as OBJ).subject_id = this.state.subject_id
         }
         const res = await _questionsCondition(obj)
         if (res.data.code) {
             this.setState({
                 questionsCondition: res.data.data
             })
-            console.log(res.data)
         }
     }
     //
@@ -158,17 +173,28 @@ export default class ExamEdit extends Component<IProps> {
         }
 
     }
+    //创建试卷
+    async examExamPut(id: string[]) {
+        let exam_id = this.props.location.state.exam_exam_id
+        let questions_ids = id.splice(0, this.props.location.state.number)
+        const res = await _examExamPut(questions_ids, exam_id)
+        if (res.data.code) {
+
+            this.props.history.push('/home/examList')
+        }
+
+    }
     //查询
     search() {
         this.questionsCondition()
     }
     //选择考试类型：
-    handleChange(value: any) {
+    handleChange(value: string) {
         this.setState({
             exam_id: value
         })
     }
-    handleChange1(value: any) {
+    handleChange1(value: string) {
         this.setState({
             questions_type_id: value
         })
@@ -191,12 +217,31 @@ export default class ExamEdit extends Component<IProps> {
     //详情页面
     detail(item: {}) {
         this.setState({
-            detailCont: item
+            detailCont: item,
+            modal1Visible: true
         })
+
     }
-    //创建时间
+    //提示语
+    openNotification = () => {
+        notification.info({
+            message: `试题不能为空 `,
+
+        });
+    };
+    //创建事件
     addEvent() {
-        this.questionsUpdate()
+        let arr: any = []
+        this.state.addCont.length && this.state.addCont.forEach((item: Item) => arr.push(item.questions_id))
+        arr.length ?
+            this.examExamPut(arr) : this.openNotification()
+    }
+    //删除添加试卷数组的
+    delEvent(id: string) {
+        let d = this.state.addCont
+        this.setState({
+            addCont: d.filter((item: Item) => id !== item.questions_id)
+        })
     }
     render() {
         return (
@@ -207,14 +252,15 @@ export default class ExamEdit extends Component<IProps> {
                 <div className='gwexamEdit_cont'>
                     <Button onClick={this.showDrawer}>+ 添加新题</Button>
                     <div className='gwexamEdit_cont_01'>
-                        <h3>{this.props.exam.eaxmAddInfo.title}woshi wangzai</h3>
+                        <h3>{this.props.exam.eaxmAddInfo.title}</h3>
                         {/* {this.props.exam.eaxmAddInfo.allTime} */}
-                        <p>考试时间：1:30 监考人：旺仔 考试时间：{this.props.exam.eaxmAddInfo.start_time} 阅卷人：旺仔</p>
+                        <p>考试时间：1:30 监考人：旺仔 考试时间：{dateFormat(this.props.exam.eaxmAddInfo.start_time)} 阅卷人：旺仔</p>
                     </div >
                     {
                         this.state.addCont && this.state.addCont.map((item: Item) => {
                             return <div key={item.questions_id} className='list_cont'>
                                 <b>{item.title}</b>
+                                <i onClick={() => this.delEvent(item.questions_id)}>删除</i>
                                 <p>{item.questions_stem}</p>
                                 <p>{item.questions_answer}</p>
                             </div>
@@ -233,14 +279,14 @@ export default class ExamEdit extends Component<IProps> {
                         <p>
                             课程类型：
                             <span onClick={() => this.activeEvent(0, '')}
-                                className={this.state.active == 0 ? 'spanclass' : ''}
+                                className={this.state.active === 0 ? 'spanclass' : ''}
                             >all</span>
                             {
                                 this.state.subject.map((item: Item, index) => {
                                     return <span key={item.subject_id}
                                         onClick={() => this.activeEvent(index + 1, item.subject_id)}
-                                        id={this.state.active == index + 1 ? 'spanclass' : ''}
-                                        className={this.state.active == 0 ? 'spanclass' : ''}
+                                        id={this.state.active === index + 1 ? 'spanclass' : ''}
+                                        className={this.state.active === 0 ? 'spanclass' : ''}
                                     >{item.subject_text}</span>
                                 })
                             }
@@ -276,7 +322,7 @@ export default class ExamEdit extends Component<IProps> {
                                         <span>{item.exam_name}</span>
                                         <b>
                                             <i onClick={() => this.addList(item)}>添加</i> |
-                                        <i onClick={() => this.detail(item)}>详情</i>
+                                            <i onClick={() => this.detail(item)}>详情</i>
                                         </b>
                                     </p>
                                     <p>{item.user_name}发布</p>
@@ -299,7 +345,23 @@ export default class ExamEdit extends Component<IProps> {
                         }
                     </div>
                 </Drawer>
-                <Button type="primary" onClick={() => this.addEvent()} className='add'>创建试题</Button>
+                <Button type="primary" onClick={() => this.addEvent()} className='add'>
+                    创建试题</Button>
+
+                <Modal
+                    title="20px to Top"
+                    style={{ top: 50 }}
+                    visible={this.state.modal1Visible}
+                    onOk={() => this.setModal1Visible(false)}
+                    onCancel={() => this.setModal2Visible(false)}
+                >
+                    <div>
+                        <b>{(this.state.detailCont as AddCont).title}</b>
+                        <p>{(this.state.detailCont as AddCont).questions_stem}</p>
+                        <p>{(this.state.detailCont as AddCont).questions_answer}</p>
+                    </div>
+                </Modal>
+                <br />
             </div>
         )
     }

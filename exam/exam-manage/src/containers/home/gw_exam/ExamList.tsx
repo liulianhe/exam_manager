@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { _examExam } from '@/api/exam'
 import { _subject, _examType, _questionsCondition,_examExamId } from '@/api/exam'
-
-import { Button, Drawer, Select, Table, Tag, Space } from 'antd';
+import { dateFormat ,textDate} from '@/config/homeExam'
+import { Button, Select, Table, Tag, Space } from 'antd';
 const { Option } = Select;
 interface Item {
   exam_id: string,
@@ -13,7 +13,22 @@ interface Item {
   questions_type_text: string,
   [key: string]: any,
 }
-export default class ExamList extends Component {
+interface Iprops{
+  [key:string]:any
+}
+interface Record{
+  title:string
+  start_time:string
+  end_time:string
+  number:number
+  grade_name:string[]
+  exam_exam_id:string
+}
+interface ObJ{
+  questions_type_id:string
+  exam_id:string
+}
+export default class ExamList extends Component<Iprops> {
   state = {
     examList: [], //试卷列表
     examType: [], //考试类型：
@@ -25,10 +40,10 @@ export default class ExamList extends Component {
         title: '试卷信息',
         dataIndex: 'title',
         key: 'title',
-        render: (text: any, record: any) => (
+        render: (text: string, record: Record) => (
           <p >
             <span style={{margin:5 }}>{record.title}</span> <br/>
-            <span style={{margin:5 }}>考试时间：{this.textDate(record.start_time,record.end_time)} {record.number}道题作弊0分</span>
+            <span style={{margin:5 }}>考试时间：{textDate(record.start_time,record.end_time)} {record.number}道题作弊0分</span>
           </p>
         )
       },
@@ -36,7 +51,7 @@ export default class ExamList extends Component {
         title: '班级',
         dataIndex: 'grade_name',
         key: 'grade_name',
-        render: (text: any, record: any) => (
+        render: (text: string, record: Record) => (
           <p>
             <span style={{margin:5 }}>考试班级</span><br/>
             <span style={{margin:5 }}>{record.grade_name.join(' ')}</span>
@@ -52,24 +67,24 @@ export default class ExamList extends Component {
       {
         title: '开始时间',
         key: 'start_time',
-        render: (text: any, record: any) => (
-          <span>{this.dateFormat(record.start_time)}</span>
+        render: (text: string, record: Record) => (
+          <span>{dateFormat(record.start_time)}</span>
         )
       },
       {
         title: '结束时间',
         key: 'end_time',
-        render: (text: any, record: any) => (
-          <span>{this.dateFormat(record.end_time)}</span>
+        render: (text: string, record: Record) => (
+          <span>{dateFormat(record.end_time)}</span>
         )
 
       },
       {
         title: '操作',
         key: "subject_id",
-        render: (text: any, record: any) => (
+        render: (text: string, record: Record) => (
           <Space size="middle">
-            <a onClick={()=>this.detail(record.exam_id)}>详情</a>
+            <a onClick={()=>this.detail(record.exam_exam_id)}>详情</a>
           </Space>
         ),
 
@@ -80,43 +95,16 @@ export default class ExamList extends Component {
     this.examType()
     this.subject()
   }
-  handleChange(value: any) {
+  handleChange(value: string) {
     this.setState({
       exam_id: value
     })
   }
-  handleChange1(value: any) {
+  handleChange1(value: string) {
     this.setState({
       questions_type_id: value
     })
   }
-  dateFormat(data: any) {
-    let date: any = new Date(parseInt(data))
-    const year = date.getFullYear()
-    const month = date.getMonth() + 1
-    const day = date.getDate()
-    const hour = date.getHours()
-    const minutes = date.getMinutes()
-    const second = date.getSeconds()
-    const updateDate = year + '-' + this.fix(month, 2) + '-' + this.fix(day, 2) + ' ' + this.fix(hour, 2) + ':' + this.fix(minutes, 2) + ':' + this.fix(second, 2)
-    return updateDate
-  }
-  fix(num: number, length: number) { // 两位补0
-    return ('' + num).length < length ? ((new Array(length + 1)).join('0') + num).slice(-length) : '' + num
-  }
-  textDate(start: string, end: string) {
-    let time = Number(end) - Number(start)
-    var total = time / 1000;
-    var day = Math.floor(total / (24 * 60 * 60));//计算整数天数
-    var afterDay = total - day * 24 * 60 * 60;//取得bai算出du天数后剩余的秒zhi数
-    var hour = Math.floor(afterDay / (60 * 60));//计算整数小时dao数
-    var afterHour = total - day * 24 * 60 * 60 - hour * 60 * 60;//取得算出小时数后剩余的秒数
-    var min = Math.floor(afterHour / 60);//计算整数分
-    var afterMin = Math.floor(total - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);//取得算出分后剩余的秒数
-    let res = [hour,min,afterMin].join(':')
-    return res
-  }
-
   //查询
   search() {
     this.questionsCondition()
@@ -128,17 +116,16 @@ export default class ExamList extends Component {
       this.setState({
         examList: res.data.exam
       })
-      console.log(res.data.exam)
     }
   }
   //跳转详情页面
   async examExamId(exam_id:string) {
     const res = await _examExamId(exam_id)
     if (res.data.code) {
-      this.setState({
-        // examType: res.data.data
+      this.props.history.push({
+        pathname:'/home/ExamDetail',
+        state:res.data.data.questions
       })
-      console.log(res)
     }
   }
   //考试类型
@@ -164,16 +151,13 @@ export default class ExamList extends Component {
   }
   //搜索内容
   async questionsCondition() {
-    let obj: any = {
-      // qusestions_type_id: this.state.qusestions_type_id,
-      // exam_id: this.state.exam_id,
-      // subject_id: this.state.subject_id,
+    let obj = {
     }
     if (this.state.questions_type_id) {
-      obj.questions_type_id = this.state.questions_type_id
+      (obj as ObJ).questions_type_id = this.state.questions_type_id
     }
     if (this.state.exam_id) {
-      obj.exam_id = this.state.exam_id
+      (obj as ObJ).exam_id = this.state.exam_id
     }
 
     const res = await _questionsCondition(obj)
@@ -185,7 +169,6 @@ export default class ExamList extends Component {
   }
   //跳转详情
   detail(exam_id:string){
-    console.log(exam_id)
     this.examExamId(exam_id)
   }
   render() {

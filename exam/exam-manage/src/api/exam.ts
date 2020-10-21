@@ -1,13 +1,4 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: sueRimn
- * @Date: 2020-10-19 18:08:04
- * @LastEditors: 郭雯
- * @LastEditTime: 2020-10-20 23:13:52
- */
 import request from '../utils/require';
-
 //考试类型
 export function _examType() {
     return request.get('/exam/examType')
@@ -42,12 +33,17 @@ export function _examExam() {
 }
 
 //跳转
-export function _examExamId(exam_id:string) {
-    return request.get(`/exam/exam/exam_id=${exam_id}`)
+export function _examExamId(exam_id: string) {
+    return request.get(`/exam/exam/${exam_id}`)
 }
 
-//添加考试 
 
-export function _questionsUpdate() {
-    return request.post('/exam/exam')
+//添加考试 
+export function _examExamP(obj: {}) {
+    return request.post('/exam/exam', obj)
+}
+
+export function _examExamPut(arr: string[], exam_id: string) {
+    let question_ids = JSON.stringify(arr)
+    return request.put(`/exam/exam/${exam_id}`, { question_ids })
 }
