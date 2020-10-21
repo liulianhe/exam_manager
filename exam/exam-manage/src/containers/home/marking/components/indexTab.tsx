@@ -1,19 +1,18 @@
 /*
- * @Author: 李壮壮 
- * @Date: 2020-10-19 17:53:17 
- * @Last Modified by: 李壮壮
- * @Last Modified time: 2020-10-20 21:45:09
+ * @Author: lizhuangzhuang 
+ * @Date: 2020-10-21 10:32:57 
+ * @Last Modified by: lizhuangzhuang
+ * @Last Modified time: 2020-10-21 16:05:28
  */
-//@ts-nocheck
-import React, { Component } from 'react'
-import {Table, Tag, Space,Pagination} from 'antd';
-import {_getMarkingClass} from '@/api/user'
-import Marking from '../Marking';
-interface IProps{
 
+import React, { Component } from 'react'
+import {Table,Button} from 'antd';
+import {_getMarkingClass} from '@/api/mark'
+interface IProps{
+  history?:any
 };
 interface IState{
-    dataSource:{
+    dataSource:{//表格数据规范
         key: string,
         className?: string,
         course:string,
@@ -21,22 +20,19 @@ interface IState{
         className2:string,
         talentRate:string
       }[],
-      columns : {
+      columns : {//表头数据规范
         title:string,
         dataIndex: string,
         key: string,
         render?:any
-      } [
-       
-      ]
+      } []
 }
 export default class tab extends Component<IProps,IState> {
     constructor(props:IProps){
         super(props)
          this.state={
-            dataSource :[],
-              
-              columns : [
+            dataSource :[],//表格数据
+              columns : [//表头数据
                 {
                   title: '班级名',
                   dataIndex: 'className',
@@ -53,43 +49,57 @@ export default class tab extends Component<IProps,IState> {
                   key: 'state',
                 },
                 {
-                    title: '课程名称',
-                    dataIndex: 'className2',
-                    key: 'className2',
-                  },
-                  {
-                    title: '成才率',
-                    dataIndex: 'talentRate',
-                    key: 'talentRate',
-                  },
+                  title: '课程名称',
+                  dataIndex: 'className2',
+                  key: 'className2',
+                },
+                {
+                  title: '成才率',
+                  dataIndex: 'talentRate',
+                  key: 'talentRate',
+                },
                  {
-                 title:'操作',
-                 dataIndex: 'action',
-                 key: 'action',
-                 render: (text, record) => (
-                  <Space size="middle" onClick={()=>{this.mark(text,record)}}>
-                    <a >批卷</a>
-                  </Space>
-                )
-                 }
+                  title:'操作',
+                  dataIndex: 'action',
+                  key: 'action',
+                  render: (text: any, record: any) => (
+                    <Button size="middle" type='primary' onClick={()=>this.mark(text, record)}>批卷</Button>
+                  )
+                }
               ]
          }
     }
     componentDidMount(){
+      /**
+       * 初始化获取数据
+       */
       this.getList()
     }
-    mark(text,record){
+    mark(text: any,record: { grade_id: any; className: any; }){
+      /**
+       * @title 跳转路由到批卷班级学生列表
+       * @id 班级id
+       * @
+       */
       this.props.history.push({
         pathname:'/home/examPaperClassmate',
         state:{id:record.grade_id,name:record.className}
       })
      
     }
+   
    async getList(){
+     /**
+      * @param 获取待批班级数据列表
+      * 
+      */
       const result = await _getMarkingClass();
       if(result.data.code===1){
-        console.log(result)
-        let arr: { key: any; className: any; course: string; state: string; className2: any; talentRate: any; }[] =[]
+        /**
+         * 
+         */
+        let arr: { key: any; className: any; course: string; state: string; className2: any; talentRate: any,grade_id:string }[] =[]
+
         result.data.data.forEach((item: any,index:number)=>{
           arr.push({
             key: item.grade_id+item.grade_name,
@@ -99,7 +109,6 @@ export default class tab extends Component<IProps,IState> {
             state:'',
             className2:item.grade_name,
             talentRate:item.room_text,
-           
           })
         })
         this.setState({
@@ -108,11 +117,9 @@ export default class tab extends Component<IProps,IState> {
       }
     }
     render() {
-        
         return (
             <div>
-                 <Table dataSource={this.state.dataSource} columns={this.state.columns}   />
-                 {/* <Pagination showQuickJumper defaultCurrent={2} total={500}  /> */}
+                 <Table style={{borderRadius:'20px'}} dataSource={this.state.dataSource} columns={this.state.columns}   />
             </div>
         )
     }

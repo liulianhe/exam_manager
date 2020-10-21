@@ -5,7 +5,13 @@
   text-decoration: none;
 }
 
-html, body, #root {
+html {
+  font-size: 16px;
+}
+
+html,
+body,
+#root {
   width: 100%;
   height: 100%;
 }
@@ -18,10 +24,42 @@ html, body, #root {
 .home .header {
   width: 100%;
   height: 80px;
-  text-align: center;
   line-height: 80px;
   font-size: 20px;
   border-bottom: 1px solid #ccc;
+  display: flex;
+}
+
+.home .header span {
+  flex: 1;
+}
+
+.home .header > span:nth-child(1) > img {
+  width: 200px;
+  height: 50px;
+  margin-left: 100px;
+}
+
+.home .header span:nth-child(2) {
+  float: right;
+  text-align: right;
+  padding-right: 100px;
+}
+
+.home .header span:nth-child(2) .anticon svg {
+  margin-top: 40px;
+  margin-left: 20px;
+}
+
+.home .header span:nth-child(2) .ant-avatar {
+  width: 38px;
+  height: 38px;
+  margin-right: 10px;
+}
+
+.home .header span:nth-child(2) .ant-avatar img {
+  width: 38px;
+  height: 38px;
 }
 
 .home .main {
@@ -46,107 +84,102 @@ html, body, #root {
 }
 
 .home .main .main-right {
-  width: calc(100% - 300px);
-  background: #f0f2f5;
-}
-
-.home .footer {
-  width: 100%;
-  text-align: center;
-  line-height: 100px;
-  height: 100px;
-  border-top: 1px solid #ccc;
-  font-size: 20px;
-}
-
-.markIndex {
-  width: 100%;
   height: 100%;
-}
-
-.markIndex h3 {
-  width: 100%;
-  height: 50px;
-}
-
-.marking {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.marking .inquire {
-  width: 95%;
-  height: 120px;
-  background: #fff;
-  margin: 60px auto 0 auto;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-}
-
-.marking .inquire button {
-  margin-left: 50px;
-}
-
-.marking .mainList {
-  width: 95% !important;
-  height: 70% !important;
-  background: #fff;
-  margin: 0 auto;
-  border-radius: 10px;
-  height: auto;
   overflow-y: auto;
   width: calc(100% - 200px);
   background: #f0f2f5;
 }
 
-.markDefault {
+.home .markIndex {
+  width: 100%;
+  padding: 20px;
+}
+
+.home .markIndex .ant-table-wrapper {
+  border-radius: 20px;
+}
+
+.home .marking {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.home .marking h3 {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-indent: 20px;
+}
+
+.home .marking .inquire {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 150px;
+  background: #fff;
+}
+
+.home .marking .mainList {
+  width: 100%;
+  flex: 1;
+  margin-top: 30px;
+}
+
+.home .markDefault {
   width: 100%;
   height: 100%;
   padding: 20px;
   overflow: hidden;
 }
 
-.markDefault .markDefaultInfor {
+.home .markDefault .markDefaultInfor {
   width: 100%;
   height: 100%;
   justify-content: space-between;
   display: flex;
 }
 
-.markDefault .markDefaultInfor .left {
+.home .markDefault .markDefaultInfor .left {
   width: 73%;
   height: 100%;
   background: #fff;
+  padding: 50px;
   overflow-x: hidden;
   overflow-y: auto;
 }
 
-.markDefault .markDefaultInfor .left img {
+.home .markDefault .markDefaultInfor .left img {
   width: 100%;
 }
 
-.markDefault .markDefaultInfor .left .answerTitle {
+.home .markDefault .markDefaultInfor .left .answerTitle {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-.markDefault .markDefaultInfor .left .answerTitle .answerTitleItem {
-  width: 50% !important;
+.home .markDefault .markDefaultInfor .left .answerTitle .answerTitleItem {
+  width: 45% !important;
 }
 
-.markDefault .markDefaultInfor .left .answer {
+.home .markDefault .markDefaultInfor .left .answer {
   width: 100%;
   display: flex;
-  padding: 10px 50px;
+  padding: 10px;
   justify-content: space-between;
 }
 
-.markDefault .markDefaultInfor .right {
+.home .markDefault .markDefaultInfor .left .answer .studentAnswer, .home .markDefault .markDefaultInfor .left .answer .standardAnswer {
+  width: 45%;
+  padding: 10px;
+}
+
+.home .markDefault .markDefaultInfor .right {
   width: 25%;
   height: 200px;
   background: #fff;
@@ -160,6 +193,11 @@ html, body, #root {
 
 .showUser nav {
   padding-left: 30px;
+}
+
+.showUser nav .showUseraction {
+  border-color: blue;
+  color: blue;
 }
 
 .showUser h3 {
@@ -182,13 +220,132 @@ html, body, #root {
   background: #fff;
   border-radius: 20px;
   margin: 20px 0 50px 0;
+  padding: 24px 100px;
+  font-size: 18px;
+}
+
+.ShowQuestions .search_main .object_type {
+  width: 100%;
+  height: 65px;
+  line-height: 65px;
+  overflow-x: auto;
+}
+
+.ShowQuestions .search_main .object_type span {
+  margin-left: 10px;
+  padding: 2px 5px;
+  height: 20px;
+}
+
+.ShowQuestions .search_main .object_type span:hover {
+  cursor: pointer;
+}
+
+.ShowQuestions .search_main .object_type .click_span {
+  background: #3a7fe1;
+  color: #fff;
+}
+
+.ShowQuestions .search_main .test_type {
+  width: 100%;
+  height: 65px;
+  line-height: 65px;
+}
+
+.ShowQuestions .search_main .test_type .type_span {
+  display: inline-block;
+  padding: 0 15px;
 }
 
 .ShowQuestions .show_list {
   width: 100%;
-  height: 600px;
+  padding: 40px 30px;
   background: #fff;
   border-radius: 20px;
+}
+
+.ShowQuestions .show_list .question_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 120px;
+  width: 100%;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 15px 0;
+}
+
+.ShowQuestions .show_list .question_item:hover {
+  background: #ebe7e7;
+  cursor: pointer;
+}
+
+.ShowQuestions .show_list .question_item_tags {
+  display: flex;
+  flex-direction: column;
+}
+
+.ShowQuestions .show_list .question_item_tags .tags_list {
+  margin: 10px 0;
+}
+
+.del {
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+}
+
+.del .del_main {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.del .del_main .del_left {
+  width: 70%;
+  padding: 30px 20px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.del .del_main .del_right {
+  width: 25%;
+  padding: 30px 20px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.questionsType {
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+}
+
+.questionsType .questionsType_main {
+  width: 100%;
+  padding: 24px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.questionsType .add_type {
+  margin-bottom: 20px;
+  padding: 20px 25px;
+  font-size: 16px;
+  line-height: 0px;
+}
+
+.add_question {
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+}
+
+.add_question .add_question_main {
+  width: 100%;
+  padding: 40px;
+  background: #fff;
+  border-radius: 10px;
 }
 
 .login {
@@ -248,6 +405,14 @@ html, body, #root {
   font-size: 18px;
 }
 
+.login .form div {
+  padding-left: 20px;
+}
+
+.login .form div .ant-checkbox {
+  margin-right: 20px;
+}
+
 .login .form button {
   margin-top: 20px;
   width: 400px;
@@ -258,8 +423,50 @@ html, body, #root {
   background: rgba(129, 221, 90, 0.5);
   border-radius: 20px;
   cursor: pointer;
+  outline: none;
 }
 
 .login .form button:hover {
   background: rgba(150, 247, 108, 0.7);
+}
+
+.adduser {
+  width: 100%;
+  height: auto;
+  background: #f0f2f5;
+}
+
+.adduser h2 {
+  margin: 20px;
+}
+
+.adduser .ant-layout {
+  background: #f0f2f5;
+}
+
+.adduser .ant-layout .ant-layout-sider {
+  background: #f0f2f5;
+  border: 1px solid #e2dddd;
+  padding: 20px;
+}
+
+.adduser .ant-layout .ant-layout-sider .ant-form {
+  margin-top: 20px;
+}
+
+.adduser .ant-layout .ant-layout-sider .ant-btn {
+  padding: 0 30px;
+}
+
+.adduser .ant-layout .ant-layout-sider .ant-select {
+  width: 200px;
+}
+
+.adduser .ant-layout .ant-layout-sider .addUseractive {
+  border-color: blue;
+  color: blue;
+}
+
+.adduser .layrow {
+  margin: 0 60px;
 }
