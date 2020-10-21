@@ -6,7 +6,6 @@ import { BrowserRouter } from 'react-router-dom'
 import { CookiesProvider } from 'react-cookie'
 import App from './App'
 import 'antd/dist/antd.css'
-// import 'antd/dist/antd.compact.css'
 
 import './index.scss'
 

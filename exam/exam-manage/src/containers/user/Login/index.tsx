@@ -47,7 +47,7 @@ class Login extends Component<IProps, IState> {
     render() {
         return (
             <div className='login'>
-                <div>
+                <div className='form'>
                     <p>
                         <span><UserOutlined /></span>
                         <input type="text" name='user_name'
