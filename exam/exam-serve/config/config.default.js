@@ -4,7 +4,7 @@
  * @Author: 刘连合
  * @Date: 2020-10-19 11:05:38
  * @LastEditors: 刘连合
- * @LastEditTime: 2020-10-20 09:08:32
+ * @LastEditTime: 2020-10-20 22:43:24
  */
 const path = require('path');
 exports.keys = 'tao';
@@ -27,7 +27,7 @@ exports.mysql = {
         port: 3306,
         user: 'root',
         password: '12344321',
-        database: 'market'
+        database: 'examss'
     }
 }
 exports.static = {

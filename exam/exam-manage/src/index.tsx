@@ -6,8 +6,12 @@ import { BrowserRouter } from 'react-router-dom'
 
 import App from './App'
 import 'antd/dist/antd.css'
+<<<<<<< HEAD
 // import 'antd/dist/antd.compact.css'
 
+=======
+import './index.scss'
+>>>>>>> master
 ReactDOM.render(
   <BrowserRouter>
     <Provider {...stores}>

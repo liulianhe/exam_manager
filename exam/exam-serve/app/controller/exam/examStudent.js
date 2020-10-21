@@ -68,7 +68,7 @@ class ExamStudentController extends Controller{
      * {score}
      */
     async update(){
-        console.log(this.ctx.params.id)
+        // console.log(this.ctx.params.id)
         try{
             this.ctx.validate({score:'number'}, this.ctx.request.body);
         }catch(error){

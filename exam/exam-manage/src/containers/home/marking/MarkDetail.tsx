@@ -58,7 +58,7 @@ export default class MarkDetail extends Component<IProps,IStater> {
                         {
                            
                            this.state.infor.questions&& this.state.infor.questions.map((item: any,index:number)=>{
-                                return <div className="paperInfor">
+                                return <div className="paperInfor" key={item.questions_id}>
                                     <h5>{index+1}、{ item.title}</h5>
                                     <Markdown source={item.questions_stem} />
                                     <div className="answerTitle">

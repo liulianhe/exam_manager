@@ -82,7 +82,6 @@ export default class marlingTab extends Component<IProps,IState> {
     async getList(){
       const result = await _getStudentExam(this.props.location.state.id);
       if(result.data.code===1){
-        console.log(result)
         let arr: {key:string, class: string; name: string; state: string; startTime: string; endTime: string; talentRate: string; }[] =[];
         result.data.exam.forEach((item:any)=>{
           arr.push({
@@ -93,7 +92,6 @@ export default class marlingTab extends Component<IProps,IState> {
             startTime:item.start_time,
             endTime:item.end_time,
             talentRate:'-'
-
           })
         })
         this.setState({

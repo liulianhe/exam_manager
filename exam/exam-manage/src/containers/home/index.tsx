@@ -52,7 +52,6 @@ class Home extends Component<IProps, IState> {
     async getUserNew(user_id: string) {
         let result = await _getUserNew(user_id)
         let arr = admin.map((item: any) => {
-            console.log(item)
             if (item.children && item.children.length > 0) {
                 item.children = item.children.filter((ite: any) => {
                     return result.data.data.some((b: any) => {
@@ -75,7 +74,6 @@ class Home extends Component<IProps, IState> {
     }
 
     render() {
-       
         return (
             <div className='home'>
                 <div className="header">
