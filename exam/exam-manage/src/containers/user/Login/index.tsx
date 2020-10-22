@@ -36,7 +36,7 @@ class Login extends Component<IProps, IState> {
                     this.props.cookies.remove('user_name')
                     this.props.cookies.remove('user_pwd')
                 }
-                this.props.history.push('/')
+                window.location.href = '/'
                 this.props.user.setUserInfo(res.data.userInfo)
             })
         } else {
