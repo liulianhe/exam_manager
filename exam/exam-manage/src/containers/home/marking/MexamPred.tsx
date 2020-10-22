@@ -48,8 +48,6 @@ class MexamPred extends Component {
         }, () => {
             this.setState({
                 flag: true,
-            }, () => {
-                console.log(this.state.flag);
             })
         })
     }
@@ -72,13 +70,14 @@ class MexamPred extends Component {
                         <br />
                         <div>
                             {
-                                this.state.flag ? <Zx subList={this.state.subList} pred={this.state.pred} /> : ''
+                                this.state.flag ?
+                                    <div>
+                                        <Zx subList={this.state.subList} pred={this.state.pred} />
+                                    </div>
+                                    : ''
                             }
                         </div>
                     </h3>
-
-
-
                 </div>
                 <div>
                     <Select style={{ width: 200, margin: '10px 45px' }}
