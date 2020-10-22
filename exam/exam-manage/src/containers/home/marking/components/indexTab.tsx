@@ -50,11 +50,11 @@ export default class tab extends Component<IProps,IState> {
                 },
                 {
                   title: '课程名称',
-                  dataIndex: 'className2',
-                  key: 'className2',
+                  dataIndex: 'course',
+                  key: 'course',
                 },
                 {
-                  title: '成才率',
+                  title: '教室',
                   dataIndex: 'talentRate',
                   key: 'talentRate',
                 },
@@ -98,6 +98,7 @@ export default class tab extends Component<IProps,IState> {
         /**
          * 
          */
+        console.log(result)
         let arr: { key: any; className: any; course: string; state: string; className2: any; talentRate: any,grade_id:string }[] =[]
 
         result.data.data.forEach((item: any,index:number)=>{
