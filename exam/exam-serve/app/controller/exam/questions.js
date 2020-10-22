@@ -55,6 +55,7 @@ class QuestionsController extends Controller{
                 where:{questions_id:this.ctx.request.body.questions_id},
                 columns:['user_id']
             }); 
+            console.log(this.ctx.request.body.questions_id)
             let user_id = user[0].user_id;
             if(user_id === 'axg8t2-oroeja' || user_id === this.ctx.token.user_id){ // 判断用户属性
                 this.ctx.validate({questions_id:'string'});

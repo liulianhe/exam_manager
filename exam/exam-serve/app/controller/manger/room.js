@@ -80,8 +80,8 @@ class RoomController extends Controller{
      * 
      * */ 
     async destroy(){
-        this.ctx.validate({room_id:'string'});
-        let body = this.ctx.request.body;
+        // this.ctx.validate({room_id:'string'});
+        let body = this.ctx.query;
         let result = await this.ctx.service.manger.manger.delGradeRoomStudent('room','room_id',body.room_id);
         if(result.affectedRows === 1){
             this.ctx.body = {msg:'删除成功',code:1}

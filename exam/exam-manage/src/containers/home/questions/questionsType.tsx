@@ -1,6 +1,23 @@
 import React, { Component } from 'react';
 import { Button, Table, Space, Modal, Input, message, Popconfirm } from 'antd';
 import { _getQuestionsList, _insertQuestionsType, _delQuestionsType } from '../../../api/questions'
+
+interface addUpdate {
+    exam_id?: string,
+    exam_name?: string,
+    json_path?: string,
+    questions_answer?: string,
+    questions_id?: string,
+    questions_stem?: string,
+    questions_type_id?: string,
+    questions_type_text?: string,
+    subject_id?: string,
+    subject_text?: string,
+    title?: string,
+    user_id?: string,
+    user_name?: string,
+    key?:string
+}
 class ClassQuestions extends Component {
     state = {
         columns: [
@@ -17,7 +34,7 @@ class ClassQuestions extends Component {
             {
                 title: '操作',
                 dataIndex: 'address',
-                render: (text: any, record: any) => (
+                render: (text: any, record: addUpdate) => (
                     <Space size="middle">
                         <Popconfirm placement="top" title="确认要删除？" onConfirm={() => { this.confirm(record) }} okText="Yes" cancelText="No">
                             <Button danger >删除</Button>
@@ -34,7 +51,7 @@ class ClassQuestions extends Component {
     render() {
         return (
             <div className="questionsType">
-                <h1>试题分类</h1>
+                <h2>试题分类</h2>
                 <div className="questionsType_main">
                     <Button type="primary" onClick={() => { this.showModal() }} className='add_type'> + 添加类型</Button>
                     <Modal
@@ -60,7 +77,7 @@ class ClassQuestions extends Component {
         let res_Questions = await _getQuestionsList()
         console.log(res_Questions.data.data)
         let arr: any[] = []
-        res_Questions.data.data.map((item: any) => {
+        res_Questions.data.data.map((item: addUpdate) => {
             item.key = item.questions_type_id
             arr.push(item)
         })
@@ -83,7 +100,7 @@ class ClassQuestions extends Component {
         });
         if (this.state.newExamType) {
             let res = await _insertQuestionsType({
-                text: this.state.newExamType,
+                text: this.state.newExamType as unknown as string,
                 sort: this.state.QuestionsList.length + 1
             })
             if (res.data.code) {
