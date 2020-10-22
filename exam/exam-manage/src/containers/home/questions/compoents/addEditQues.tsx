@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react'
 import { Input, Cascader, Button, Modal, message } from "antd"
-import {_getList} from "../config/question"
-import {  _addNewQuestion ,_updateQuestion } from '../../../../api/questions'
+import { _getList } from "../config/question"
+import { _addNewQuestion, _updateQuestion } from '../../../../api/questions'
 import E from 'wangeditor'
 
 interface IProps {
     user?: any,
-    title:string,
-    item?:any
+    title: string,
+    item?: any
 }
 
 let editor_first: E | null = null;
@@ -27,7 +27,7 @@ class AddEditQues extends Component<IProps> {
         visible: false
     }
     render() {
-       const {title,questions_type_text,subject_text,exam_name} =this.props.item
+        const { title, questions_type_text, subject_text, exam_name } = this.props.item
         return (
             <div className="add_question">
                 <h2>{this.props.title}</h2>
@@ -44,7 +44,7 @@ class AddEditQues extends Component<IProps> {
                     <div id="div2"></div>
                     <Button className='lagre' type="primary" onClick={() => { this.showModal() }} >提交</Button>
                     <Modal
-                        title={title?" 您确定修改嘛？":"您确定添加嘛"}
+                        title={title ? " 您确定修改嘛？" : "您确定添加嘛"}
                         visible={this.state.visible}
                         closable={false}
                         onOk={() => { this.handleOk() }}
@@ -52,7 +52,7 @@ class AddEditQues extends Component<IProps> {
                         okText="确认"
                         cancelText="取消"
                     >
-                       {title?" 确定修改嘛？":"确定添加嘛"}
+                        {title ? " 确定修改嘛？" : "确定添加嘛"}
                     </Modal>
                 </div>
             </div>
@@ -63,17 +63,17 @@ class AddEditQues extends Component<IProps> {
         this.getList()
         this.createEditor()
         this.setState({
-            choice_question: this.props.item.questions_id||null,
-            choice_exam: this.props.item.exam_id||null,
-            choice_subject: this.props.item.subject_id||null,
+            choice_question: this.props.item.questions_id || null,
+            choice_exam: this.props.item.exam_id || null,
+            choice_subject: this.props.item.subject_id || null,
         })
     }
 
     componentWillUnmount() {
-        editor_first?.destroy()
-        editor_two?.destroy()
+        (editor_first as E).destroy();
+        (editor_two as E).destroy();
     }
-
+    
     createEditor() {
         editor_first = new E("#div1")
         editor_first.create()
@@ -102,12 +102,12 @@ class AddEditQues extends Component<IProps> {
             visible: false,
         });
         const params = {
-            exam_id:this.props.item.exam_id|| this.state.choice_exam,
-            questions_answer: ((editor_two as E).txt.text() as string) ,
-            questions_stem: (editor_first as E).txt.text()  as string,
-            questions_type_id:this.props.item.questions_id|| this.state.choice_question,
-            subject_id:this.props.item.subject_id|| this.state.choice_subject,
-            title:this.props.item.title|| this.state.newQuestion,
+            exam_id: this.props.item.exam_id || this.state.choice_exam,
+            questions_answer: ((editor_two as E).txt.text() as string),
+            questions_stem: (editor_first as E).txt.text() as string,
+            questions_type_id: this.props.item.questions_id || this.state.choice_question,
+            subject_id: this.props.item.subject_id || this.state.choice_subject,
+            title: this.props.item.title || this.state.newQuestion,
             type: "addQuestions/addQuestions",
             user_id: this.props.user.userInfo.user_id,
         }
@@ -115,26 +115,26 @@ class AddEditQues extends Component<IProps> {
             return (item !== null && item !== "")
         })
         console.log()
-        if(!this.props.item.title){
+        if (!this.props.item.title) {
             if (flag) {
-                let res =await _addNewQuestion(params)
-                if(res.data.code){
-                  message.info("添加成功")
+                let res = await _addNewQuestion(params)
+                if (res.data.code) {
+                    message.info("添加成功")
                 }
-            }else{
+            } else {
                 message.error("添加失败")
             }
-        }else{
+        } else {
             if (flag) {
-                let newParams =Object.assign({questions_id:this.props.item.questions_id},params)
-                let res =await  _updateQuestion(newParams)
+                let newParams = Object.assign({ questions_id: this.props.item.questions_id }, params)
+                let res = await _updateQuestion(newParams)
                 console.log(res)
-                if(res.data.code){
-                  message.info("修改成功")
-                }else{
-                    message.warning("权限不足") 
+                if (res.data.code) {
+                    message.info("修改成功")
+                } else {
+                    message.warning("权限不足")
                 }
-            }else{
+            } else {
                 message.error("修改失败")
             }
         }
@@ -148,11 +148,11 @@ class AddEditQues extends Component<IProps> {
     };
 
     //获取 课程分类列表  考试分类列表  题目类型列表
-      async getList() {
-        let res =await _getList()
+    async getList() {
+        let res = await _getList()
         res.subject_list.shift()
         this.setState({
-            subject_list:  res.subject_list,
+            subject_list: res.subject_list,
             QuestionsList: res.QuestionsList,
             ExamList: res.ExamList
         })

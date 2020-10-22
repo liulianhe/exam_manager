@@ -10,16 +10,19 @@ export default function setColunmns(type: string) {
                     title: '用户名',
                     dataIndex: 'user_name',
                     key: 'user_name',
+                    align: 'center'
                 },
                 {
                     title: '密码',
                     dataIndex: 'user_pwd',
                     key: 'user_pwd',
+                    align: 'center'
                 },
                 {
                     title: '身份',
                     dataIndex: 'identity_text',
                     key: 'identity_text',
+                    align: 'center'
                 }
             ]
             action.title = '用户数据'

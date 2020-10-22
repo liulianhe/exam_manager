@@ -92,16 +92,16 @@ body,
   background: #f0f2f5;
 }
 
-.home .main .markIndex {
+.home .markIndex {
   width: 100%;
   padding: 20px;
 }
 
-.home .main .markIndex .ant-table-wrapper {
+.home .markIndex .ant-table-wrapper {
   border-radius: 20px;
 }
 
-.home .main .marking {
+.marking {
   padding: 24px;
   width: 100%;
   height: 100%;
@@ -110,12 +110,12 @@ body,
   justify-content: space-between;
 }
 
-.home .main .marking h2 {
+.marking h2 {
   height: 40px;
   line-height: 40px;
 }
 
-.home .main .marking .inquire {
+.marking .inquire {
   width: 100%;
   height: 120px;
   background: #fff;
@@ -128,22 +128,14 @@ body,
   border-radius: 20px;
 }
 
-.home .main .marking .inquire h3 {
+.marking .inquire h3 {
   width: 100%;
   height: 50px;
   line-height: 50px;
   text-indent: 20px;
 }
 
-.home .main .marking .inquire .inquire {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  height: 150px;
-  background: #fff;
-}
-
-.home .main .marking .inquire .mainList {
+.marking .mainList {
   width: 100% !important;
   height: 70% !important;
   background: #fff;
@@ -155,21 +147,21 @@ body,
   background: #f0f2f5;
 }
 
-.home .main .marking .markDefault {
+.markDefault {
   width: 100%;
   height: 100%;
   padding: 20px;
   overflow: hidden;
 }
 
-.home .main .marking .markDefault .markDefaultInfor {
+.markDefault .markDefaultInfor {
   width: 100%;
   height: 100%;
   justify-content: space-between;
   display: flex;
 }
 
-.home .main .marking .markDefault .markDefaultInfor .left {
+.markDefault .markDefaultInfor .left {
   width: 73%;
   height: 100%;
   background: #fff;
@@ -178,54 +170,54 @@ body,
   overflow-y: auto;
 }
 
-.home .main .marking .markDefault .markDefaultInfor .left img {
+.markDefault .markDefaultInfor .left img {
   width: 100%;
 }
 
-.home .main .marking .markDefault .markDefaultInfor .left .answerTitle {
+.markDefault .markDefaultInfor .left .answerTitle {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-.home .main .marking .markDefault .markDefaultInfor .left .answerTitle .answerTitleItem {
+.markDefault .markDefaultInfor .left .answerTitle .answerTitleItem {
   width: 45% !important;
 }
 
-.home .main .marking .markDefault .markDefaultInfor .left .answer {
+.markDefault .markDefaultInfor .left .answer {
   width: 100%;
   display: flex;
   padding: 10px;
   justify-content: space-between;
 }
 
-.home .main .marking .markDefault .markDefaultInfor .left .answer .studentAnswer, .home .main .marking .markDefault .markDefaultInfor .left .answer .standardAnswer {
+.markDefault .markDefaultInfor .left .answer .studentAnswer, .markDefault .markDefaultInfor .left .answer .standardAnswer {
   width: 45%;
   padding: 10px;
 }
 
-.home .main .marking .markDefault .markDefaultInfor .right {
+.markDefault .markDefaultInfor .right {
   width: 25%;
   height: 200px;
   background: #fff;
 }
 
-.home .main .showUser h2 {
+.showUser h2 {
   height: 70px;
   line-height: 70px;
   padding-left: 30px;
 }
 
-.home .main .showUser nav {
+.showUser nav {
   padding-left: 30px;
 }
 
-.home .main .showUser nav .showUseraction {
+.showUser nav .showUseraction {
   border-color: blue;
   color: blue;
 }
 
-.home .main .showUser h3 {
+.showUser h3 {
   font-size: 24px;
   font-weight: 800;
   height: 60px;
@@ -233,13 +225,13 @@ body,
   padding-left: 30px;
 }
 
-.home .main .ShowQuestions {
+.ShowQuestions {
   width: 100%;
   height: 100%;
   padding: 24px;
 }
 
-.home .main .ShowQuestions .search_main {
+.ShowQuestions .search_main {
   width: 100%;
   height: 200px;
   background: #fff;
@@ -249,47 +241,47 @@ body,
   font-size: 18px;
 }
 
-.home .main .ShowQuestions .search_main .object_type {
+.ShowQuestions .search_main .object_type {
   width: 100%;
   height: 65px;
   line-height: 65px;
   overflow-x: auto;
 }
 
-.home .main .ShowQuestions .search_main .object_type span {
+.ShowQuestions .search_main .object_type span {
   margin-left: 10px;
   padding: 2px 5px;
   height: 20px;
 }
 
-.home .main .ShowQuestions .search_main .object_type span:hover {
+.ShowQuestions .search_main .object_type span:hover {
   cursor: pointer;
 }
 
-.home .main .ShowQuestions .search_main .object_type .click_span {
+.ShowQuestions .search_main .object_type .click_span {
   background: #3a7fe1;
   color: #fff;
 }
 
-.home .main .ShowQuestions .search_main .test_type {
+.ShowQuestions .search_main .test_type {
   width: 100%;
   height: 65px;
   line-height: 65px;
 }
 
-.home .main .ShowQuestions .search_main .test_type .type_span {
+.ShowQuestions .search_main .test_type .type_span {
   display: inline-block;
   padding: 0 15px;
 }
 
-.home .main .ShowQuestions .show_list {
+.ShowQuestions .show_list {
   width: 100%;
   padding: 40px 30px;
   background: #fff;
   border-radius: 20px;
 }
 
-.home .main .ShowQuestions .show_list .question_item {
+.ShowQuestions .show_list .question_item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -299,75 +291,75 @@ body,
   padding: 15px 0;
 }
 
-.home .main .ShowQuestions .show_list .question_item:hover {
+.ShowQuestions .show_list .question_item:hover {
   background: #ebe7e7;
   cursor: pointer;
 }
 
-.home .main .ShowQuestions .show_list .question_item_tags {
+.ShowQuestions .show_list .question_item_tags {
   display: flex;
   flex-direction: column;
   width: 80%;
 }
 
-.home .main .ShowQuestions .show_list .question_item_tags .tags_list {
+.ShowQuestions .show_list .question_item_tags .tags_list {
   margin: 10px 0;
 }
 
-.home .main .del {
+.del {
   width: 100%;
   height: 100%;
   padding: 24px;
 }
 
-.home .main .del .del_main {
+.del .del_main {
   width: 100%;
   height: auto;
   display: flex;
   justify-content: space-between;
 }
 
-.home .main .del .del_main .del_left {
+.del .del_main .del_left {
   width: 70%;
   padding: 30px 20px;
   background: #fff;
   border-radius: 10px;
 }
 
-.home .main .del .del_main .del_right {
+.del .del_main .del_right {
   width: 25%;
   padding: 30px 20px;
   background: #fff;
   border-radius: 10px;
 }
 
-.home .main .questionsType {
+.questionsType {
   width: 100%;
   height: 100%;
   padding: 24px;
 }
 
-.home .main .questionsType .questionsType_main {
+.questionsType .questionsType_main {
   width: 100%;
   padding: 24px;
   background: #fff;
   border-radius: 10px;
 }
 
-.home .main .questionsType .add_type {
+.questionsType .add_type {
   margin-bottom: 20px;
   padding: 20px 25px;
   font-size: 16px;
   line-height: 0px;
 }
 
-.home .main .add_question {
+.add_question {
   width: 100%;
   height: 100%;
   padding: 24px;
 }
 
-.home .main .add_question .add_question_main {
+.add_question .add_question_main {
   width: 100%;
   padding: 40px;
   background: #fff;
@@ -376,7 +368,7 @@ body,
   flex-direction: column;
 }
 
-.home .main .add_question .add_question_main .type_span {
+.add_question .add_question_main .type_span {
   display: flex;
   flex-direction: column;
   width: 200px;
@@ -384,22 +376,22 @@ body,
   line-height: 50px;
 }
 
-.home .main .add_question .add_question_main .lagre {
+.add_question .add_question_main .lagre {
   width: 250px;
   margin-bottom: 10px;
 }
 
-.home .main .add_question .add_question_main #div1, .home .main .add_question .add_question_main #div2 {
+.add_question .add_question_main #div1, .add_question .add_question_main #div2 {
   margin: 10px 0;
 }
 
-.home .main .login {
+.login {
   width: 100%;
   height: 100%;
   background: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603091240060&di=33994062460c92366ae599439efc055b&imgtype=0&src=http%3A%2F%2Ft2.qpic.cn%2Fmblogpic%2F62c172079f245bd42d6c%2F2000");
 }
 
-.home .main .login .form {
+.login .form {
   width: 400px;
   height: 300px;
   position: fixed;
@@ -413,7 +405,7 @@ body,
   overflow: hidden;
 }
 
-.home .main .login .form h2 {
+.login .form h2 {
   text-align: center;
   height: 50px;
   background: rgba(152, 149, 149, 0.5);
@@ -422,24 +414,24 @@ body,
   font-weight: 800;
 }
 
-.home .main .login .form p {
+.login .form p {
   margin-top: 30px;
   height: 40px;
 }
 
-.home .main .login .form p span {
+.login .form p span {
   background: rgba(98, 97, 97, 0.6);
   display: inline-block;
   width: 40px;
   height: 40px;
 }
 
-.home .main .login .form p span .anticon {
+.login .form p span .anticon {
   font-size: 24px;
   line-height: 40px;
 }
 
-.home .main .login .form p input {
+.login .form p input {
   width: 300px;
   margin-left: 30px;
   height: 35px;
@@ -450,15 +442,15 @@ body,
   font-size: 18px;
 }
 
-.home .main .login .form div {
+.login .form div {
   padding-left: 20px;
 }
 
-.home .main .login .form div .ant-checkbox {
+.login .form div .ant-checkbox {
   margin-right: 20px;
 }
 
-.home .main .login .form button {
+.login .form button {
   margin-top: 20px;
   width: 400px;
   height: 50px;
@@ -471,65 +463,65 @@ body,
   outline: none;
 }
 
-.home .main .login .form button:hover {
+.login .form button:hover {
   background: rgba(150, 247, 108, 0.7);
 }
 
-.home .main .adduser {
+.adduser {
   width: 100%;
   height: auto;
   background: #f0f2f5;
 }
 
-.home .main .adduser h2 {
+.adduser h2 {
   margin: 20px;
 }
 
-.home .main .adduser .ant-layout {
+.adduser .ant-layout {
   background: #f0f2f5;
 }
 
-.home .main .adduser .ant-layout .ant-layout-sider {
+.adduser .ant-layout .ant-layout-sider {
   background: #f0f2f5;
   border: 1px solid #e2dddd;
   padding: 20px;
 }
 
-.home .main .adduser .ant-layout .ant-layout-sider .ant-form {
+.adduser .ant-layout .ant-layout-sider .ant-form {
   margin-top: 20px;
 }
 
-.home .main .adduser .ant-layout .ant-layout-sider .ant-btn {
+.adduser .ant-layout .ant-layout-sider .ant-btn {
   padding: 0 30px;
 }
 
-.home .main .adduser .ant-layout .ant-layout-sider .ant-select {
+.adduser .ant-layout .ant-layout-sider .ant-select {
   width: 200px;
 }
 
-.home .main .adduser .ant-layout .ant-layout-sider .addUseractive {
+.adduser .ant-layout .ant-layout-sider .addUseractive {
   border-color: blue;
   color: blue;
 }
 
-.home .main .adduser .layrow {
+.adduser .layrow {
   margin: 0 60px;
 }
 
-.home .main .classmanager {
+.classmanager {
   width: 100%;
   height: 100%;
   background: #f5f5f5;
   padding: 25px 10px 25px 20px;
 }
 
-.home .main .classmanager h2 {
+.classmanager h2 {
   padding-bottom: 20px;
   box-sizing: border-box;
   overflow: hidden;
 }
 
-.home .main .classmanager .content {
+.classmanager .content {
   position: relative;
   display: flex;
   width: 100%;
@@ -539,32 +531,32 @@ body,
   flex-direction: column;
 }
 
-.home .main .classmanager .content .top {
+.classmanager .content .top {
   width: 100%;
   margin-bottom: 15px;
 }
 
-.home .main .classmanager .content .list {
+.classmanager .content .list {
   width: 100%;
   flex: 1;
 }
 
-.home .main .classmanager .content .add_modal #components-form-demo-control-ref .ant-btn {
+.classmanager .content .add_modal #components-form-demo-control-ref .ant-btn {
   margin-right: 8px;
 }
 
-.home .main .classmanager .content .add_modal .submit {
+.classmanager .content .add_modal .submit {
   margin-left: 8px;
 }
 
-.home .main .classmanager {
+.classmanager {
   width: 100%;
   height: 100%;
   background: #f5f5f5;
   padding: 25px 10px 25px 20px;
 }
 
-.home .main .classmanager .content {
+.classmanager .content {
   display: flex;
   width: 100%;
   height: 100%;
@@ -573,120 +565,120 @@ body,
   flex-direction: column;
 }
 
-.home .main .classmanager .content .top {
+.classmanager .content .top {
   width: 100%;
   margin-bottom: 15px;
 }
 
-.home .main .classmanager .content .list {
+.classmanager .content .list {
   width: 100%;
   flex: 1;
 }
 
-.home .main .classromm {
+.classromm {
   width: 100%;
   height: 100%;
   padding: 30px;
 }
 
-.home .main .classromm .add {
+.classromm .add {
   background: #fff;
 }
 
-.home .main .classromm .addbox {
+.classromm .addbox {
   background: #fff;
   margin-top: 30px !important;
   padding: 30px;
 }
 
-.home .main .studentmanager {
+.studentmanager {
   width: 100%;
   height: 100%;
   padding: 30px;
 }
 
-.home .main .studentmanager .scorll {
+.studentmanager .scorll {
   width: 100%;
   height: 100%;
 }
 
-.home .main .studentmanager .scorll .tables {
+.studentmanager .scorll .tables {
   width: 100%;
   height: 100%;
 }
 
-.home .main .editable-cell {
+.editable-cell {
   position: relative;
 }
 
-.home .main .editable-cell-value-wrap {
+.editable-cell-value-wrap {
   padding: 5px 12px;
   cursor: pointer;
 }
 
-.home .main .editable-row:hover .editable-cell-value-wrap {
+.editable-row:hover .editable-cell-value-wrap {
   border: 1px solid #d9d9d9;
   border-radius: 4px;
   padding: 4px 11px;
 }
 
-.home .main [data-theme='dark'] .editable-row:hover .editable-cell-value-wrap {
+[data-theme='dark'] .editable-row:hover .editable-cell-value-wrap {
   border: 1px solid #434343;
 }
 
-.home .main .gw_addexam {
+.gw_addexam {
   width: 100%;
   height: 100%;
   background: #eeeeee;
 }
 
-.home .main .gw_addexam h2 {
+.gw_addexam h2 {
   padding-top: 30px;
 }
 
-.home .main .gw_addexam .exam_cont {
+.gw_addexam .exam_cont {
   background-color: white;
   margin: 30px;
   overflow: hidden;
   padding: 50px 20px;
 }
 
-.home .main .gw_addexam .exam_cont div {
+.gw_addexam .exam_cont div {
   width: 100%;
 }
 
-.home .main .gw_addexam .exam_cont div p {
+.gw_addexam .exam_cont div p {
   height: 40px;
   line-height: 40px;
   margin-top: 20px;
 }
 
-.home .main .gw_addexam .exam_cont div p span {
+.gw_addexam .exam_cont div p span {
   color: red;
 }
 
-.home .main .gw_addexam .exam_cont div input {
+.gw_addexam .exam_cont div input {
   outline: none;
   height: 30px;
   border: 1px solid #ccc;
   border-radius: 1px;
 }
 
-.home .main .gw_addexam .exam_cont Button {
+.gw_addexam .exam_cont Button {
   margin-top: 20px;
 }
 
-.home .main .gwexamEdit {
+.gwexamEdit {
   width: 100%;
   height: 100%;
   background: #eeeeee;
 }
 
-.home .main .gwexamEdit h2 {
+.gwexamEdit h2 {
   padding-top: 30px;
 }
 
-.home .main .gwexamEdit .gwexamEdit_cont {
+.gwexamEdit .gwexamEdit_cont {
   background-color: white;
   width: 90%;
   margin: 30px;
@@ -694,48 +686,48 @@ body,
   padding: 10px 50px;
 }
 
-.home .main .gwexamEdit .gwexamEdit_cont .gwexamEdit_cont_01 {
+.gwexamEdit .gwexamEdit_cont .gwexamEdit_cont_01 {
   text-align: center;
   margin: 10px 0;
 }
 
-.home .main .gwexamEdit .gwexamEdit_cont .gwexamEdit_cont_01 h3 {
+.gwexamEdit .gwexamEdit_cont .gwexamEdit_cont_01 h3 {
   font-size: 20px;
 }
 
-.home .main .gwexamEdit .gwexamEdit_cont .gwexamEdit_cont_01 p {
+.gwexamEdit .gwexamEdit_cont .gwexamEdit_cont_01 p {
   color: gray;
 }
 
-.home .main .gwexamEdit .list_cont {
+.gwexamEdit .list_cont {
   border: 1px solid #ccc;
   padding: 0 10px;
   margin: 20px 0;
 }
 
-.home .main .gwexamEdit .list_cont i {
+.gwexamEdit .list_cont i {
   float: right;
   font-style: normal;
   color: #05adf0;
 }
 
-.home .main .gwexamEdit .list_cont b {
+.gwexamEdit .list_cont b {
   display: inline-block;
 }
 
-.home .main .gwexamEdit .list_cont b, .home .main .gwexamEdit .list_cont p {
+.gwexamEdit .list_cont b, .gwexamEdit .list_cont p {
   margin: 20px 0;
 }
 
-.home .main .gwexamEdit .add {
+.gwexamEdit .add {
   margin: 20px 40px;
 }
 
-.home .main .allExam {
+.allExam {
   margin: 10px 0 40px;
 }
 
-.home .main .allExam p span {
+.allExam p span {
   display: inline-block;
   height: 25px;
   line-height: 25px;
@@ -745,34 +737,34 @@ body,
   text-align: center;
 }
 
-.home .main .allExam p span:hover {
+.allExam p span:hover {
   cursor: pointer;
   color: #05adf0;
 }
 
-.home .main .allExam p .spanclass {
+.allExam p .spanclass {
   color: white;
   cursor: pointer;
   background: #05adf0;
 }
 
-.home .main .allExam p #spanclass {
+.allExam p #spanclass {
   color: white;
   background: #05adf0;
   cursor: pointer;
 }
 
-.home .main .allExam div {
+.allExam div {
   display: inline-block;
   margin: 0 10px;
 }
 
-.home .main .allExam Button {
+.allExam Button {
   margin-left: 20px;
   padding: 0 20px;
 }
 
-.home .main .questionsNew_cont div {
+.questionsNew_cont div {
   padding-left: 10px;
   margin: 20px 0;
   display: flex;
@@ -780,47 +772,47 @@ body,
   border-bottom: 1px solid #ccc;
 }
 
-.home .main .questionsNew_cont div b {
+.questionsNew_cont div b {
   margin-bottom: 10px;
 }
 
-.home .main .questionsNew_cont div p span {
+.questionsNew_cont div p span {
   display: inline-block;
   padding: 0 1px;
 }
 
-.home .main .questionsNew_cont div p span:first-child {
+.questionsNew_cont div p span:first-child {
   border: 1px solid skyblue;
   background-color: #e0f0f6;
   color: #46bdec;
 }
 
-.home .main .questionsNew_cont div p span:nth-child(2) {
+.questionsNew_cont div p span:nth-child(2) {
   border: 1px solid skyblue;
   background-color: #cfe7f0;
   color: #164e64;
   margin: 0 10px;
 }
 
-.home .main .questionsNew_cont div p span:nth-child(3) {
+.questionsNew_cont div p span:nth-child(3) {
   border: 1px solid orange;
   background-color: #fff6e4;
   color: orange;
 }
 
-.home .main .questionsNew_cont div p b {
+.questionsNew_cont div p b {
   float: right;
 }
 
-.home .main .questionsNew_cont div p b i {
+.questionsNew_cont div p b i {
   font-style: normal;
 }
 
-.home .main .gwExamList h2 {
+.gwExamList h2 {
   padding-top: 30px;
 }
 
-.home .main .gwExamList .gwExamList_cont_01 {
+.gwExamList .gwExamList_cont_01 {
   background-color: white;
   height: 100px;
   align-items: center;
@@ -830,30 +822,30 @@ body,
   display: flex;
 }
 
-.home .main .gwExamList .gwExamList_cont_01 div {
+.gwExamList .gwExamList_cont_01 div {
   margin-right: 20px;
 }
 
-.home .main .gwExamList .gwExamList_cont_02 {
+.gwExamList .gwExamList_cont_02 {
   margin: 0 30px;
 }
 
-.home .main .gwExamDetail {
+.gwExamDetail {
   width: 100%;
   height: 100%;
   background: #eeeeee;
 }
 
-.home .main .gwExamDetail h2 {
+.gwExamDetail h2 {
   padding-top: 30px;
 }
 
-.home .main .gwExamDetail div {
+.gwExamDetail div {
   height: auto;
   margin: 30px 20px;
 }
 
-.home .main .gwExamDetail div .right {
+.gwExamDetail div .right {
   float: right;
   width: 30%;
   margin-left: 1%;
@@ -862,7 +854,7 @@ body,
   margin-right: 3%;
 }
 
-.home .main .gwExamDetail div .left {
+.gwExamDetail div .left {
   float: left;
   width: 60%;
   background-color: white;
@@ -871,12 +863,12 @@ body,
   flex-direction: column;
 }
 
-.home .main .gwExamDetail div .left div {
+.gwExamDetail div .left div {
   border-bottom: 1px solid #ccc;
   display: flex;
   flex-direction: column;
 }
 
-.home .main .gwExamDetail div .left div b {
+.gwExamDetail div .left div b {
   margin: 10px 0;
 }

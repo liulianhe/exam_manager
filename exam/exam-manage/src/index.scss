@@ -84,16 +84,14 @@ body,
             }
         }
 
-
-        .main-right {
+        .main-right{
             width: calc(100% - 200px);
             background: #f0f2f5;
-
             height: 100%;
             overflow-y: auto;
             width: calc(100% - 200px);
             background: #f0f2f5;
-       
+        }
     }
     .markIndex{
         width: 100%;
@@ -102,8 +100,7 @@ body,
             border-radius: 20px;
         }
     }
-
-
+}
 .marking{
     padding: 24px;
     width: 100%;
@@ -121,7 +118,6 @@ body,
         background: #fff;
         margin: 0px auto 0 auto;
         border-radius: 10px;
-
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -133,15 +129,7 @@ body,
             line-height: 50px;
             text-indent: 20px;
         }
-
-        .inquire{
-            width: 100%;
-            display: flex;
-            align-items: center;
-            height: 150px;
-            background: #fff;
-        }
-
+    }
     .mainList{
         width: 100% !important;
         height: 70% !important;
@@ -152,7 +140,6 @@ body,
             overflow-y: auto;
             width: calc(100% - 200px);
             background: #f0f2f5;
-
         }
     }
     .markDefault{
@@ -207,7 +194,7 @@ body,
 
 
 
-}
+
 
 //用户展示
 
@@ -867,4 +854,4 @@ body,
             }
         }
     }
-}}}
+}
