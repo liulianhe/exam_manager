@@ -6,36 +6,53 @@
  * @LastEditors: 刘连合
  * @LastEditTime: 2020-10-21 22:55:50
  */
-import Home from '../containers/home'
-import Login from '../containers/user/Login'
-import Error_404 from '../containers/error/404'
-import TokenTimeOut from '@/containers/error/TokenTimeOut'
-import Welcome from '@/containers/home/Welcome'
+import LazyLoad from '@/components/LazyLoad'
+
+//一级路由
+const Home = LazyLoad('home')
+const Login = LazyLoad('user/Login')
+//错误页面
+const Error_404 = LazyLoad('error/404')
+const Error_401 = LazyLoad('error/401')
+const Error_500 = LazyLoad('error/500')
 
 //阅卷管理
-import MarkingClass from '@/containers/home/marking/index'
-import Marking from '@/containers/home/marking/Marking'
-import MarkDetail from '@/containers/home/marking/MarkDetail'
-//添加用户
-import AddUser from '@/containers/user/addUser'
-import ShowUser from '@/containers/user/showUser'
-//试题管理
-import QuestionsType from '@/containers/home/questions/questionsType'
-import WatchQuestions from '@/containers/home/questions/watchQuestions'
-import QuestionsDetail from '@/containers/home/questions/questionsDetail'
-import AddQuestions from '@/containers/home/questions/addQuestions'
-import EditQuestions from "@/containers/home/questions/editQuestions"
+const MarkingClass = LazyLoad('home/marking')
+const Marking = LazyLoad('home/marking/Marking')
+const MarkDetail = LazyLoad('home/marking/MarkDetail')
 
+//试题管理
+const QuestionsType = LazyLoad('home/questions/QuestionsType')
+const WatchQuestions = LazyLoad('home/questions/WatchQuestions')
+const QuestionsDetail = LazyLoad('home/questions/QuestionsDetail')
+const AddQuestions = LazyLoad('home/questions/AddQuestions')
+const EditQuestions = LazyLoad('home/questions/EditQuestions')
 //班级管理
-import Grade from '@/containers/home/grade'
-import Student from '@/containers/home/classmanager/Student';
-import Classroom from '@/containers/home/classmanager/Classroom';
+const Grade = LazyLoad('home/grade')
+const Student = LazyLoad('home/classmanager/Student')
+const Classroom = LazyLoad('home/classmanager/Classroom')
+
 
 //exam
-import AddExam from '@/containers/home/gw_exam/AddExam'
-import ExamList from '@/containers/home/gw_exam/ExamList'
-import ExamEdit from '@/containers/home/gw_exam/ExamEdit'
-import ExamDetail from '@/containers/home/gw_exam/ExamDetail'
+const AddExam = LazyLoad('home/gw_exam/AddExam')
+const ExamList = LazyLoad('home/gw_exam/ExamList')
+const ExamEdit = LazyLoad('home/gw_exam/ExamEdit')
+const ExamDetail = LazyLoad('home/gw_exam/ExamDetail')
+
+
+//二级路由使用按需加载，省略@/containers/
+const Welcome = LazyLoad('home/Welcome')
+const AddUser = LazyLoad('user/addUser')
+const ShowUser = LazyLoad('user/showUser')
+
+/**
+ * 路由配置表
+ * @param  path   路由路径
+ * @param  redirect 重定向
+ * @param  component 视图组件
+ * @param  authToken 是否启用token拦截视图
+ * @param  children 子路由
+ */
 export default [
     {
         path: '/',
@@ -49,7 +66,6 @@ export default [
             {
                 path: '/home/welcome',
                 component: Welcome,
-                menu: false
             },
 
             //待批班级
@@ -139,7 +155,11 @@ export default [
         component: Error_404
     },
     {
-        path: '/tokenTimeOut',
-        component: TokenTimeOut
+        path: '/401',
+        component: Error_401
+    },
+    {
+        path: '/500',
+        component: Error_500
     }
 ]

@@ -16,7 +16,16 @@ body,
     height: 100%;
 }
 
-.home {
+.loading{
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    .spin{
+        margin-top: 400px;
+    }
+}
+.home{
     height: 100%;
     width: 100%;
 
@@ -382,8 +391,8 @@ body,
 .login {
     width: 100%;
     height: 100%;
-    background: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603091240060&di=33994062460c92366ae599439efc055b&imgtype=0&src=http%3A%2F%2Ft2.qpic.cn%2Fmblogpic%2F62c172079f245bd42d6c%2F2000');
-
+    background: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603278433783&di=6698b10fc2e86042081608dbadaa6777&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fsoftbbs%2F1110%2F17%2Fc0%2F9295311_1318813842445_1024x1024soft.jpg');
+    background-size: 100% 100%;
     .form {
         width: 400px;
         height: 300px;
@@ -472,12 +481,11 @@ body,
     width: 100%;
     height: auto;
     background: #f0f2f5;
-
     .ant-layout {
         background: #f0f2f5;
 
         .ant-layout-sider {
-            background: #f0f2f5;
+            background: #fff;
             border: 1px solid #e2dddd;
             padding: 20px;
 
@@ -624,21 +632,19 @@ body,
 //考试
 .gw_addexam{
     h2{
-        padding-top: 30px;
+        margin-bottom: 10px;
     }
     width: 100%;
     height: 100%;
     background: #eeeeee;
-  
+    padding: 24px;
     .exam_cont{
         background-color: white;
-        margin: 30px;
         overflow: hidden;
-        padding: 50px 20px;
+        padding: 20px ;
+        border-radius: 10px;
         div{
-        
             width: 100%;
-            
             p{
                 height: 40px;
                 line-height: 40px;

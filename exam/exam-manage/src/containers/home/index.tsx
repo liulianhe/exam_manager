@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
-import MyMenu from './components/Menu'
+import React, { Component, Suspense } from 'react';
 import RouterView from '@/router';
-import { _getUserInfo, _getUserNew } from '@/api/user'
-import { inject, observer } from 'mobx-react'
-import { admin } from '@/config/homeMenu'
-import viewConfig from '@/config/view_authority'
-import { Avatar, Menu, Dropdown } from 'antd'
+import MyMenu from './components/Menu';
+import { admin } from '@/config/homeMenu';
+import Loading from '@/components/Loading';
+import { Avatar, Menu, Dropdown } from 'antd';
+import { inject, observer } from 'mobx-react';
+import viewConfig from '@/config/view_authority';
 import { DownOutlined } from '@ant-design/icons';
-
+import { _getUserInfo, _getUserNew } from '@/api/user'
+import { Cookies } from 'react-cookie'
+const cookies = new Cookies()
 
 interface IProps {
     history: any
@@ -33,7 +35,7 @@ class Home extends Component<IProps, IState> {
                 <hr />
                 <Menu.Item>设置</Menu.Item>
                 <Menu.Item ><span onClick={() => {
-                    localStorage.removeItem('token');
+                    cookies.remove('token');
                     this.props.history.push('/login')
                 }}>退出登录</span></Menu.Item>
             </Menu>
@@ -100,7 +102,9 @@ class Home extends Component<IProps, IState> {
                         }
                     </div>
                     <div className="main-right">
-                        <RouterView routes={this.state.routes} />
+                        <Suspense fallback={<Loading />}>
+                            <RouterView routes={this.state.routes} />
+                        </Suspense>
                     </div>
                 </div>
             </div>

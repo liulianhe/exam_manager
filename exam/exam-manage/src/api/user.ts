@@ -1,13 +1,4 @@
-/*
- * @Descripttion: 
- * @version: 1.0
- * @Author: 刘连合
- * @Date: 2020-10-20 09:00:15
- * @LastEditors: 刘连合
- * @LastEditTime: 2020-10-20 22:40:21
- */
-import request from '../utils/require'; 
-
+import request from '@/utils/request';
 export function _login(action: any) {
     return request.post('/user/login', action)
 }
@@ -17,18 +8,18 @@ export function _getMarkingClass() {
 }
 
 
-export function _examStudent(id:any){
-    
-    return request.get(`/exam/student/${id}`,)
+export function _examStudent(id: any) {
+
+    return request.get(`/exam/student/${id}`)
 }
 
-export function _examKark(obj: any){
-    const {id,score} =obj
+export function _examKark(obj: any) {
+    const { id, score } = obj
     // console.log(scores)
-    return request.put(`/exam/student/${id}`,{score})
+    return request.put(`/exam/student/${id}`, { score })
 }
 export function _getStudentExam(id: string) {
-    return request.get(`/exam/student`,{params:{grade_id:id}})
+    return request.get(`/exam/student`, { params: { grade_id: id } })
 }
 
 export function _getUserInfo() {

@@ -15,14 +15,16 @@ class myTable extends Component<IProps, IState> {
     }
     render() {
         return (
-            <Table columns={this.props.columns}
+            <Table
+                columns={this.props.columns}
                 pagination={{
                     total: this.props.data.length,
                     pageSize: 10,
                 }}
                 //@ts-ignore
                 rowKey='id'
-                dataSource={this.props.data} />
+                dataSource={this.props.data}
+            />
         );
     }
 }

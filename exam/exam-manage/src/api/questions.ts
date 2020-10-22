@@ -6,7 +6,7 @@
  * @LastEditors: 刘连合
  * @LastEditTime: 2020-10-21 21:21:22
  */
-import request from "../utils/require";
+import request from "../utils/request";
 interface addUpdate {
     exam_id?: string,
     exam_name?: string,
@@ -36,20 +36,20 @@ export function _getAllQuestions() {
     return request.get('/exam/questions/new')
 }
 
-export function _searchList(params:addUpdate) {
+export function _searchList(params: addUpdate) {
     return request.get('/exam/questions/condition', { params })
 }
 
 
-export function _insertQuestionsType(params:{text:string,sort:number}) {
+export function _insertQuestionsType(params: { text: string, sort: number }) {
     return request.get('/exam/insertQuestionsType', { params })
 }
 
-export function _delQuestionsType(params:{id:string}) {
+export function _delQuestionsType(params: { id: string }) {
     return request.post('/exam/delQuestionsType', params)
 }
 
-export function _addNewQuestion(params:addUpdate) {
+export function _addNewQuestion(params: addUpdate) {
     return request.post('/exam/questions', params)
 }
 

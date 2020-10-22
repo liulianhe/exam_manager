@@ -7,10 +7,13 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import 'antd/dist/antd.css'
 import './index.scss'
+import { CookiesProvider } from 'react-cookie'
 ReactDOM.render(
   <BrowserRouter>
     <Provider {...stores}>
-      <App />
+      <CookiesProvider>
+        <App />
+      </CookiesProvider>
     </Provider>
   </BrowserRouter>
   ,

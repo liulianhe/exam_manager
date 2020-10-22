@@ -5,6 +5,7 @@ class error_404 extends Component {
         return (
             <div>
                 <h1>404页面 请求服务错误</h1>
+                <hr />
             </div>
         );
     }

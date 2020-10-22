@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
 import { Button } from 'antd'
-import { _getApiAuth, _getIdentityApi, _getIdentityView, _getUser, _getIdentity, _getViewAuth } from '@/api/user'
 import Table from './components/Table'
-import setColumns from './config/setColumns'
 import navList from './config/navList'
+import React, { Component } from 'react';
+import setColumns from './config/setColumns'
+import { _getApiAuth, _getIdentityApi, _getIdentityView, _getUser, _getIdentity, _getViewAuth } from '@/api/user'
 interface IProps {
 
 }

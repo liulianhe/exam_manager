@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
 import { _login } from '@/api/user'
-import { UserOutlined, UnlockOutlined } from '@ant-design/icons';
-import { inject, observer } from 'mobx-react'
 import { message, Checkbox } from 'antd'
+import React, { Component } from 'react';
+import { withCookies } from 'react-cookie'
+import { inject, observer } from 'mobx-react'
+import { UserOutlined, UnlockOutlined } from '@ant-design/icons';
 interface IProps {
     [key: string]: any
 }
@@ -15,9 +16,9 @@ interface IState {
 @observer
 class Login extends Component<IProps, IState> {
     state = {
-        remember: localStorage.getItem('user_name') ? true : false,
-        user_name: localStorage.getItem('user_name') || '',
-        user_pwd: localStorage.getItem('user_pwd') || ''
+        remember: this.props.cookies.get('user_name') ? true : false,
+        user_name: this.props.cookies.get('user_name') || '',
+        user_pwd: this.props.cookies.get('user_pwd') || ''
     }
     async  onChange() {
         if (this.state.user_name === '' || this.state.user_pwd === '') return message.warning('请输入正确的密码和用户名')
@@ -27,16 +28,16 @@ class Login extends Component<IProps, IState> {
         })
         if (res.data.code) {
             message.success(res.data.msg, 1, () => {
-                localStorage.setItem('token', res.data.token)
+                this.props.cookies.set('token', res.data.token)
+                if (this.state.remember) {
+                    this.props.cookies.set('user_name', this.state.user_name)
+                    this.props.cookies.set('user_pwd', this.state.user_pwd)
+                } else {
+                    this.props.cookies.remove('user_name')
+                    this.props.cookies.remove('user_pwd')
+                }
                 this.props.history.push('/')
                 this.props.user.setUserInfo(res.data.userInfo)
-                if (this.state.remember) {
-                    localStorage.setItem('user_name', this.state.user_name)
-                    localStorage.setItem('user_pwd', this.state.user_pwd)
-                } else {
-                    localStorage.removeItem('user_name')
-                    localStorage.removeItem('user_pwd')
-                }
             })
         } else {
             message.error(res.data.msg)
@@ -86,4 +87,4 @@ class Login extends Component<IProps, IState> {
     }
 }
 
-export default Login;
+export default withCookies(Login);
