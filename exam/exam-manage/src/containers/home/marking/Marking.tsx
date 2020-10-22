@@ -130,11 +130,7 @@ export default class Marking extends Component<IProps,IState> {
     render() {
         return (
             <div className='marking'>
-<<<<<<< HEAD
-                <h3>待批试卷</h3>
-=======
                 <h2>待批试卷</h2>
->>>>>>> a343a85633839633e928f4fcff965bdb065b7f00
                 <div className="inquire">
                     <label htmlFor="" style={{margin:30,display:'block'}}>状态：
                         <Select defaultValue="" className="select-before" style={{width:'150px'}}>

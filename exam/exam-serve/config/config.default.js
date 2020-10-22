@@ -4,7 +4,7 @@
  * @Author: 刘连合
  * @Date: 2020-10-19 11:05:38
  * @LastEditors: 郭雯
- * @LastEditTime: 2020-10-20 10:30:25
+ * @LastEditTime: 2020-10-22 20:37:54
  */
 const path = require('path');
 exports.keys = 'tao';
@@ -26,11 +26,7 @@ exports.mysql = {
         host: 'localhost',
         port: 3306,
         user: 'root',
-<<<<<<< HEAD
         password: '12344321',
-=======
-        password: '1234321',
->>>>>>> a343a85633839633e928f4fcff965bdb065b7f00
         database: 'market'
     }
 }

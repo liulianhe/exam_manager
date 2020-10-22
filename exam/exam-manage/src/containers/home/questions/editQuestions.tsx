@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AddEditQues from "./compoents/AddEditQues"
+import AddEditQues from "./compoents/addEditQues"
 interface IProps {
     history: any,
     match: any,
