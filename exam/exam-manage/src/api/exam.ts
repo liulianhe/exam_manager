@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import request from '../utils/require';
+=======
+import request from '../utils/request';
+>>>>>>> a343a85633839633e928f4fcff965bdb065b7f00
 //考试类型
 export function _examType() {
     return request.get('/exam/examType')

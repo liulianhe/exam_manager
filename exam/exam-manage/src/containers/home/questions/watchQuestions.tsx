@@ -1,32 +1,58 @@
 import React, { Component } from 'react';
-import { _getObjectList, _getExamList, _getQuestionsList, _getAllQuestions, _searchList } from '../../../api/questions'
-import { Cascader, Button, Tag } from 'antd';
+import { _getAllQuestions, _searchList } from '../../../api/questions'
+import { Cascader, Button, Tag, Empty } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-
+import { _getList } from "./config/question"
 
 interface IProps { //定义所需的相应接口
     history: any
 }
-
-class ShowQuestions extends Component<IProps> {
+interface addUpdate {
+    exam_id?: string,
+    exam_name?: string,
+    json_path?: string,
+    questions_answer?: string,
+    questions_id?: string,
+    questions_stem?: string,
+    questions_type_id?: string,
+    questions_type_text?: string,
+    subject_id?: string,
+    subject_text?: string,
+    title?: string,
+    user_id?: string,
+    user_name?: string,
+    key?: string
+}
+interface State{
+    subject_list: any[],
+    QuestionsList: any[],
+    ExamList:  any[],
+    AllQuestionsList:  any[],
+    choice_exam: null,
+    choice_question: null,
+    choice_subject: null,
+    subject_index: null,
+}
+class ShowQuestions extends Component<IProps,State> {
     constructor(props: IProps) {
         super(props);
+        this.state = {
+            subject_list: [],
+            QuestionsList: [],
+            ExamList: [],
+            AllQuestionsList: [],
+            choice_exam: null,
+            choice_question: null,
+            choice_subject: null,
+            subject_index: null,
+        }
     }
-    state = {
-        subject_list: [],
-        QuestionsList: [],
-        ExamList: [],
-        AllQuestionsList: [],
-        choice_exam: null,
-        choice_question: null,
-        choice_subject: null,
-        subject_index: null,
-    }
+
     render() {
         const { AllQuestionsList } = this.state
         return (
             <div className="ShowQuestions">
-                <h1>查看试题</h1>
+                <h2>查看试题</h2>
                 <div className="search_main">
                     <div className="object_type">
                         <span>课程分类：</span>
@@ -43,10 +69,11 @@ class ShowQuestions extends Component<IProps> {
                     </div>
                 </div>
                 <div className="show_list">
-                    {
-                        AllQuestionsList.map((item: any) => {
-                            return <div className="question_item" key={item.questions_id} onClick={() => { this.questions_del(item.questions_id) }}>
-                                <div className="question_item_tags">
+                    {AllQuestionsList.length <= 0
+                        ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE}></Empty>
+                        : AllQuestionsList.map((item: addUpdate) => {
+                            return <div className="question_item" key={item.questions_id}>
+                                <div className="question_item_tags" onClick={() => { this.questions_del(item.questions_id as string) }}>
                                     <span>{item.title}</span>
                                     <div className="tags_list">
                                         <Tag color="blue">{item.questions_type_text}</Tag>
@@ -55,7 +82,7 @@ class ShowQuestions extends Component<IProps> {
                                     </div>
                                     <a>{item.user_name}发布</a>
                                 </div>
-                                <Button type="primary">编辑</Button>
+                                <Button type="primary" className="edit" onClick={() => { this.edit(item.questions_id as string, item) }}>编辑</Button>
                             </div>
                         })
                     }
@@ -71,27 +98,11 @@ class ShowQuestions extends Component<IProps> {
 
     //获取 课程分类列表  考试分类列表  题目类型列表
     async getList() {
-        let res_Object = await _getObjectList()
-        let res_Questions = await _getQuestionsList()
-        let res_Exam = await _getExamList()
-        let arr1: any[] = []
-        res_Questions.data.data.map((item: any) => {
-            item.value = item.questions_type_id
-            item.label = item.questions_type_text
-            arr1.push(item)
-        })
-        let arr2: any[] = []
-        res_Exam.data.data.map((item: any) => {
-            item.value = item.exam_id
-            item.label = item.exam_name
-            arr2.push(item)
-        })
-        let arr: any[] = res_Object.data.data
-        arr.unshift({ subject_text: "All", subject_id: 100 })
+        let res = await _getList()
         this.setState({
-            subject_list: arr,
-            QuestionsList: arr1,
-            ExamList: arr2
+            subject_list: res.subject_list,
+            QuestionsList: res.QuestionsList,
+            ExamList: res.ExamList
         })
     }
 
@@ -122,8 +133,8 @@ class ShowQuestions extends Component<IProps> {
             this.getAllQuestions()
         }
         this.setState({
-            subject_index: index,
-            choice_subject: id
+            subject_index: index as unknown as null,
+            choice_subject: id as unknown as null
         })
     }
 
@@ -134,9 +145,9 @@ class ShowQuestions extends Component<IProps> {
             // qusestions_type_id: "",
         }
         if (this.state.choice_subject) {
-           if( this.state.choice_subject === 100){
-              return
-           }
+            if (this.state.choice_subject === 100) {
+                return
+            }
             params.subject_id = this.state.choice_subject
         }
         if (this.state.choice_exam) {
@@ -145,19 +156,26 @@ class ShowQuestions extends Component<IProps> {
         if (this.state.choice_question) {
             params.qusestions_type_id = this.state.choice_question
         }
-        if(Object.values(params).length>0){
+        if (Object.values(params).length > 0) {
             let res = await _searchList(params)
             this.setState({
-                AllQuestionsList:res.data.data
+                AllQuestionsList: res.data.data
             })
         }
     }
 
     //点击跳转试题详情页
-    questions_del(id: any) {
-        console.log(id)
+    questions_del(id: string) {
         this.props.history.push({
-            pathname:`/home/questionsDetail/${id}`
+            pathname: `/home/questionsDetail/${id}`
+        })
+    }
+
+    //点击跳转编辑试题详情
+    edit(id: string, item: any) {
+        this.props.history.push({
+            pathname: `/home/editQuestions/${id}`,
+            state: { item }
         })
     }
 }

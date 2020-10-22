@@ -3,7 +3,11 @@ import { Button, Drawer, Select, Modal, notification } from 'antd';
 import { inject, observer } from 'mobx-react';
 import { _subject, _examType, _getQuestionsType, _questionsNew, _questionsCondition, _examExamPut } from '@/api/exam'
 import { dateFormat } from '@/config/homeExam'
+<<<<<<< HEAD
 
+=======
+import Markdown from 'react-markdown'
+>>>>>>> a343a85633839633e928f4fcff965bdb065b7f00
 const { Option } = Select;
 interface IProps { //定义所需的相应接口
 
@@ -263,10 +267,17 @@ export default class ExamEdit extends Component<IProps, State> {
                     {
                         this.state.addCont && this.state.addCont.map((item: Item) => {
                             return <div key={item.questions_id} className='list_cont'>
+<<<<<<< HEAD
                                 <b>{item.title}</b>
                                 <i onClick={() => this.delEvent(item.questions_id)}>删除</i>
                                 <p>{item.questions_stem}</p>
                                 <p>{item.questions_answer}</p>
+=======
+                                 <Markdown source={item.title} />
+                                <i onClick={() => this.delEvent(item.questions_id)}>删除</i>
+                                    <Markdown source={item.questions_stem} />
+                                    <Markdown source={item.questions_answer} />
+>>>>>>> a343a85633839633e928f4fcff965bdb065b7f00
                             </div>
                         })
                     }
@@ -360,9 +371,15 @@ export default class ExamEdit extends Component<IProps, State> {
                     onCancel={() => this.setModal2Visible(false)}
                 >
                     <div>
+<<<<<<< HEAD
                         <b>{(this.state.detailCont as AddCont).title}</b>
                         <p>{(this.state.detailCont as AddCont).questions_stem}</p>
                         <p>{(this.state.detailCont as AddCont).questions_answer}</p>
+=======
+                        <Markdown source={(this.state.detailCont as AddCont).title} />
+                        <Markdown source={(this.state.detailCont as AddCont).questions_stem} />
+                         <Markdown source={(this.state.detailCont as AddCont).questions_answer} />
+>>>>>>> a343a85633839633e928f4fcff965bdb065b7f00
                     </div>
                 </Modal>
                 <br />

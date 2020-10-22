@@ -26,7 +26,11 @@ exports.mysql = {
         host: 'localhost',
         port: 3306,
         user: 'root',
+<<<<<<< HEAD
         password: '12344321',
+=======
+        password: '1234321',
+>>>>>>> a343a85633839633e928f4fcff965bdb065b7f00
         database: 'market'
     }
 }

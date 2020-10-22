@@ -1,33 +1,16 @@
-import React, { Component } from 'react';
-import { _getObjectList, _getExamList, _getQuestionsList, _getAllQuestions, _searchList } from '../../../api/questions'
-import E from 'wangeditor'
-import { Input, Cascader } from "antd"
-let editor: E | null = null
-class AddQuestions extends Component {
-    state = {
-        newQuestion: null,
-        subject_list: [],
-        QuestionsList: [],
-        ExamList: [],
-        choice_question: null,
-        choice_exam: null,
-        choice_subject: null
-    }
+import React, { Component } from 'react'
+import AddEditQues from "./compoents/AddEditQues"
+interface IProps {
+    history: any,
+    match: any
+}
+class AddQuestions extends Component<IProps> {
     render() {
         return (
-            <div className="add_question">
-                <div className="add_question_main">
-                    <p>题目信息</p>
-                    <p>题干</p>
-                    <Input placeholder="请输入题目标题，不超过20字" allowClear onChange={(e) => { this.onChange(e) }} />
-                    <p>题目主题</p>
-                    <div id="div1"></div>
-                    <span className="type_span">课程类型：  <Cascader options={this.state.subject_list} onChange={(v) => { this.changeSubject(v) }} /></span>
-                    <span className="type_span">考试类型：  <Cascader options={this.state.ExamList} onChange={(v) => { this.changeExam(v) }} /></span>
-                    <span className="type_span">题目类型：  <Cascader options={this.state.QuestionsList} onChange={(v) => { this.changeQuestion(v) }} /></span>
-                    <button onClick={() => { this.getText() }}>获取text</button>
-                </div>
+            <div>
+                <AddEditQues title="添加试题" item={{}} />
             </div>
+<<<<<<< HEAD
         );
     }
     componentDidMount() {
@@ -103,7 +86,9 @@ class AddQuestions extends Component {
         this.setState({
             choice_subject: value[0]
         })
+=======
+        )
+>>>>>>> a343a85633839633e928f4fcff965bdb065b7f00
     }
 }
-
-export default AddQuestions;
+export default AddQuestions
