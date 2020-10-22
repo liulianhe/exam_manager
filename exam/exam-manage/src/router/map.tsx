@@ -1,14 +1,15 @@
 import React, { ComponentType } from 'react';
-//引入路由内置组件
 import { Route, Redirect, Switch } from 'react-router-dom';
+import { Cookies } from 'react-cookie'
+const cookies = new Cookies()
 const RouterView = (props: any) => {
     let com = props.routes.filter((e: any) => e.component);
     let reds = props.routes.filter((e: any) => e.redirect);
     return <Switch>  {com.map((e: any) => {
-        return <Route key={e.path} path={e.path} render={(R) => {
+        return <Route key={e.path} path={e.path} render={(R: any) => {
             let Item: ComponentType = e.component as ComponentType;
             let child: any = e.children ? { routes: e.children } : {};
-            return e.authToken ? localStorage.getItem('token') ? <Item {...R} {...child} />
+            return e.authToken ? cookies.get('token') ? <Item {...R} {...child} />
                 //@ts-ignore
                 : <Redirect to={{ pathname: '/login', path: e.path }} /> : <Item {...R} {...child} />
         }} />

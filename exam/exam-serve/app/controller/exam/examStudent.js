@@ -1,8 +1,8 @@
 /*
  * @Author: jasonandjay 
  * @Date: 2019-03-12 13:06:48 
- * @Last Modified by: jasonandjay
- * @Last Modified time: 2019-03-28 08:58:43
+ * @Last Modified by: 李壮壮
+ * @Last Modified time: 2020-10-20 22:00:06
  */
 
 const Controller = require('egg').Controller;
@@ -68,6 +68,7 @@ class ExamStudentController extends Controller{
      * {score}
      */
     async update(){
+        // console.log(this.ctx.params.id)
         try{
             this.ctx.validate({score:'number'}, this.ctx.request.body);
         }catch(error){

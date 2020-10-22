@@ -1,45 +1,38 @@
-import React, { Component } from 'react';
 import { Button } from 'antd'
-import { _getApiAuth, _getIdentityApi, _getIdentityView, _getUser, _getIdentity, _getViewAuth } from '@/api/user'
 import Table from './components/Table'
-class showUser extends Component {
+import navList from './config/navList'
+import React, { Component } from 'react';
+import setColumns from './config/setColumns'
+import { _getApiAuth, _getIdentityApi, _getIdentityView, _getUser, _getIdentity, _getViewAuth } from '@/api/user'
+interface IProps {
+
+}
+interface IState {
+    apiAuth: any[]
+    identityApi: any[]
+    identityView: any[]
+    user: any[]
+    identity: any[]
+    viewAuth: any[]
+    tableList: any[]
+    tableColumns: any[]
+    title: string
+    navList: any[]
+    num: number
+}
+class showUser extends Component<IProps, IState> {
     state = {
-        ApiAuth: [],
-        IdentityApi: [],
-        IdentityView: [],
-        User: [],
-        Identity: [],
-        ViewAuth: [],
+        apiAuth: [],
+        identityApi: [],
+        identityView: [],
+        user: [],
+        identity: [],
+        viewAuth: [],
         tableList: [],
         tableColumns: [],
         title: '',
-        navList: [
-            {
-                title: '用户数据',
-                type: 'user'
-            },
-            {
-                title: '身份数据',
-                type: 'identity'
-            },
-            {
-                title: 'api接口数据',
-                type: 'apiAuth'
-            },
-            {
-                title: '身份和api接口关系',
-                type: 'identityApi'
-            },
-            {
-                title: '视图接口权限',
-                type: 'viewAuth'
-            },
-            {
-                title: '身份和视图权限的关系',
-                type: 'identityView'
-            },
-
-        ]
+        navList: navList,
+        num: 0
     }
     componentDidMount() {
         this.getAllUserList()
@@ -52,134 +45,21 @@ class showUser extends Component {
         let Identity = await _getIdentity()
         let ViewAuth = await _getViewAuth()
         this.setState({
-            ApiAuth: ApiAuth.data.data,
-            IdentityApi: IdentityApi.data.data,
-            IdentityView: IdentityView.data.data,
-            User: User.data.data,
-            Identity: Identity.data.data,
-            ViewAuth: ViewAuth.data.data
+            apiAuth: ApiAuth.data.data,
+            identityApi: IdentityApi.data.data,
+            identityView: IdentityView.data.data,
+            user: User.data.data,
+            identity: Identity.data.data,
+            viewAuth: ViewAuth.data.data
         }, () => {
             this.setTableList('user')
         })
     }
-    setTableList(type: any) {
-        let columns = []
-        switch (type) {
-            case 'user':
-                columns = [
-                    {
-                        title: '用户名',
-                        dataIndex: 'user_name',
-                        key: 'user_name',
-                    },
-                    {
-                        title: '密码',
-                        dataIndex: 'user_pwd',
-                        key: 'user_pwd',
-                    },
-                    {
-                        title: '身份',
-                        dataIndex: 'identity_text',
-                        key: 'identity_text',
-                    }
-                ]
-                this.setTable(this.state.User, columns, '用户数据')
-                break;
-            case 'user':
-                break;
-            case 'apiAuth':
-                columns = [
-                    {
-                        title: '请求描述',
-                        dataIndex: 'api_authority_text',
-                        key: 'api_authority_text',
-                    },
-                    {
-                        title: '请求地址',
-                        dataIndex: 'api_authority_url',
-                        key: 'api_authority_url',
-                    },
-                    {
-                        title: '请求方式',
-                        dataIndex: 'api_authority_method',
-                        key: 'api_authority_method',
-                    }
-                ]
-                this.setTable(this.state.ApiAuth, columns, 'api接口数据')
-                break;
-            case 'identityApi':
-                columns = [
-                    {
-                        title: '身份',
-                        dataIndex: 'identity_text',
-                        key: 'identity_text',
-                    },
-                    {
-                        title: '请求描述',
-                        dataIndex: 'api_authority_text',
-                        key: 'api_authority_text',
-                    },
-                    {
-                        title: '请求地址',
-                        dataIndex: 'api_authority_url',
-                        key: 'api_authority_url',
-                    },
-                    {
-                        title: '请求方式',
-                        dataIndex: 'api_authority_method',
-                        key: 'api_authority_method',
-                    }
-                ]
-                this.setTable(this.state.IdentityApi, columns, '身份和api接口关系')
-                break;
-            case 'identityView':
-                columns = [
-                    {
-                        title: '身份',
-                        dataIndex: 'identity_text',
-                        key: 'identity_text',
-                    },
-                    {
-                        title: '视图描述',
-                        dataIndex: 'view_authority_text',
-                        key: 'view_authority_text',
-                    },
-                    {
-                        title: '视图id',
-                        dataIndex: 'view_id',
-                        key: 'view_id',
-                    }
-                ]
-                this.setTable(this.state.IdentityView, columns, '身份和视图权限的关系')
-                break;
-            case 'identity':
-                columns = [
-                    {
-                        title: '身份',
-                        dataIndex: 'identity_text',
-                        key: 'identity_text',
-                    }
-                ]
-                this.setTable(this.state.Identity, columns, '身份数据')
-                break;
-            case 'viewAuth':
-                columns = [
-                    {
-                        title: '视图描述',
-                        dataIndex: 'view_authority_text',
-                        key: 'view_authority_text',
-                    },
-                    {
-                        title: '视图id',
-                        dataIndex: 'view_id',
-                        key: 'view_id',
-                    }
-                ]
-                this.setTable(this.state.ViewAuth, columns, '视图接口权限')
-                break;
-            default:
-                break;
-        }
+    setTableList(type: string) {
+        let action = setColumns(type)
+        //@ts-ignore
+        this.setTable(this.state[type], action.columns, action.title)
+
     }
     setTable(list: any, columns: any, title: string) {
         this.setState({
@@ -197,9 +77,13 @@ class showUser extends Component {
                 <h2>用户展示</h2>
                 <nav>
                     {
-                        this.state.navList.map((item: any) => {
+                        this.state.navList.map((item: any, index: number) => {
                             return <Button key={item.title}
-                                onClick={() => { this.setTableList(item.type) }}
+                                className={this.state.num === index ? "showUseraction" : ""}
+                                onClick={() => {
+                                    this.setState({ num: index })
+                                    this.setTableList(item.type)
+                                }}
                                 type='dashed'>{item.title}</Button>
                         })
                     }

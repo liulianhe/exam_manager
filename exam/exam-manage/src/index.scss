@@ -1,23 +1,81 @@
-*{
+* {
     margin: 0;
     padding: 0;
     list-style: none;
     text-decoration: none;
 }
-html,body,#root{
+
+html {
+    font-size: 16px;
+}
+
+html,
+body,
+#root {
     width: 100%;
+    height: 100%;
+}
+
+
+
+.loading{
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    .spin{
+        margin-top: 400px;
+    }
 }
 .home{
+    height: 100%;
     width: 100%;
-    .header{
+
+    .header {
         width: 100%;
         height: 80px;
-        text-align: center;
         line-height: 80px;
         font-size: 20px;
         border-bottom: 1px solid #ccc;
+        display: flex;
+
+        span {
+            flex: 1;
+
+        }
+
+        >span:nth-child(1) {
+            >img {
+                width: 200px;
+                height: 50px;
+                margin-left: 100px;
+            }
+        }
+
+        span:nth-child(2) {
+            float: right;
+            text-align: right;
+            padding-right: 100px;
+
+            .anticon svg {
+                margin-top: 40px;
+                margin-left: 20px;
+            }
+
+            .ant-avatar {
+                width: 38px;
+                height: 38px;
+                margin-right: 10px;
+
+                img {
+                    width: 38px;
+                    height: 38px;
+                }
+            }
+        }
     }
-    .main{
+
+    .main {
         width: 100%;
         height: auto;
         height: 100%;
@@ -28,10 +86,21 @@ html,body,#root{
             border-right: 1px solid #ccc;
             height: 1000px;
             .ant-menu-inline{
+        height: calc(100% - 80px);
+        display: flex;
+            }
+        .main-left {
+            width: 200px;
+            flex-shrink: 0;
+            border-right: 1px solid #ccc;
+            height: 100%;
+
+            .ant-menu-inline {
                 height: 100%;
             }
-            .ant-menu-submenu-title{
-                font-size: 18px;        
+
+            .ant-menu-submenu-title {
+                font-size: 18px;
             }
         }
         .main-right{
@@ -48,7 +117,7 @@ html,body,#root{
         font-size: 20px;
     }
 }
-
+}
 
 //考试
 .gw_addexam{
@@ -87,6 +156,267 @@ html,body,#root{
         Button{
             margin-top: 20px;
         }
+
+        .main-right {
+            height: 100%;
+            overflow-y: auto;
+            width: calc(100% - 200px);
+            background: #f0f2f5;
+        }
+    }
+    .markIndex{
+        width: 100%;
+        padding: 20px;
+        .ant-table-wrapper{
+            border-radius: 20px;
+        }
+    }
+    .marking{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 20px;
+        border-radius: 20px;
+        h3{
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            text-indent: 20px;
+        }
+        .inquire{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            height: 150px;
+            background: #fff;
+        }
+        .mainList{
+            width: 100%;
+            flex: 1;
+            margin-top: 30px;
+        }
+    }
+    .markDefault{
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        overflow: hidden;
+    .markDefaultInfor{
+        width: 100%;
+        height: 100%;
+        justify-content: space-between;
+        display: flex;
+        .left{
+            width: 73%;
+            height: 100%;
+            background: #fff;
+            padding: 50px;
+            img{
+                width: 100%;
+            }
+            overflow-x: hidden;
+            overflow-y: auto;
+            .answerTitle{
+                width:100%;
+                display: flex;
+                justify-content: space-between;
+                .answerTitleItem{
+                    width: 45% !important;
+                }
+            }
+            .answer{
+                width: 100%;
+                display: flex;
+                padding:10px;
+                justify-content: space-between;
+                .studentAnswer,.standardAnswer{
+                    width: 45%;
+                    padding: 10px;
+                }
+            }
+        }
+        .right{
+            width:25% ;
+            height: 200px;
+            background: #fff;
+        }
+    }
+}
+
+
+}
+
+//用户展示
+
+.showUser {
+    h2 {
+        height: 70px;
+        line-height: 70px;
+        padding-left: 30px;
+    }
+
+    nav {
+        padding-left: 30px;
+
+        .showUseraction {
+            border-color: blue;
+            color: blue;
+        }
+    }
+
+    h3 {
+        font-size: 24px;
+        font-weight: 800;
+        height: 60px;
+        line-height: 60px;
+        padding-left: 30px;
+    }
+}
+
+//查看试题
+.ShowQuestions {
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+
+    .search_main {
+        width: 100%;
+        height: 200px;
+        background: #fff;
+        border-radius: 20px;
+        margin: 20px 0 50px 0;
+        padding: 24px 100px;
+        font-size: 18px;
+
+        .object_type {
+            width: 100%;
+            height: 65px;
+            line-height: 65px;
+            overflow-x: auto;
+
+            span {
+                margin-left: 10px;
+                padding: 2px 5px;
+                height: 20px;
+            }
+
+            span:hover {
+                cursor: pointer;
+            }
+
+            .click_span {
+                background: rgb(58, 127, 225);
+                color: #fff;
+            }
+        }
+
+        .test_type {
+            width: 100%;
+            height: 65px;
+            line-height: 65px;
+
+            .type_span {
+                display: inline-block;
+                padding: 0 15px;
+            }
+        }
+    }
+
+    .show_list {
+        width: 100%;
+        padding: 40px 30px;
+        background: #fff;
+        border-radius: 20px;
+
+        .question_item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 120px;
+            width: 100%;
+            border-bottom: 1px solid #e8e8e8;
+            padding: 15px 0;
+        }
+
+        .question_item:hover {
+            background: #ebe7e7;
+            cursor: pointer;
+        }
+
+        .question_item_tags {
+            display: flex;
+            flex-direction: column;
+
+            .tags_list {
+                margin: 10px 0;
+            }
+        }
+    }
+}
+
+//试题详情
+.del {
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+
+    .del_main {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+
+        .del_left {
+            width: 70%;
+            padding: 30px 20px;
+            background: #fff;
+            border-radius: 10px;
+        }
+
+        .del_right {
+            width: 25%;
+            padding: 30px 20px;
+            background: #fff;
+            border-radius: 10px;
+        }
+    }
+}
+
+//试题分类
+.questionsType {
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+
+    .questionsType_main {
+        width: 100%;
+        padding: 24px;
+        background: #fff;
+        border-radius: 10px;
+    }
+
+    .add_type {
+        margin-bottom: 20px;
+        padding: 20px 25px;
+        font-size: 16px;
+        line-height: 0px;
+    }
+}
+
+
+//添加试题
+.add_question {
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+
+    .add_question_main {
+        width: 100%;
+        padding: 40px;
+        background: #fff;
+        border-radius: 10px;
     }
     
 }
@@ -108,12 +438,48 @@ html,body,#root{
            margin: 10px 0;
            h3{
                font-size: 20px;
+    background: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603278433783&di=6698b10fc2e86042081608dbadaa6777&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fsoftbbs%2F1110%2F17%2Fc0%2F9295311_1318813842445_1024x1024soft.jpg');
+    background-size: 100% 100%;
+    .form{
+       width: 400px;
+       height: 300px;
+       position: fixed;
+       top: 50%;
+       color: #fff;
+       right: 100px;
+       right: 10%;
+       transform: translateY(-50%);
+       border-radius: 15px;
+       background: rgba(35, 168, 225, 0.3);
+       overflow: hidden;
+       h2{
+           text-align: center;
+           height: 50px;
+           background: rgba(28, 196, 233, 0.7);
+           line-height: 50px;
+           color: #fff;
+           font-weight: 800;
+       }
+       p{
+           margin-top: 30px;
+           height: 40px;
+           span{
+              display: inline-block;
+              width: 40px;
+              height: 40px;
+              margin-left: 10px;
+              text-align: center;
+              line-height: 40px;
+              .anticon {
+                  font-size: 24px;
+                  line-height: 40px;
+              }
            }
            p{
                color: gray;
            }
        }
-    }
+
     .list_cont{
         border: 1px solid #ccc;
         // display: flex;
@@ -132,12 +498,28 @@ html,body,#root{
             margin: 20px 0;
         }
         
+       button{
+        margin-top: 20px;
+        width: 400px;
+        height: 50px;
+        font-size: 20px;
+        text-align: center;
+        color: #fff;
+        background: rgba(39, 218, 245, 0.5);
+        border-radius: 20px;
+        cursor: pointer;
+        outline: none;
+    }
+    button:hover{
+        background:  rgba(30, 196, 241, 0.7);
     }
     .add{
         margin: 20px 40px;
-    }
+    }}
 }
-
+           }
+        }
+    }}
 .allExam{
     margin: 10px 0 40px ;
     p{
@@ -278,3 +660,129 @@ html,body,#root{
         }
     }
 }
+.login {
+    width: 100%;
+    height: 100%;
+    background: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603091240060&di=33994062460c92366ae599439efc055b&imgtype=0&src=http%3A%2F%2Ft2.qpic.cn%2Fmblogpic%2F62c172079f245bd42d6c%2F2000');
+    .form {
+        width: 400px;
+        height: 300px;
+        position: fixed;
+        top: 50%;
+        color: #fff;
+        right: 100px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 15px;
+        background: rgba(125, 125, 124, 0.3);
+        overflow: hidden;
+
+        h2 {
+            text-align: center;
+            height: 50px;
+            background: rgba(152, 149, 149, 0.5);
+            line-height: 50px;
+            color: #fff;
+            font-weight: 800;
+        }
+
+        p {
+            margin-top: 30px;
+            height: 40px;
+
+            span {
+                background: rgba(98, 97, 97, 0.6);
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+
+                .anticon {
+                    font-size: 24px;
+                    line-height: 40px;
+                }
+            }
+
+            input {
+                width: 300px;
+                margin-left: 30px;
+                height: 35px;
+                border-radius: 5px;
+                border: 1px solid rgb(81, 77, 77);
+                outline-color: #e8e8e8;
+                color: #000;
+                font-size: 18px;
+            }
+        }
+
+        div {
+            padding-left: 20px;
+
+            .ant-checkbox {
+                margin-right: 20px;
+            }
+        }
+
+        button {
+            margin-top: 20px;
+            width: 400px;
+            height: 50px;
+            font-size: 20px;
+            text-align: center;
+            color: #fff;
+            background: rgba(129, 221, 90, 0.5);
+            border-radius: 20px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        button:hover {
+            background: rgba(150, 247, 108, 0.7);
+        }
+    }
+}
+
+
+
+//添加用户
+.adduser {
+    h2 {
+        margin: 20px;
+    }
+
+    width: 100%;
+    height: auto;
+    background: #f0f2f5;
+
+    .ant-layout {
+        background: #f0f2f5;
+
+        .ant-layout-sider {
+            background: #f0f2f5;
+            border: 1px solid #e2dddd;
+            padding: 20px;
+
+            .ant-form {
+                margin-top: 20px;
+            }
+
+            .ant-btn {
+                padding: 0 30px;
+            }
+
+            .ant-select {
+                width: 200px;
+            }
+
+            .addUseractive {
+                border-color: blue;
+                color: blue;
+            }
+        }
+    }
+
+    .layrow {
+        margin: 0 60px;
+    }
+}
+
+

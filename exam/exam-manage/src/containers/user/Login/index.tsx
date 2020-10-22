@@ -1,33 +1,83 @@
-import React, { Component } from 'react';
 import { _login } from '@/api/user'
-
-class Login extends Component<any> {
-    status = {
-
+import { message, Checkbox } from 'antd'
+import React, { Component } from 'react';
+import { withCookies } from 'react-cookie'
+import { inject, observer } from 'mobx-react'
+import { UserOutlined, UnlockOutlined } from '@ant-design/icons';
+interface IProps {
+    [key: string]: any
+}
+interface IState {
+    remember: boolean
+    user_name: string
+    user_pwd: string
+}
+@inject('user')
+@observer
+class Login extends Component<IProps, IState> {
+    state = {
+        remember: this.props.cookies.get('user_name') ? true : false,
+        user_name: this.props.cookies.get('user_name') || '',
+        user_pwd: this.props.cookies.get('user_pwd') || ''
     }
     async  onChange() {
-        let action = {
-            user_name: (this.user_name as HTMLInputElement).value,
-            user_pwd: (this.user_pwd as HTMLInputElement).value
-        }
-        let res = await _login(action)
+        if (this.state.user_name === '' || this.state.user_pwd === '') return message.warning('请输入正确的密码和用户名')
+        let res = await _login({
+            user_name: this.state.user_name,
+            user_pwd: this.state.user_pwd
+        })
         if (res.data.code) {
-            localStorage.setItem('token', res.data.token)
-            this.props.history.push('/')
+            message.success(res.data.msg, 1, () => {
+                this.props.cookies.set('token', res.data.token)
+                if (this.state.remember) {
+                    this.props.cookies.set('user_name', this.state.user_name, { path: '/' })
+                    this.props.cookies.set('user_pwd', this.state.user_pwd, { path: '/' })
+                } else {
+                    this.props.cookies.remove('user_name')
+                    this.props.cookies.remove('user_pwd')
+                }
+                this.props.history.push('/')
+                this.props.user.setUserInfo(res.data.userInfo)
+            })
+        } else {
+            message.error(res.data.msg)
         }
     }
-    user_name: null | HTMLInputElement = null
-    user_pwd: null | HTMLInputElement = null
+
     render() {
         return (
             <div className='login'>
-                <div>
+                <div className='form'>
                     <p>
-                        用户名： <input type="text" value='heinan' ref={(e) => { this.user_name = e }} name='user_name' onChange={() => { }} />
+                        <span><UserOutlined /></span>
+                        <input type="text" name='user_name'
+                            value={this.state.user_name}
+                            onChange={(e) => {
+                                this.setState({
+                                    user_name: e.target.value
+                                })
+                            }} />
                     </p>
                     <p>
-                        密码 <input type="password" value='1qaz!QAZ' ref={(e) => { this.user_pwd = e }} name='user_pwd' onChange={() => { }} />
+                        <span><UnlockOutlined /></span>
+                        <input type="password" name='user_pwd'
+                            value={this.state.user_pwd}
+                            onChange={(e) => {
+                                this.setState({
+                                    user_pwd: e.target.value
+                                })
+                            }}
+                        />
                     </p>
+                    <div>
+                        <Checkbox checked={this.state.remember}
+                            onChange={(e) => {
+                                this.setState({
+                                    remember: e.target.checked
+                                })
+                            }}
+                        /> 记住密码
+                    </div>
                     <button onClick={() => { this.onChange() }}>登录</button>
                 </div>
 
@@ -36,4 +86,4 @@ class Login extends Component<any> {
     }
 }
 
-export default Login;
+export default withCookies(Login);
