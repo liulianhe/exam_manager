@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import AddEditQues  from "./compoents/addEditQues"
+import AddEditQues from "./compoents/AddEditQues"
 interface IProps {
-    history:any,
-    match:any
+    history: any,
+    match: any
 }
- class AddQuestions extends Component<IProps> {
+class AddQuestions extends Component<IProps> {
     render() {
         return (
             <div>
