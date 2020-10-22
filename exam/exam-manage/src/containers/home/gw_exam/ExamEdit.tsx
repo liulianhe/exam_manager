@@ -69,6 +69,7 @@ export default class ExamEdit extends Component<IProps, State> {
         modal2Visible: false,
     };
     componentDidMount(){
+        console.log(this.props.location)
         this.setState({
             addCont:this.props.location.state.questions
         })
@@ -183,7 +184,6 @@ export default class ExamEdit extends Component<IProps, State> {
         let questions_ids = id.splice(0, this.props.location.state.number)
         const res = await _examExamPut(questions_ids, exam_id)
         if (res.data.code) {
-
             this.props.history.push('/home/examList')
         }
 

@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
-
-export default class ExamDetail extends Component {
+interface Iprops {
+    [key: string]: any
+}
+interface Item {
+    questions_id: string
+    title: string
+    questions_stem: string
+    questions_answer: string
+}
+export default class ExamDetail extends Component<Iprops> {
     state = {
         list: this.props.location.state
     }
@@ -13,7 +21,7 @@ export default class ExamDetail extends Component {
                 <div>
                     <div className='left'>
                         {
-                            this.state.list.map((item) => {
+                            this.state.list.map((item: Item) => {
                                 return <div key={item.questions_id} className='list_cont'>
                                     <b>{item.title}</b>
                                     <p>{item.questions_stem}</p>
