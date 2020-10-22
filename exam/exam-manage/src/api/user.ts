@@ -2,17 +2,14 @@
  * @Descripttion: 
  * @version: 
  * @Author: sueRimn
- * @Date: 2020-10-21 22:24:51
+ * @Date: 2020-10-22 20:32:33
  * @LastEditors: 郭雯
- * @LastEditTime: 2020-10-21 22:28:35
+ * @LastEditTime: 2020-10-22 20:50:36
  */
-
-import request from '../utils/require'; 
-
+import request from '@/utils/request';
 export function _login(action: any) {
     return request.post('/user/login', action)
 }
-
 
 
 export function _getUserInfo() {

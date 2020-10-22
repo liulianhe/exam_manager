@@ -1,4 +1,12 @@
-import request from '../utils/require';
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-10-22 20:32:33
+ * @LastEditors: 郭雯
+ * @LastEditTime: 2020-10-22 20:50:49
+ */
+import request from '../utils/request';
 //考试类型
 export function _examType() {
     return request.get('/exam/examType')

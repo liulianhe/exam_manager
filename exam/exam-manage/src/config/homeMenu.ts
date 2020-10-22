@@ -1,10 +1,10 @@
 /*
  * @Descripttion: 
- * @version: 
- * @Author: sueRimn
- * @Date: 2020-10-19 11:27:02
+ * @version: 1.0
+ * @Author: 刘连合
+ * @Date: 2020-10-19 11:05:35
  * @LastEditors: 郭雯
- * @LastEditTime: 2020-10-21 21:46:04
+ * @LastEditTime: 2020-10-22 21:04:25
  */
 import {
     AppstoreOutlined,
@@ -33,7 +33,17 @@ export const admin = [
     },
     {
         title: '用户管理',
-        icon: UserOutlined
+        icon: UserOutlined,
+        children:[
+            {
+                title: '添加用户',
+                path: '/home/addUser'
+            },
+            {
+                title: '用户展示',
+                path: '/home/showUser'
+            }
+        ]
     },
     {
         title: '考试管理',
@@ -51,22 +61,40 @@ export const admin = [
     },
     {
         title: '班级管理',
-        icon: WalletOutlined
+        icon: WalletOutlined,
+        children: [
+            {
+                title: '班级管理',
+                path: '/home/grade'
+            },
+            {
+                title: '教室管理',
+                path: '/home/room'
+            },
+            {
+                title: '学生管理',
+                path: '/home/student'
+            },
+        ]
     },
     {
         title: "阅卷管理",
         icon: MenuUnfoldOutlined,
-        children:[
+        children: [
             {
-            title:'批卷班级',
-            path:'/home/examPaperClassList'
-        }
-    ]
-    
+                title: '批卷班级',
+                path: '/home/examPaperClassList'
+            },
+            {
+                title: '月考预测',
+                path: '/home/mexamPred'
+            }
+        ]
+
     },
     {
         title: "菜单管理",
         icon: MenuUnfoldOutlined,
-        
+
     }
 ]

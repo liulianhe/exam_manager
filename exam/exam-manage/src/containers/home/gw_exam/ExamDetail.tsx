@@ -1,14 +1,9 @@
 import React, { Component } from 'react'
-interface Iprops {
-    [key: string]: any
+import Markdown from 'react-markdown'
+interface IProps{
+    location:any
 }
-interface Item {
-    questions_id: string
-    title: string
-    questions_stem: string
-    questions_answer: string
-}
-export default class ExamDetail extends Component<Iprops> {
+export default class ExamDetail extends Component<IProps> {
     state = {
         list: this.props.location.state
     }
@@ -21,11 +16,11 @@ export default class ExamDetail extends Component<Iprops> {
                 <div>
                     <div className='left'>
                         {
-                            this.state.list.map((item: Item) => {
+                            this.state.list.map((item:any) => {
                                 return <div key={item.questions_id} className='list_cont'>
-                                    <b>{item.title}</b>
-                                    <p>{item.questions_stem}</p>
-                                    <p>{item.questions_answer}</p>
+                                    <Markdown source={item.title} />
+                                    <Markdown source={item.questions_stem} />
+                                    <Markdown source={item.questions_answer} />
                                 </div>
                             })
                         }

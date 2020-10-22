@@ -16,8 +16,6 @@ body,
     height: 100%;
 }
 
-
-
 .loading{
     width: 100%;
     height: 100%;
@@ -30,7 +28,6 @@ body,
 .home{
     height: 100%;
     width: 100%;
-
     .header {
         width: 100%;
         height: 80px;
@@ -81,20 +78,18 @@ body,
         height: 100%;
         display: flex;
         .main-left{
-            width: 300px;
+            width: 200px;
             flex-shrink: 0;
             border-right: 1px solid #ccc;
             height: 1000px;
             .ant-menu-inline{
-        height: calc(100% - 80px);
-        display: flex;
+                  height: calc(100% - 80px);
             }
         .main-left {
             width: 200px;
             flex-shrink: 0;
             border-right: 1px solid #ccc;
             height: 100%;
-
             .ant-menu-inline {
                 height: 100%;
             }
@@ -103,18 +98,13 @@ body,
                 font-size: 18px;
             }
         }
-        .main-right{
-            width: calc(100% - 300px);
-            background: #f0f2f5;
-        }
+       
     }
-    .footer{
-        width: 100%;
-        text-align: center;
-        line-height: 100px;
-        height: 100px;
-        border-top: 1px solid #ccc;
-        font-size: 20px;
+    .main-right{
+        width: calc(100% - 200px);
+        background: #f0f2f5;
+        height: 100%;
+        overflow-y: auto;
     }
 }
 }
@@ -156,9 +146,36 @@ body,
         Button{
             margin-top: 20px;
         }
-
-        .main-right {
-            height: 100%;
+.marking{
+    padding: 24px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    h2 {
+        height: 40px;
+        line-height: 40px;
+    }
+    .inquire{
+        width: 100%;
+        height: 120px;
+        background: #fff;
+        margin: 0px auto 0 auto;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        button{
+            margin-left: 50px;
+        }
+    }
+    .mainList{
+        width: 100% !important;
+        height: 70% !important;
+        background: #fff;
+        margin: 0 auto  ;
+        border-radius: 10px;
+            height: auto;
             overflow-y: auto;
             width: calc(100% - 200px);
             background: #f0f2f5;
@@ -244,9 +261,8 @@ body,
         }
     }
 }
-
-
-}
+        }
+    }
 
 //用户展示
 
@@ -348,7 +364,7 @@ body,
         .question_item_tags {
             display: flex;
             flex-direction: column;
-
+            width: 80%;
             .tags_list {
                 margin: 10px 0;
             }
@@ -417,6 +433,22 @@ body,
         padding: 40px;
         background: #fff;
         border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        .type_span{
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+            height: 100px;
+            line-height: 50px;
+        }
+        .lagre{
+            width: 250px;
+            margin-bottom: 10px;
+        }
+        #div1,#div2{
+            margin: 10px 0;
+        }
     }
     
 }
@@ -663,7 +695,8 @@ body,
 .login {
     width: 100%;
     height: 100%;
-    background: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603091240060&di=33994062460c92366ae599439efc055b&imgtype=0&src=http%3A%2F%2Ft2.qpic.cn%2Fmblogpic%2F62c172079f245bd42d6c%2F2000');
+    background: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603278433783&di=6698b10fc2e86042081608dbadaa6777&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fsoftbbs%2F1110%2F17%2Fc0%2F9295311_1318813842445_1024x1024soft.jpg');
+    background-size: 100% 100%;
     .form {
         width: 400px;
         height: 300px;
@@ -671,16 +704,14 @@ body,
         top: 50%;
         color: #fff;
         right: 100px;
-        left: 50%;
         transform: translate(-50%, -50%);
         border-radius: 15px;
-        background: rgba(125, 125, 124, 0.3);
+        background: rgba(29, 162, 220, 0.3);
         overflow: hidden;
-
         h2 {
             text-align: center;
             height: 50px;
-            background: rgba(152, 149, 149, 0.5);
+            background: rgba(27, 152, 230, 0.8);
             line-height: 50px;
             color: #fff;
             font-weight: 800;
@@ -729,14 +760,14 @@ body,
             font-size: 20px;
             text-align: center;
             color: #fff;
-            background: rgba(129, 221, 90, 0.5);
+            background: rgba(57, 210, 252, 0.5);
             border-radius: 20px;
             cursor: pointer;
             outline: none;
         }
 
         button:hover {
-            background: rgba(150, 247, 108, 0.7);
+            background: rgba(108, 240, 247, 0.7);
         }
     }
 }
@@ -752,12 +783,11 @@ body,
     width: 100%;
     height: auto;
     background: #f0f2f5;
-
     .ant-layout {
         background: #f0f2f5;
 
         .ant-layout-sider {
-            background: #f0f2f5;
+            background: #fff;
             border: 1px solid #e2dddd;
             padding: 20px;
 
@@ -786,3 +816,344 @@ body,
 }
 
 
+//班级管理
+.classmanager {
+
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5;
+    padding: 25px 10px 25px 20px;
+    h2 {
+      padding-bottom: 20px;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    .content {
+      position: relative;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      padding: 25px 15px;
+      background: #fff;
+      flex-direction: column;
+      .top {
+        width: 100%;
+        margin-bottom: 15px;
+      }
+      .list {
+        width: 100%;
+        flex: 1;
+      }
+      .add_modal {
+        #components-form-demo-control-ref .ant-btn {
+          margin-right: 8px;
+        }
+        .submit {
+            margin-left: 8px;
+        }
+      }
+    }
+  }
+
+  
+//班级管理
+.classmanager {
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5;
+    padding: 25px 10px 25px 20px;
+    .content {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        padding: 25px 15px;
+        background: #fff;
+        flex-direction: column;
+        .top {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .list {
+            width: 100%;
+            flex: 1;
+        }
+    }
+}
+.classromm{
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    .add{
+        background: #fff;
+    }
+    .addbox{
+        background: #fff;
+        margin-top: 30px !important;
+        padding: 30px;
+    }
+}
+.studentmanager{
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    .scorll{
+        width: 100%;
+        height: 100%;
+        .tables{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    
+}
+
+
+
+.editable-cell {
+    position: relative;
+  }
+  
+  .editable-cell-value-wrap {
+    padding: 5px 12px;
+    cursor: pointer;
+  }
+  
+  .editable-row:hover .editable-cell-value-wrap {
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 4px 11px;
+  }
+  
+  [data-theme='dark'] .editable-row:hover .editable-cell-value-wrap {
+    border: 1px solid #434343;
+  }
+
+
+
+  
+//考试
+.gw_addexam{
+    h2{
+        margin-bottom: 10px;
+    }
+    width: 100%;
+    height: 100%;
+    background: #eeeeee;
+    padding: 24px;
+    .exam_cont{
+        background-color: white;
+        overflow: hidden;
+        padding: 20px ;
+        border-radius: 10px;
+        div{
+            width: 100%;
+            p{
+                height: 40px;
+                line-height: 40px;
+                // background: pink;
+                margin-top:20px ;
+                span{
+                    color: red;
+                }
+            }
+            input{
+                outline: none;
+                height: 30px;
+                border: 1px solid #ccc;
+                border-radius: 1px;
+            }
+        }
+        Button{
+            margin-top: 20px;
+        }
+    }
+    
+}
+.gwexamEdit{
+    h2{
+        padding-top: 30px;
+    }
+    width: 100%;
+    height: 100%;
+    background: #eeeeee;
+    .gwexamEdit_cont{
+        background-color: white;
+        width: 90%;
+        margin: 30px;
+        overflow: hidden;
+        padding: 10px 50px;
+       .gwexamEdit_cont_01{
+           text-align: center;
+           margin: 10px 0;
+           h3{
+               font-size: 20px;
+           }
+           p{
+               color: gray;
+           }
+       }
+    }
+    .list_cont{
+        border: 1px solid #ccc;
+        // display: flex;
+        // flex-direction: column;
+        padding: 0 10px;
+        margin: 20px 0;
+        i{
+            float: right;
+            font-style: normal;
+            color: rgb(5, 173, 240);
+        }
+        b{
+            display: inline-block;
+        }
+        b,p{
+            margin: 20px 0;
+        }
+        
+    }
+    .add{
+        margin: 20px 40px;
+    }
+}
+
+.allExam{
+    margin: 10px 0 40px ;
+    p{
+        span{
+            display: inline-block;
+            height: 25px;
+            line-height: 25px;
+            width: auto;
+            margin:  10px ;
+            padding: 0 3px;
+            text-align: center;
+        }
+        span:hover{
+            cursor: pointer;
+            color:rgb(5, 173, 240);
+        }
+        .spanclass{
+            color:white;
+            cursor: pointer;
+            background:  rgb(5, 173, 240);
+        }
+        #spanclass{
+            color:white;
+            background:  rgb(5, 173, 240);
+            cursor: pointer;
+        }
+    }
+    div{
+        display: inline-block;
+        margin: 0 10px;
+    }
+    Button{
+        margin-left: 20px;
+        padding:  0 20px;
+    }
+    
+    
+}
+.questionsNew_cont{
+    div{
+        padding-left: 10px;
+        margin: 20px 0;
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid #ccc;
+        b{
+            margin-bottom: 10px;
+        }
+        p{
+            span{
+                display: inline-block;
+                padding: 0 1px;
+            }
+            span:first-child{
+                border: 1px solid skyblue;
+                background-color: rgb(224, 240, 246);
+                color: rgb(70, 189, 236);
+            }
+            span:nth-child(2){
+                border: 1px solid skyblue;
+                background-color: rgb(207, 231, 240);
+                color:  rgb(22, 78, 100);
+                margin:  0 10px;
+            }
+            span:nth-child(3){
+                border: 1px solid orange;
+                background-color: rgb(255, 246, 228);
+                color: orange;
+            }
+            b{
+                float: right;
+                i{
+                    font-style: normal;
+                }
+            }
+        }
+    }
+}
+.gwExamList{
+    h2{
+        padding-top: 30px;
+    }
+    .gwExamList_cont_01{
+        background-color: white;
+        height: 100px;
+        align-items: center;
+        margin: 30px;
+        overflow: hidden;
+        padding: 10px;
+        display: flex;
+        div{
+            margin-right: 20px;
+        }
+    }
+    .gwExamList_cont_02{
+        margin:0 30px ;
+    }
+    
+}
+
+.gwExamDetail{
+    h2{
+        padding-top: 30px;
+    }
+    width: 100%;
+    height: 100%;
+    background: #eeeeee;
+    div{
+        // display: flex;
+        height: auto;
+        margin:  30px 20px;
+        .right{
+            float: right;
+            width: 30%;
+            margin-left: 1%;
+            background-color: white;
+            height: 100%;
+            margin-right: 3%;
+
+        }
+        .left{
+            float: left;
+            width: 60%;
+            background-color: white;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            div{
+                // background-color: yellow;
+                border-bottom: 1px solid #ccc;
+                display: flex;
+                flex-direction: column;
+
+                b{
+                    margin: 10px 0;
+                }
+            }
+        }
+    }
+}

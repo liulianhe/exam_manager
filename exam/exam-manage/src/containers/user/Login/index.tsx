@@ -30,13 +30,13 @@ class Login extends Component<IProps, IState> {
             message.success(res.data.msg, 1, () => {
                 this.props.cookies.set('token', res.data.token)
                 if (this.state.remember) {
-                    this.props.cookies.set('user_name', this.state.user_name, { path: '/' })
-                    this.props.cookies.set('user_pwd', this.state.user_pwd, { path: '/' })
+                    this.props.cookies.set('user_name', this.state.user_name)
+                    this.props.cookies.set('user_pwd', this.state.user_pwd)
                 } else {
                     this.props.cookies.remove('user_name')
                     this.props.cookies.remove('user_pwd')
                 }
-                this.props.history.push('/')
+                window.location.href = '/'
                 this.props.user.setUserInfo(res.data.userInfo)
             })
         } else {

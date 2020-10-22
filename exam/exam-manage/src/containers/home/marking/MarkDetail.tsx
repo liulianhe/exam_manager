@@ -2,11 +2,12 @@
  * @Author: lizhuangzhuang 
  * @Date: 2020-10-21 10:32:41 
  * @Last Modified by: lizhuangzhuang
- * @Last Modified time: 2020-10-21 18:05:44
+ * @Last Modified time: 2020-10-21 22:25:00
  */
 
-import React, { Component } from 'react'
-
+import React, { Component} from 'react';
+import {} from 'react-router-dom'
+// import {R} from 'react-dom'
 import Markdown from 'react-markdown'
 import { Slider ,Button,Divider,Tag,Modal} from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
