@@ -1,15 +1,23 @@
 import React, { Component } from "react";
-import { Button, Table, Modal, Input, Select ,Row,Col,} from "antd";
-
-import {_getClassList,_delClassItem,_getClassName} from "@/api/grade";// _getClassRoom,// _getClassName,
-const { Option } = Select;
+import { Button, Table, message } from "antd";
+import { FormInstance } from "antd/lib/form";
+import {
+  _getClassList,
+  _delClassItem,
+  _getClassName,
+  _addClass,
+  _getClassRoom
+} from "@/api/grade";
+import ClassModal from './components/ClassModal';
 
 class Class extends Component {
+  formRef = React.createRef<FormInstance>();
   state = {
     classRoom: [], //所有教室列表
-    className: [], //所有课程列表
+    _className: [], //所有课程列表
     classList: [], //所有班级列表
     visible: false,
+    editItem:{},
     columns: [
       //tabel表头
       {
@@ -32,93 +40,94 @@ class Class extends Component {
         render: (item: any) => {
           return (
             <div>
-              <a className="edit"  onClick={() => this.showModal()}>修改</a>|
-              <a onClick={() => this.delClassItem(item.grade_id)}>删除</a>
+              <a className="edit" onClick={() => this.showModal(item)}>
+                修改
+              </a>
+              |<a onClick={() => this.delClassItem(item.grade_id)}>删除</a>
             </div>
           );
         },
       },
     ],
   };
-  async delClassItem(id: string) {
-    //删除班级
-    let res = await _delClassItem(id);
-    console.log(res, "del");
+
+  async delClassItem(id: string) {//删除班级 
+    let res = await _delClassItem({ grade_id: id });
+    console.log(res)
   }
-  showModal = () => {
-    //显示对话框
+  addClass=() => {
     this.setState({
       visible: true,
-    });
+      editItem:{}
+    })
+  }
+  showModal = (item?:any) => { //显示添加编辑对话框
+    // console.log(item)
+    this.setState({
+      visible: true,
+      editItem:item
+    })
   };
-  handleOk = (e: any) => {
-    //确定对话框
-    console.log(e);
+  handleOk = () => { //确定对话框
     this.setState({
       visible: false,
     });
   };
   handleCancel = () => {
-    //取消对话框
     this.setState({
       visible: false,
     });
+    this.onReset();
   };
+  info(value: string) {
+    message.info(value);
+  }
+  onReset = () => {
+    this.formRef.current?.resetFields();
+  };
+  onFinish = async (value: any) => { //添加班级提交事件
+    if(value['grade_name']&&value['room_id']&&value['subject_id']) {
+        let res = await _addClass(value);
+        if (res.data.code === 1) {
+          this.setState({
+            visible: false,
+          });
+          this.info("添加成功");
+        } else {
+          this.info(res.data.msg);
+        }
+      }
+    // this.onReset();
+  };
+
   async componentDidMount() {
     //获取所有班级请求
     let res = await _getClassList();
-    // let res2 = await _getClassRoom();
-    // console.log(res2,'res2')
     if (res.data.code === 1) {
-      let i = 0;
-      let data = res.data.data.map((item: any) => {
-        return { ...item, key: i++ };
-      });
       this.setState({
-        classList: data,
-      });
-      this.setState({
-        classRoom: data,
+        classList: res.data.data,
       });
     } else {
-      alert("请求失败" + res.data.msg);
+      this.info(res.data.msg);
     }
     //获取所有教室请求
-
-    // if (res2.data.code === 1) {
-    //   console.log(res2.data.data,'---')
-    //   this.setState({
-    //     classRoom: res2.data.data,
-    //   });
-    // } else {
-    //   alert("请求失败" + res.data.msg);
-    // }
-    //获取所有课程请求
-    // let res3 = await _getClassName();
-
-    // console.log(res3, "----res3");
-    // if (res3.data.code === 1) {
-    //   this.setState(
-    //     {
-    //       classRoom: res3.data.data,
-    //     }
-    //   );
-    // } else {
-    //   alert("请求失败" + res.data.msg);
-    // }
-  }
-  onChange() {
-
-  }
-  onFocus() {
-
-  }
-  onBlur() {
-
+    let res3 = await _getClassRoom()
+    if(res3.data.code===1) {
+        this.setState({
+          classRoom:res3.data.data
+        })
+    }
+    let res2 = await _getClassName();
+    if (res2.data.code === 1) {
+      this.setState({
+        _className: res2.data.data,
+      });
+    } else {
+      this.info(res.data.msg);
+    }
   }
   render() {
-    let { classList, columns, classRoom, visible, className } = this.state;
-    console.log(classRoom, "---");
+    let { classList, columns, classRoom, visible, _className, editItem } = this.state;
     return (
       <div className="classmanager">
         <h2>班级管理</h2>
@@ -126,91 +135,101 @@ class Class extends Component {
           <div className="top">
             <Button
               type="primary"
-              onClick={this.showModal}
+              onClick={this.addClass}
               className="addClassBtn"
             >
               添加班级
             </Button>
           </div>
           <div className="list">
-            <Table columns={columns} dataSource={classList} />,
+            <Table columns={columns} rowKey='grade_id' dataSource={classList}  />,
           </div>
-          <Modal
-            title="添加班级"
+        {
+          visible &&  <ClassModal
+            _className={_className}
             visible={visible}
-            onOk={this.handleOk}
-            onCancel={this.handleCancel}
-            className="add_modal"
-          >
-             <Select
-    showSearch
-    style={{ width: 200 }}
-    placeholder="Select a person"
-    optionFilterProp="children"
-    onChange={this.onChange}
-    onFocus={this.onFocus}
-    onBlur={this.onBlur}
-    // onSearch={onSearch}
-    // filterOption={(input, option) =>
-    //   option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-    // }
-  >
-    {
-      classList.map(item=>{
-        return <Option value={item["grade_name"]} key={item['grade_id']}>{item["grade_name"]}</Option>
-      }) 
-    }
-    {/* <Option value="jack">Jack</Option> */}
-    {/* <Option value="lucy">Lucy</Option>
-    <Option value="tom">Tom</Option> */}
-  </Select>,
-             {/* <Input.Group size="large">
-      <Row gutter={8}>
-        <Col span={5}>
-          <Input defaultValue="" />
-        </Col>
-        
-      </Row>
-    </Input.Group>
-            <Input.Group >
-              <Select style={{ width: "95%" }}>
-                {classRoom.map(item => {
-                  //item['grade_id']
-                  return (
-                    <Option
-                      key={item["grade_id"]}
-                      value=''//{item["grade_name"]}
-                     
-                    >
-                      {item["grade_name"]}
-                    </Option>
-                  );
-                })}
-              </Select>
-            </Input.Group>
-
-            <Input.Group compact>
-              <Select style={{ width: "95%",top:'10px' }} >
-                {
-              classRoom.map((item:any,index:number)=>{
-                  return <Option
-                  key={item["grade_id"]}
-                  value='1'//{item["subject_text"]}
-                  // style={{ top: "10" }}             
-                >
-                  {item["subject_text"]}
-                </Option>
-              })
-          }
-                {/* <Option value="1" children={[]} style={{margin: '10px'}}></Option> */}
-              {/* </Select>
-            </Input.Group> */} 
-          </Modal>
-          ;
+            classRoom={classRoom}
+            handleOk={this.handleOk}
+            handleCancel={this.handleCancel}
+            onFinish={this.onFinish}
+            editItem={editItem}
+          />
+        }
+          
         </div>
       </div>
     );
   }
 }
 export default Class;
- // 
+
+/**
+ * 
+ * <Modal
+            title="添加班级"d
+            visible={visible}
+            onOk={this.handleOk}
+            onCancel={this.handleCancel}
+            className="add_modal"
+            footer={null} 
+          >
+            <Form
+              {...layout}
+              ref={this.formRef}
+              name="control-ref"
+              onFinish={this.onFinish}
+              layout="vertical"
+            >
+              <Form.Item name="grade_name" label="班级名" rules={[{ required: true }]}>
+                <Input placeholder="班级名"/>
+              </Form.Item>
+
+              <Form.Item
+                name="room_id"
+                label="教室号"
+                rules={[{ required: true }]}
+              >
+                <Select
+                  placeholder="请选择教室号"
+                  allowClear
+                >
+                  {classRoom.map((item) => {
+                    return (
+                      <Option value={item["grade_id"]} key={item["grade_id"]}>
+                        {item["grade_name"]}
+                      </Option>
+                    );
+                  })}
+                </Select>
+              </Form.Item>
+
+              <Form.Item
+                name="subject_id"
+                label="课程名"
+                rules={[{ required: true }]}
+              >
+                <Select
+                  placeholder="课程名"
+                  allowClear
+                >
+                  {className.map((item) => {
+                    return (
+                      <Option value={item["subject_id"]} key={item["subject_id"]}>
+                        {item["subject_text"]}
+                      </Option>
+                    );
+                  })}
+                </Select>
+              </Form.Item>
+
+              <Form.Item {...tailLayout}>
+                <Button htmlType="button" onClick={this.handleCancel}>
+                  取消
+                </Button>
+                <Button type="primary" htmlType="submit" className="submit">
+                  提交
+                </Button>
+              </Form.Item>
+            </Form>
+          </Modal>
+ */
