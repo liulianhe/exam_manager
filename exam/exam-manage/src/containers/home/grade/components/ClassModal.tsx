@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Form, Input, Button, Select, Modal, message } from "antd";
+import { Form, Input, Button, Select, Modal } from "antd";
 import { FormInstance } from "antd/lib/form";
-import { _editGrade } from '@/api/grade'
 
 
 const { Option } = Select;
@@ -13,38 +12,12 @@ const layout = {
 const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
-// interface CustomizedFormProps {
-//     onChange: (fields: FieldData[]) => void;
-//     fields: FieldData[];
-//   }
-//   const CustomizedForm: React.FC<CustomizedFormProps> = ({ onChange, fields }) => 
 export default class ClassModal extends Component<any,any> {
   formRef=React.createRef<FormInstance>()
   constructor(props: any) {
     super(props);
-    this.state = {
-        visible:false,
-        roomText:props.editItem['grade_name'] || '',
-        classText:props.editItem['room_text'] || '',
-        subjectText:props.editItem['subject_text']||''
-    }
   }
-  onChange() {
-        
-  }
-  edit = async (values:any) => {
-    let obj = {grade_id:values["grade_id"],room_id:values["room_id"],subject_id:values["subject_id"]}
-    let res = await _editGrade(obj)
-    if(res.data.code===1) {
 
-    } else {
-      message.info(res.data.msg);
-    }
-    this.props.handleOk()
-  }
-  handleCertTypeChange() {
-
-  }
   render() {
     let { visible, _className, classRoom, handleOk, handleCancel, onFinish} = this.props;
     return (
@@ -60,14 +33,13 @@ export default class ClassModal extends Component<any,any> {
           {...layout}
           ref={this.formRef}
           name="control-ref"
-          onFinish={this.state.roomText?this.edit:onFinish}
+          onFinish={onFinish}
           layout="vertical"
         >
           <Form.Item
-            name="grade_id"
+            name="grade_name"
             label="班级名"
             rules={[{ required: true }]}
-            initialValue={this.state.roomText}
           >
             <Input placeholder="班级名" />
           </Form.Item>
@@ -75,10 +47,8 @@ export default class ClassModal extends Component<any,any> {
             name="room_id"
             label="课程名"
             rules={[{ required: true }]}
-            initialValue={this.state.classText}
           >
             <Select placeholder="课程名">
-              
               {classRoom.map((item:any) => {
                 return (
                   <Option value={item["room_text"]} key={item["room_id"]}>
@@ -93,10 +63,8 @@ export default class ClassModal extends Component<any,any> {
             name="subject_id"
             label="课程名"
             rules={[{ required: true }]}
-            initialValue={this.state.subjectText}
-            
           >
-            <Select placeholder="教室号" onChange={this.handleCertTypeChange}>
+            <Select placeholder="教室号" >
               {_className.map((item:any) => {
                 return (
                   <Option value={item["subject_id"]} key={item["subject_id"]}>
@@ -111,7 +79,7 @@ export default class ClassModal extends Component<any,any> {
             <Button htmlType="button" onClick={handleCancel}>
               取消
             </Button>
-            <Button type="primary" htmlType="submit" className="submit"  >{/**onClick={this.state.roomText?()=>this.edit(this.formRef):onFinish} */}
+            <Button type="primary" htmlType="submit" className="submit"  onClick={()=>onFinish(this)}>
               提交
             </Button>
           </Form.Item>
