@@ -75,16 +75,16 @@ export default [
             {
                 path: '/home/showUser',
                 component: ShowUser
-            }, 
+            },
             //试题管理
             {
                 path: '/home/questionsType',
                 component: QuestionsType
-            }, 
+            },
             {
                 path: '/home/watchQuestions',
                 component: WatchQuestions
-            }, 
+            },
             {
                 path: '/home/questionsDetail/:id',
                 component: QuestionsDetail
@@ -94,8 +94,8 @@ export default [
                 component: AddQuestions
             },
             {
-                path:'/home/editQuestions/:id',
-                component:EditQuestions
+                path: '/home/editQuestions/:id',
+                component: EditQuestions
             },
             // 班级管理
             {
@@ -125,7 +125,7 @@ export default [
                 component: ExamEdit
             },
             {
-                path:'/home/examDetail',
+                path: '/home/examDetail',
                 component: ExamDetail
             }
         ]
