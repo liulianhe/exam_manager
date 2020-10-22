@@ -20,6 +20,7 @@ const Error_500 = LazyLoad('error/500')
 const MarkingClass = LazyLoad('home/marking')
 const Marking = LazyLoad('home/marking/Marking')
 const MarkDetail = LazyLoad('home/marking/MarkDetail')
+const MexamPred = LazyLoad('home/marking/MexamPred')
 
 //试题管理
 const QuestionsType = LazyLoad('home/questions/QuestionsType')
@@ -91,6 +92,10 @@ export default [
             {
                 path: '/home/showUser',
                 component: ShowUser
+            },
+            {
+                path: '/home/mexamPred',
+                component: MexamPred
             },
             //试题管理
             {

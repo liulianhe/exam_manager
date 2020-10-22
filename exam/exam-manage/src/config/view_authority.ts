@@ -27,5 +27,6 @@ const viewConfig: any = {
     "阅卷": "/home/examinationPapers",
     "批卷班级": "/home/examPaperClassList",
     "待批试卷": "/home/examPaperClassmate",
+    "月考预测": '/home/mexamPred'
 }
 export default viewConfig;

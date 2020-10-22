@@ -80,17 +80,21 @@ export const admin = [
     {
         title: "阅卷管理",
         icon: MenuUnfoldOutlined,
-        children:[
+        children: [
             {
-            title:'批卷班级',
-            path:'/home/examPaperClassList'
-        }
-    ]
-    
+                title: '批卷班级',
+                path: '/home/examPaperClassList'
+            },
+            {
+                title: '月考预测',
+                path: '/home/mexamPred'
+            }
+        ]
+
     },
     {
         title: "菜单管理",
         icon: MenuUnfoldOutlined,
-        
+
     }
 ]

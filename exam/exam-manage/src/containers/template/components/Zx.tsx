@@ -1,27 +1,54 @@
 import React, { Component } from 'react';
 import echarts from 'echarts'
-class Zx extends Component {
+interface IProps {
+    subList: string[]
+    pred: number[]
+}
+class Zx extends Component<IProps, any> {
     state = {
-        option: {
-            series: [
-                {
-                    name: '访问来源',
-                    type: 'pie',
-                    radius: '55%',
-                    data: [
-                        { value: 235, name: '视频广告' },
-                        { value: 274, name: '联盟广告' },
-                        { value: 310, name: '邮件营销' },
-                        { value: 335, name: '直接访问' },
-                        { value: 400, name: '搜索引擎' }
-                    ]
-                }
-            ]
-        }
+        option: {}
+    }
+    setData() {
+        this.setState({
+            option: {
+                title: {
+                    text: '月考成材率',
+                    textStyle: {
+                        fontSize: 22,
+                        fontWeight: 800
+                    },
+                    left: 'center'
+                },
+                xAxis: {
+                    name: '班级',
+                    type: 'category',
+                    data: this.props.subList
+                },
+                yAxis: [
+                    {
+                        name: '成材率',
+                        type: 'value',
+                        max: 100
+                    }
+                ],
+                series: [
+                    {
+                        name: '月考预测',
+                        type: 'bar',
+                        radius: '55%',
+                        data: this.props.pred
+                    }
+                ]
+            }
+        })
+        var myChart = echarts.init(this.zx as HTMLDivElement);
+        myChart.setOption((this.state as any).option);
     }
     componentDidMount() {
-        var myChart = echarts.init(this.zx as HTMLDivElement);
-        myChart.setOption(this.state.option);
+        this.setData()
+    }
+    componentWillReceiveProps() {
+        this.setData()
     }
     zx: HTMLDivElement | null = null
     render() {
